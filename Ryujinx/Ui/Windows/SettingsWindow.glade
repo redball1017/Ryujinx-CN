@@ -1,0 +1,2678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAdjustment" id="_fsLogSpinAdjustment">
+    <property name="upper">3</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="_systemTimeDaySpinAdjustment">
+    <property name="lower">1</property>
+    <property name="upper">31</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="_systemTimeHourSpinAdjustment">
+    <property name="upper">23</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="_systemTimeMinuteSpinAdjustment">
+    <property name="upper">59</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="_systemTimeMonthSpinAdjustment">
+    <property name="lower">1</property>
+    <property name="upper">12</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">5</property>
+  </object>
+  <object class="GtkAdjustment" id="_systemTimeYearSpinAdjustment">
+    <property name="lower">2000</property>
+    <property name="upper">2060</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
+  <object class="GtkEntryCompletion" id="_systemTimeZoneCompletion">
+    <property name="minimum-key-length">0</property>
+    <property name="inline-completion">True</property>
+    <property name="inline-selection">True</property>
+  </object>
+  <object class="GtkWindow" id="_settingsWin">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Ryujinx - 设置</property>
+    <property name="modal">True</property>
+    <property name="window-position">center</property>
+    <property name="default-width">650</property>
+    <property name="default-height">650</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkNotebook">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <child>
+                      <object class="GtkBox" id="TabGeneral">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-left">5</property>
+                        <property name="margin-right">10</property>
+                        <property name="margin-top">5</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="CatGeneral">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">通用</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="General">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="_discordToggle">
+                                    <property name="label" translatable="yes">Enable Discord Rich Presence</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">Enables or disables Discord Rich Presence</property>
+                                    <property name="halign">start</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_checkUpdatesToggle">
+                                    <property name="label" translatable="yes">启动时检查更新</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_showConfirmExitToggle">
+                                    <property name="label" translatable="yes">显示“确认退出”对话框</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_hideCursorOnIdleToggle">
+                                    <property name="label" translatable="yes">空闲时隐藏光标</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatGameDir">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">游戏目录</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkScrolledWindow">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="margin-bottom">10</property>
+                                    <property name="shadow-type">in</property>
+                                    <child>
+                                      <object class="GtkTreeView" id="_gameDirsBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="headers-visible">False</property>
+                                        <property name="headers-clickable">False</property>
+                                        <child internal-child="selection">
+                                          <object class="GtkTreeSelection"/>
+                                        </child>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="GameDir"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">True</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkEntry" id="_addGameDirBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">在列表中添加一个游戏目录</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkToggleButton" id="_addDir">
+                                        <property name="label" translatable="yes">添加</property>
+                                        <property name="width-request">80</property>
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
+                                        <property name="tooltip-text" translatable="yes"> 在列表中添加一个游戏目录</property>
+                                        <property name="margin-left">5</property>
+                                        <signal name="toggled" handler="AddDir_Pressed" swapped="no"/>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkToggleButton" id="_removeDir">
+                                        <property name="label" translatable="yes">移除</property>
+                                        <property name="width-request">80</property>
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
+                                        <property name="tooltip-text" translatable="yes">移除所选游戏目录</property>
+                                        <property name="margin-left">5</property>
+                                        <signal name="toggled" handler="RemoveDir_Pressed" swapped="no"/>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatThemes">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">主题</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="_custThemeToggle">
+                                    <property name="label" translatable="yes">使用自定义主题</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">在 GUI 中启用或禁用自定义主题</property>
+                                    <property name="halign">start</property>
+                                    <property name="draw-indicator">True</property>
+                                    <signal name="toggled" handler="CustThemeToggle_Activated" swapped="no"/>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel" id="_custThemePathLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">自定义GUI主题的路径</property>
+                                        <property name="label" translatable="yes">自定义GUI主题的路径:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="_custThemePath">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">自定义GUI主题的路径</property>
+                                        <property name="valign">center</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkToggleButton" id="_browseThemePath">
+                                        <property name="label" translatable="yes">浏览...</property>
+                                        <property name="width-request">80</property>
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="receives-default">True</property>
+                                        <property name="tooltip-text" translatable="yes">浏览自定义GUI主题</property>
+                                        <property name="margin-left">5</property>
+                                        <signal name="toggled" handler="BrowseThemeDir_Pressed" swapped="no"/>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">10</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">6</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">通用</property>
+                      </object>
+                      <packing>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="TabInput">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-left">5</property>
+                        <property name="margin-right">10</property>
+                        <property name="margin-top">5</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
+                            <child>
+                              <object class="GtkCheckButton" id="_dockedModeToggle">
+                                <property name="label" translatable="yes">开启主机模式</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">开启或关闭主机模式</property>
+                                <property name="draw-indicator">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="padding">10</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton" id="_directKeyboardAccess">
+                                <property name="label" translatable="yes">直接键盘访问</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">开启或关闭 "直接键盘访问 (HID) 支持" (提供游戏访问您的键盘作为文本输入设备)</property>
+                                <property name="draw-indicator">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="padding">10</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton" id="_directMouseAccess">
+                                <property name="label" translatable="yes">直接鼠标访问</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">False</property>
+                                <property name="tooltip-text" translatable="yes">开启或关闭 "直接鼠标访问 (HID) 支持" (提供游戏访问您的鼠标作为指针输入设备)</property>
+                                <property name="draw-indicator">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="padding">10</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <!-- n-columns=5 n-rows=5 -->
+                          <object class="GtkGrid" id="ControllerGrid">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="column-spacing">20</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 1</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController1">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 3</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController3">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">4</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 2</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController2">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Handheld</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureControllerH">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">4</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 6</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController6">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">4</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 5</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController5">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 7</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController7">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 4</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController4">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                    <property name="label" translatable="yes">Player 8</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="_configureController8">
+                                    <property name="label" translatable="yes">配置</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">True</property>
+                                    <property name="margin-left">20</property>
+                                    <property name="margin-right">20</property>
+                                    <property name="margin-top">20</property>
+                                    <property name="margin-bottom">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">4</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">1</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">3</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">4</property>
+                                <property name="top-attach">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">2</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                              </object>
+                              <packing>
+                                <property name="left-attach">4</property>
+                                <property name="top-attach">3</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">输入</property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="TabSystem">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-left">5</property>
+                        <property name="margin-right">10</property>
+                        <property name="margin-top">5</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="CatCore">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="valign">start</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">核心</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkBox" id="RegionBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统地区</property>
+                                        <property name="halign">end</property>
+                                        <property name="label" translatable="yes">系统地区:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_systemRegionSelect">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统地区</property>
+                                        <property name="margin-left">5</property>
+                                        <items>
+                                          <item id="Japan" translatable="yes">Japan</item>
+                                          <item id="USA" translatable="yes">USA</item>
+                                          <item id="Europe" translatable="yes">Europe</item>
+                                          <item id="Australia" translatable="yes">Australia</item>
+                                          <item id="China" translatable="yes">China</item>
+                                          <item id="Korea" translatable="yes">Korea</item>
+                                          <item id="Taiwan" translatable="yes">Taiwan</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="LanguageBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统语言</property>
+                                        <property name="halign">end</property>
+                                        <property name="label" translatable="yes">系统语言:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_systemLanguageSelect">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统语言</property>
+                                        <items>
+                                          <item id="AmericanEnglish" translatable="yes">American English</item>
+                                          <item id="BritishEnglish" translatable="yes">British English</item>
+                                          <item id="CanadianFrench" translatable="yes">Canadian French</item>
+                                          <item id="Chinese" translatable="yes">Chinese</item>
+                                          <item id="Dutch" translatable="yes">Dutch</item>
+                                          <item id="French" translatable="yes">French</item>
+                                          <item id="German" translatable="yes">German</item>
+                                          <item id="Italian" translatable="yes">Italian</item>
+                                          <item id="Japanese" translatable="yes">Japanese</item>
+                                          <item id="Korean" translatable="yes">Korean</item>
+                                          <item id="LatinAmericanSpanish" translatable="yes">Latin American Spanish</item>
+                                          <item id="Portuguese" translatable="yes">Portuguese</item>
+                                          <item id="Russian" translatable="yes">Russian</item>
+                                          <item id="SimplifiedChinese" translatable="yes">Simplified Chinese</item>
+                                          <item id="Spanish" translatable="yes">Spanish</item>
+                                          <item id="Taiwanese" translatable="yes">Taiwanese</item>
+                                          <item id="TraditionalChinese" translatable="yes">Traditional Chinese</item>
+                                          <item id="BrazilianPortuguese" translatable="yes">Brazilian Portuguese</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="TimeZoneBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统时区</property>
+                                        <property name="halign">end</property>
+                                        <property name="label" translatable="yes">系统时区:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="_systemTimeZoneEntry">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统时区</property>
+                                        <property name="margin-left">5</property>
+                                        <property name="completion">_systemTimeZoneCompletion</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox" id="TimeBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">改变系统时间</property>
+                                        <property name="halign">end</property>
+                                        <property name="label" translatable="yes">系统时间:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="_systemTimeYearSpin">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="text" translatable="yes">2000</property>
+                                        <property name="orientation">vertical</property>
+                                        <property name="adjustment">_systemTimeYearSpinAdjustment</property>
+                                        <property name="wrap">True</property>
+                                        <property name="value">2000</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="label">-</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="_systemTimeMonthSpin">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="text" translatable="yes">1</property>
+                                        <property name="orientation">vertical</property>
+                                        <property name="adjustment">_systemTimeMonthSpinAdjustment</property>
+                                        <property name="wrap">True</property>
+                                        <property name="value">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">3</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="label">-</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">4</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="_systemTimeDaySpin">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="text" translatable="yes">1</property>
+                                        <property name="orientation">vertical</property>
+                                        <property name="adjustment">_systemTimeDaySpinAdjustment</property>
+                                        <property name="wrap">True</property>
+                                        <property name="value">1</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">5</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="_systemTimeHourSpin">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="orientation">vertical</property>
+                                        <property name="adjustment">_systemTimeHourSpinAdjustment</property>
+                                        <property name="wrap">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">6</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="halign">end</property>
+                                        <property name="label">:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">7</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton" id="_systemTimeMinuteSpin">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="orientation">vertical</property>
+                                        <property name="adjustment">_systemTimeMinuteSpinAdjustment</property>
+                                        <property name="wrap">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">8</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_vSyncToggle">
+                                    <property name="label" translatable="yes">开启垂直同步</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启或关闭垂直同步</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">4</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_ptcToggle">
+                                    <property name="label" translatable="yes">开启PPTC (Profiled Persistent Translation Cache)</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启或关闭profiled translation cache persistency</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">6</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_internetToggle">
+                                    <property name="label" translatable="yes">开启游客网络访问</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用访客 Internet 访问。 如果启用，应用程序的行为就像模拟的 Switch 控制台已连接到 Internet。 请注意，在某些情况下，即使禁用此选项，应用程序仍可能访问 Internet</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">7</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_fsicToggle">
+                                    <property name="label" translatable="yes">启用 FS 完整性检查</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用游戏内容文件的完整性检查</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">8</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="_audioBackendBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="tooltip-text" translatable="yes">改变音频后端</property>
+                                    <property name="halign">end</property>
+                                    <property name="margin-right">5</property>
+                                    <property name="label" translatable="yes">音频后端: </property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="padding">5</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="_memoryManagerBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="tooltip-text" translatable="yes">更改客户内存的映射和访问方式。 极大地影响仿真 CPU 性能.</property>
+                                    <property name="halign">end</property>
+                                    <property name="margin-right">5</property>
+                                    <property name="label" translatable="yes">内存管理器模式: </property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkRadioButton" id="_mmSoftware">
+                                    <property name="label" translatable="yes">软件</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">使用软件页表进行地址转换。 精度最高但性能最慢.</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkRadioButton" id="_mmHost">
+                                    <property name="label" translatable="yes">Host (快)</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">在主机地址空间中直接映射内存。 更快的 JIT 编译和执行.</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                    <property name="group">_mmSoftware</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">4</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkRadioButton" id="_mmHostUnsafe">
+                                    <property name="label" translatable="yes">Host unchecked (最快, 不安全)</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">直接映射内存，但在访问前不要屏蔽guest地址空间内的地址。 更快，但以安全为代价。 来宾应用程序可以从 Ryujinx 中的任何位置访问内存，因此仅在此模式下运行您信任的程序.</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                    <property name="group">_mmSoftware</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">5</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="padding">5</property>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatHacks">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="valign">start</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="label" translatable="yes">高级</property>
+                                    <attributes>
+                                      <attribute name="weight" value="bold"/>
+                                    </attributes>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="label" translatable="yes"> - 这些可能会导致不稳定</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="_expandRamToggle">
+                                    <property name="label" translatable="yes">将 DRAM 大小扩展至 6GB</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">将模拟系统上的内存量从 4GB 扩展到 6GB</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_ignoreToggle">
+                                    <property name="label" translatable="yes">忽略缺失的服务</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用忽略缺失的服务</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="label" translatable="yes">系统</property>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="TabGraphics">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">5</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="CatFeatures">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">功能</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="FeaturesOptions">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">启用图形后端多线程</property>
+                                        <property name="label" translatable="yes">图形后端多线程:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_galThreading">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">在第二个线程上执行图形后端命令。 允许着色器编译的运行时多线程，减少卡顿，并提高驱动程序的性能，而无需它们自己的多线程支持。 具有多线程的驱动程序的峰值性能略有不同。 可能需要重新启动 Ryujinx 才能正确禁用驱动程序内置多线程，或者您可能需要手动执行此操作以获得最佳性能.</property>
+                                        <property name="active-id">-1</property>
+                                        <items>
+                                          <item id="Auto" translatable="yes">Auto</item>
+                                          <item id="Off" translatable="yes">Off</item>
+                                          <item id="On" translatable="yes">On</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatEnhancements">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">实验性</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="EnhancementOptions">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="_shaderCacheToggle">
+                                    <property name="label" translatable="yes">开启着色器缓存</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启或关闭着色器缓存</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">应用于适用渲染目标的分辨率比例.</property>
+                                        <property name="label" translatable="yes">分辨率比例:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_resScaleCombo">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">应用于适用渲染目标的分辨率比例.</property>
+                                        <property name="active-id">1</property>
+                                        <items>
+                                          <item id="1" translatable="yes">Native (720p/1080p)</item>
+                                          <item id="2" translatable="yes">2x (1440p/2160p)</item>
+                                          <item id="3" translatable="yes">3x (2160p/3240p)</item>
+                                          <item id="4" translatable="yes">4x (2880p/4320p)</item>
+                                          <item id="-1" translatable="yes">Custom (not recommended)</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="_resScaleText">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">浮点分辨率比例，如 1.5。 非积分尺度更容易导致问题或崩溃.</property>
+                                        <property name="valign">center</property>
+                                        <property name="caps-lock-warning">False</property>
+                                        <property name="placeholder-text">1.0</property>
+                                        <property name="input-purpose">number</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">各向异性过滤级别（设置为自动以使用游戏请求的值）</property>
+                                        <property name="label" translatable="yes">各向异性过滤:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_anisotropy">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">各向异性过滤级别（设置为自动以使用游戏请求的值）</property>
+                                        <property name="active-id">-1</property>
+                                        <items>
+                                          <item id="-1" translatable="yes">Auto</item>
+                                          <item id="2" translatable="yes">2x</item>
+                                          <item id="4" translatable="yes">4x</item>
+                                          <item id="8" translatable="yes">8x</item>
+                                          <item id="16" translatable="yes">16x</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">应用于渲染器窗口的纵横比.</property>
+                                        <property name="label" translatable="yes">纵横比:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_aspectRatio">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">应用于渲染器窗口的纵横比.</property>
+                                        <property name="active-id">1</property>
+                                        <items>
+                                          <item id="0" translatable="yes">4:3</item>
+                                          <item id="1" translatable="yes">16:9</item>
+                                          <item id="2" translatable="yes">16:10</item>
+                                          <item id="3" translatable="yes">21:9</item>
+                                          <item id="4" translatable="yes">32:9</item>
+                                          <item id="5" translatable="yes">Stretch to Fit Window</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatDev">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">开发者选项</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="DevOptions">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">图形着色器转储路径</property>
+                                        <property name="label" translatable="yes">图形着色器转储路径:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkEntry" id="_graphicsShadersDumpPath">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">图形着色器转储路径</property>
+                                        <property name="valign">center</property>
+                                        <property name="caps-lock-warning">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">图形</property>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="TabLogging">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-left">5</property>
+                        <property name="margin-right">10</property>
+                        <property name="margin-top">5</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="CatLogging">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">日志</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="LogggingOptions">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="valign">start</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkCheckButton" id="_fileLogToggle">
+                                    <property name="label" translatable="yes">开启保存日志到文件</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用记录到磁盘上的文件</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_stubLogToggle">
+                                    <property name="label" translatable="yes">启用存根日志</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印存根日志消息</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_infoLogToggle">
+                                    <property name="label" translatable="yes">开启常规日志输出</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印信息日志消息</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">4</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_warningLogToggle">
+                                    <property name="label" translatable="yes">开启警告日志输出</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印警告日志消息</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">5</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_errorLogToggle">
+                                    <property name="label" translatable="yes">开启错误日志输出</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启错误日志输出</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">6</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_guestLogToggle">
+                                    <property name="label" translatable="yes">开启访客日志输出</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启访客日志输出</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">7</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_fsAccessLogToggle">
+                                    <property name="label" translatable="yes">开启FS访问日志</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启FS访问日志</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">8</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">启用 FS 访问日志输出到控制台。 可能的模式是 0-3</property>
+                                        <property name="label" translatable="yes">Fs 全局访问日志模式:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkSpinButton">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">True</property>
+                                        <property name="tooltip-text" translatable="yes">启用 FS 访问日志输出到控制台。 可能的模式是 0-3</property>
+                                        <property name="text" translatable="yes">0</property>
+                                        <property name="adjustment">_fsLogSpinAdjustment</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">True</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">9</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="CatDevLogging">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="margin-top">10</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="tooltip-text" translatable="yes">小心使用</property>
+                                <property name="halign">start</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">开发者选项 (警告:会降低性能)</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkBox" id="DevLoggingOptions">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="valign">start</property>
+                                <property name="margin-left">10</property>
+                                <property name="margin-right">10</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">需要启用适当的日志级别.</property>
+                                        <property name="label" translatable="yes">OPenGL日志等级</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">22</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_graphicsDebugLevel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">需要启用适当的日志级别.</property>
+                                        <property name="margin-left">5</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">22</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="_debugLogToggle">
+                                    <property name="label" translatable="yes">开启Debug日志</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="receives-default">False</property>
+                                    <property name="tooltip-text" translatable="yes">开启Debug日志</property>
+                                    <property name="halign">start</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <property name="draw-indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">21</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">22</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child type="tab">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">日志</property>
+                      </object>
+                      <packing>
+                        <property name="position">4</property>
+                        <property name="tab-fill">False</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox" id="_buttonBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-right">5</property>
+            <property name="margin-top">3</property>
+            <property name="margin-bottom">3</property>
+            <property name="spacing">5</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkToggleButton" id="SaveToggle">
+                <property name="label" translatable="yes">保存</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <signal name="toggled" handler="SaveToggle_Activated" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToggleButton" id="CloseToggle">
+                <property name="label" translatable="yes">关闭</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <signal name="toggled" handler="CloseToggle_Activated" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">应用</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <signal name="clicked" handler="ApplyToggle_Activated" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

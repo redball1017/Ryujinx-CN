@@ -1,0 +1,160 @@
+using Ryujinx.Cpu.Tracking;
+using Ryujinx.Graphics.Gpu.Memory;
+using System;
+
+namespace Ryujinx.Graphics.Gpu.Image
+{
+    /// <summary>
+    /// Represents a pool of GPU resources, such as samplers or textures.
+    /// </summary>
+    /// <typeparam name="T1">Type of the GPU resource</typeparam>
+    /// <typeparam name="T2">Type of the descriptor</typeparam>
+    abstract class Pool<T1, T2> : IDisposable where T2 : unmanaged
+    {
+        protected const int DescriptorSize = 0x20;
+
+        protected GpuContext Context;
+        protected PhysicalMemory PhysicalMemory;
+        protected int SequenceNumber;
+
+        protected T1[] Items;
+        protected T2[] DescriptorCache;
+
+        /// <summary>
+        /// The maximum ID value of resources on the pool (inclusive).
+        /// </summary>
+        /// <remarks>
+        /// The maximum amount of resources on the pool is equal to this value plus one.
+        /// </remarks>
+        public int MaximumId { get; }
+
+        /// <summary>
+        /// The address of the pool in guest memory.
+        /// </summary>
+        public ulong Address { get; }
+
+        /// <summary>
+        /// The size of the pool in bytes.
+        /// </summary>
+        public ulong Size { get; }
+
+        private readonly CpuMultiRegionHandle _memoryTracking;
+        private readonly Action<ulong, ulong> _modifiedDelegate;
+
+        /// <summary>
+        /// Creates a new instance of the GPU resource pool.
+        /// </summary>
+        /// <param name="context">GPU context that the pool belongs to</param>
+        /// <param name="physicalMemory">Physical memory where the resource descriptors are mapped</param>
+        /// <param name="address">Address of the pool in physical memory</param>
+        /// <param name="maximumId">Maximum index of an item on the pool (inclusive)</param>
+        public Pool(GpuContext context, PhysicalMemory physicalMemory, ulong address, int maximumId)
+        {
+            Context = context;
+            PhysicalMemory = physicalMemory;
+            MaximumId = maximumId;
+
+            int count = maximumId + 1;
+
+            ulong size = (ulong)(uint)count * DescriptorSize;
+
+            Items = new T1[count];
+            DescriptorCache = new T2[count];
+
+            Address = address;
+            Size    = size;
+
+            _memoryTracking = physicalMemory.BeginGranularTracking(address, size);
+            _memoryTracking.RegisterPreciseAction(address, size, PreciseAction);
+            _modifiedDelegate = RegionModified;
+        }
+
+        /// <summary>
+        /// Gets the descriptor for a given ID.
+        /// </summary>
+        /// <param name="id">ID of the descriptor. This is effectively a zero-based index</param>
+        /// <returns>The descriptor</returns>
+        public T2 GetDescriptor(int id)
+        {
+            return PhysicalMemory.Read<T2>(Address + (ulong)id * DescriptorSize);
+        }
+
+        /// <summary>
+        /// Gets the GPU resource with the given ID.
+        /// </summary>
+        /// <param name="id">ID of the resource. This is effectively a zero-based index</param>
+        /// <returns>The GPU resource with the given ID</returns>
+        public abstract T1 Get(int id);
+
+        /// <summary>
+        /// Synchronizes host memory with guest memory.
+        /// This causes invalidation of pool entries,
+        /// if a modification of entries by the CPU is detected.
+        /// </summary>
+        public void SynchronizeMemory()
+        {
+            _memoryTracking.QueryModified(_modifiedDelegate);
+        }
+
+        /// <summary>
+        /// Indicate that a region of the pool was modified, and must be loaded from memory.
+        /// </summary>
+        /// <param name="mAddress">Start address of the modified region</param>
+        /// <param name="mSize">Size of the modified region</param>
+        private void RegionModified(ulong mAddress, ulong mSize)
+        {
+            if (mAddress < Address)
+            {
+                mAddress = Address;
+            }
+
+            ulong maxSize = Address + Size - mAddress;
+
+            if (mSize > maxSize)
+            {
+                mSize = maxSize;
+            }
+
+            InvalidateRangeImpl(mAddress, mSize);
+        }
+
+        /// <summary>
+        /// An action to be performed when a precise memory access occurs to this resource.
+        /// Makes sure that the dirty flags are checked.
+        /// </summary>
+        /// <param name="address">Address of the memory action</param>
+        /// <param name="size">Size in bytes</param>
+        /// <param name="write">True if the access was a write, false otherwise</param>
+        private bool PreciseAction(ulong address, ulong size, bool write)
+        {
+            if (write && Context.SequenceNumber == SequenceNumber)
+            {
+                SequenceNumber--;
+            }
+
+            return false;
+        }
+
+        protected abstract void InvalidateRangeImpl(ulong address, ulong size);
+
+        protected abstract void Delete(T1 item);
+
+        /// <summary>
+        /// Performs the disposal of all resources stored on the pool.
+        /// It's an error to try using the pool after disposal.
+        /// </summary>
+        public virtual void Dispose()
+        {
+            if (Items != null)
+            {
+                for (int index = 0; index < Items.Length; index++)
+                {
+                    Delete(Items[index]);
+                }
+
+                Items = null;
+            }
+            _memoryTracking.Dispose();
+        }
+    }
+}

@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.21.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkApplicationWindow" id="_mainWin">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Ryujinx</property>
+    <property name="window_position">center</property>
+    <child>
+      <object class="GtkBox" id="_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkMenuBar" id="_menuBar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkMenuItem" id="_fileMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">文件</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="_loadApplicationFile">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开文件选择器以选择要加载的Switch兼容文件</property>
+                        <property name="label" translatable="yes">从文件加载应用程序</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Load_Application_File" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_loadApplicationFolder">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开文件选择器以选择要加载的Switch兼容的解压应用程序</property>
+                        <property name="label" translatable="yes">加载解包游戏</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Load_Application_Folder" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_appletMenu">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">加载小程序</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="LoadMiiEditApplet">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">在独立模式下打开 Mii 编辑器小程序</property>
+                                <property name="label" translatable="yes">Mii编辑器</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="Load_Mii_Edit_Applet" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="OpenRyuFolder">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开Ryujinx文件系统文件夹</property>
+                        <property name="label" translatable="yes">打开Ryujinx文件夹</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Open_Ryu_Folder" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="OpenLogsFolder">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开日志所写入的文件夹.</property>
+                        <property name="label" translatable="yes">打开日志文件夹</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="OpenLogsFolder_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="ExitMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">退出Ryujinx</property>
+                        <property name="label" translatable="yes">退出</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Exit_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="_optionMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">选项</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="_fullScreen">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">进入全屏</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="_startFullScreen">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">在全屏模式下启动游戏</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="StartFullScreen_Toggled" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="GUIColumns">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">选择要打开的GUI列表</property>
+                        <property name="label" translatable="yes">启用 GUI 列</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_favToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭最喜爱游戏列表</property>
+                                <property name="label" translatable="yes">开启最喜爱游戏列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_iconToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">在游戏列表中启用或禁用图标列</property>
+                                <property name="label" translatable="yes">开启图标列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_appToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭标题名/ID列表</property>
+                                <property name="label" translatable="yes">开启标题名/ID列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_developerToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭开发者列表</property>
+                                <property name="label" translatable="yes">开启开发者列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_versionToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭版本列表</property>
+                                <property name="label" translatable="yes">开启版本列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_timePlayedToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭游玩时间列表</property>
+                                <property name="label" translatable="yes">开启游玩时间列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_lastPlayedToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭上一次游玩列表</property>
+                                <property name="label" translatable="yes">开启上一次游玩列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_fileExtToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭File Ext列表</property>
+                                <property name="label" translatable="yes">开启File Ext列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_fileSizeToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭文件大小列表</property>
+                                <property name="label" translatable="yes">开启文件大小列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkCheckMenuItem" id="_pathToggle">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭路径列表</property>
+                                <property name="label" translatable="yes">开启路径列表</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="SettingsMenu">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开设置窗口</property>
+                        <property name="label" translatable="yes">设置</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Settings_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_manageUserProfiles">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开用户配置文件管理器窗口</property>
+                        <property name="label" translatable="yes">管理用户配置文件</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="ManageUserProfiles_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="_actionMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">活动</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="_pauseEmulation">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">暂停模拟</property>
+                        <property name="label" translatable="yes">暂停模拟</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="PauseEmulation_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_resumeEmulation">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">恢复模拟</property>
+                        <property name="label" translatable="yes">恢复模拟</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="ResumeEmulation_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_stopEmulation">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">停止模拟当前游戏并返回游戏选择</property>
+                        <property name="label" translatable="yes">停止模拟</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="StopEmulation_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_simulateWakeUpMessage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">模拟醒来信息</property>
+                        <property name="label" translatable="yes">模拟醒来信息</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Simulate_WakeUp_Message_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_scanAmiibo">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">扫描一个Amiibo</property>
+                        <property name="label" translatable="yes">扫描Amiibo</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Scan_Amiibo" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_takeScreenshot">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">截张图</property>
+                        <property name="label" translatable="yes">截图</property>
+                        <signal name="activate" handler="Take_Screenshot" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_hideUi">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">隐藏UI (SHOWUIKEY to show)</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="HideUi_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="_manageCheats">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">管理作弊码</property>
+                        <signal name="activate" handler="ManageCheats_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="_toolsMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">工具</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="FirmwareSubMenu">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">安装固件</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkMenuItem" id="_firmwareInstallFile">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">从XCI或ZIP中安装固件</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="Installer_File_Pressed" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="_firmwareInstallDirectory">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label" translatable="yes">从一个目录中安装固件</property>
+                                <property name="use_underline">True</property>
+                                <signal name="activate" handler="Installer_Directory_Pressed" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="HelpMenu">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">帮助</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkMenuItem" id="UpdateMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">检查Ryujinx的更新</property>
+                        <property name="label" translatable="yes">检查更新</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="Update_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="About">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">打开关于窗口</property>
+                        <property name="label" translatable="yes">关于</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="About_Pressed" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="_mainBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox" id="_viewBox">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="_gameTableWindow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkTreeView" id="_gameTable">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="reorderable">True</property>
+                        <property name="hover_selection">True</property>
+                        <signal name="row-activated" handler="Row_Activated" swapped="no"/>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="_gameTableSelection"/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="_footerBox">
+                <property name="height_request">19</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkBox" id="_listStatusBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <signal name="button-release-event" handler="RefreshList_Pressed" swapped="no"/>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="name">RefreshList</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="stock">gtk-refresh</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_progressLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">10</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
+                        <property name="label" translatable="yes">0/0 已加载</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkProgressBar" id="_progressBar">
+                        <property name="width_request">200</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">10</property>
+                        <property name="margin_right">5</property>
+                        <property name="margin_bottom">6</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="_statusBar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <signal name="button-release-event" handler="VSyncStatus_Clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkLabel" id="_vSyncStatus">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">5</property>
+                            <property name="margin_right">5</property>
+                            <property name="label" translatable="yes">垂直同步</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <signal name="button-release-event" handler="DockedMode_Clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkLabel" id="_dockedMode">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">5</property>
+                            <property name="margin_right">5</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <signal name="button-release-event" handler="VolumeStatus_Clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkLabel" id="_volumeStatus">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">5</property>
+                            <property name="margin_right">5</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEventBox">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <signal name="button-release-event" handler="AspectRatio_Clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkLabel" id="_aspectRatio">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">5</property>
+                            <property name="margin_right">5</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_gameStatus">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">9</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_fifoStatus">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">10</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">11</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_gpuName">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">12</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">5</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">系统版本</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_firmwareVersionLabel">
+                        <property name="width_request">50</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack_type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="_loadingStatusLabel">
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">5</property>
+                    <property name="label" translatable="yes">0/0 </property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">11</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="_loadingStatusBar">
+                    <property name="width_request">200</property>
+                    <property name="can_focus">False</property>
+                    <property name="margin_left">5</property>
+                    <property name="margin_right">5</property>
+                    <property name="margin_bottom">6</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">12</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+  </object>
+</interface>
