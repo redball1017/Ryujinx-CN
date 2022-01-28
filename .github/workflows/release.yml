@@ -22,7 +22,7 @@ jobs:
       RYUJINX_BASE_VERSION: "1.1"
       RYUJINX_TARGET_RELEASE_CHANNEL_NAME: "main"
       RYUJINX_TARGET_RELEASE_CHANNEL_OWNER: "redball1017"
-      RYUJINX_TARGET_RELEASE_CHANNEL_REPO: "release-channel-master"
+      RYUJINX_TARGET_RELEASE_CHANNEL_REPO: "release-channel-main"
 
     steps:
       - uses: actions/checkout@v2
