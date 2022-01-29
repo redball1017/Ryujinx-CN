@@ -132,19 +132,19 @@ namespace Ryujinx.Ui.Windows
             _playerIndex = controllerId;
             _inputConfig = ConfigurationState.Instance.Hid.InputConfig.Value.Find(inputConfig => inputConfig.PlayerIndex == _playerIndex);
 
-            Title = $"Ryujinx - 控制器设置 - {_playerIndex}";
+            Title = $"Ryujinx - Controller Settings - {_playerIndex}";
 
             if (_playerIndex == PlayerIndex.Handheld)
             {
-                _controllerType.Append(ControllerType.Handheld.ToString(), "掌机");
+                _controllerType.Append(ControllerType.Handheld.ToString(), "Handheld");
                 _controllerType.Sensitive = false;
             }
             else
             {
-                _controllerType.Append(ControllerType.ProController.ToString(), "Pro手柄");
-                _controllerType.Append(ControllerType.JoyconPair.ToString(), "一对joy-con");
-                _controllerType.Append(ControllerType.JoyconLeft.ToString(), "左joy-con");
-                _controllerType.Append(ControllerType.JoyconRight.ToString(), "右joy-con");
+                _controllerType.Append(ControllerType.ProController.ToString(), "Pro Controller");
+                _controllerType.Append(ControllerType.JoyconPair.ToString(), "Joycon Pair");
+                _controllerType.Append(ControllerType.JoyconLeft.ToString(), "Joycon Left");
+                _controllerType.Append(ControllerType.JoyconRight.ToString(), "Joycon Right");
             }
 
             _controllerType.Active = 0; // Set initial value to first in list.
@@ -253,7 +253,7 @@ namespace Ryujinx.Ui.Windows
         private void UpdateInputDeviceList()
         {
             _inputDevice.RemoveAll();
-            _inputDevice.Append("disabled", "关闭");
+            _inputDevice.Append("disabled", "Disabled");
             _inputDevice.SetActiveId("disabled");
 
             foreach (string id in _mainWindow.InputManager.KeyboardDriver.GamepadsIds)
@@ -262,7 +262,7 @@ namespace Ryujinx.Ui.Windows
 
                 if (gamepad != null)
                 {
-                    _inputDevice.Append($"键盘/{id}", GetShrinkedGamepadName($"{gamepad.Name} ({id})"));
+                    _inputDevice.Append($"keyboard/{id}", GetShrinkedGamepadName($"{gamepad.Name} ({id})"));
 
                     gamepad.Dispose();
                 }
@@ -274,7 +274,7 @@ namespace Ryujinx.Ui.Windows
 
                 if (gamepad != null)
                 {
-                    _inputDevice.Append($"控制器/{id}", GetShrinkedGamepadName($"{gamepad.Name} ({id})"));
+                    _inputDevice.Append($"controller/{id}", GetShrinkedGamepadName($"{gamepad.Name} ({id})"));
 
                     gamepad.Dispose();
                 }
@@ -283,10 +283,10 @@ namespace Ryujinx.Ui.Windows
             switch (_inputConfig)
             {
                 case StandardKeyboardInputConfig keyboard:
-                    _inputDevice.SetActiveId($"键盘/{keyboard.Id}");
+                    _inputDevice.SetActiveId($"keyboard/{keyboard.Id}");
                     break;
                 case StandardControllerInputConfig controller:
-                    _inputDevice.SetActiveId($"控制器/{controller.Id}");
+                    _inputDevice.SetActiveId($"controller/{controller.Id}");
                     break;
             }
         }
@@ -532,7 +532,7 @@ namespace Ryujinx.Ui.Windows
                         _controllerRangeLeft.Value  = 1.0;
                         _controllerRangeRight.Value = 1.0;
                         
-                        Logger.Info?.Print(LogClass.Application, $"{config.PlayerIndex} 的摇杆范围已重置. 请现在保存用户数据以保存配置");
+                        Logger.Info?.Print(LogClass.Application, $"{config.PlayerIndex} stick range reset. Save the profile now to update your configuration");
                     }
 
                     if (controllerConfig.Motion is CemuHookMotionConfigController cemuHookMotionConfig)
@@ -750,7 +750,7 @@ namespace Ryujinx.Ui.Windows
 
             if (!_inputDevice.ActiveId.StartsWith("disabled"))
             {
-                GtkDialog.CreateErrorDialog("在一个或多个字段中检测到无效数据； 配置未保存。");
+                GtkDialog.CreateErrorDialog("Invalid data detected in one or more fields; the configuration was not saved.");
             }
 
             return null;
@@ -845,7 +845,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                throw new Exception("不支持的控制器");
+                throw new Exception("Controller not supported");
             }
             
             return assigner;
@@ -1154,7 +1154,7 @@ namespace Ryujinx.Ui.Windows
 
             if (_inputDevice.ActiveId == "disabled" || _profile.ActiveId == "default" || _profile.ActiveId == null) return;
 
-            MessageDialog confirmDialog = GtkDialog.CreateConfirmationDialog("即将删除数据", "这种操作将无法挽回, 你确定要这么做吗?");
+            MessageDialog confirmDialog = GtkDialog.CreateConfirmationDialog("Deleting Profile", "This action is irreversible, are you sure you want to continue?");
 
             if (confirmDialog.Run() == (int)ResponseType.Yes)
             {
