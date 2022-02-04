@@ -5,7 +5,7 @@
   <br>
   <b>Ryujinx</b>
   <br>
-  <sub><sup><b>(REE-YOU-JI-NX)</b></sup></sub>
+  <sub><sup><b>(REE-YOU-JINX)</b></sup></sub>
   <br>
 
 </h1>
@@ -17,8 +17,8 @@
 
 </p>
 <p align="center">
-    <a href="https://ci.appveyor.com/project/gdkchan/ryujinx?branch=master">
-        <img src="https://ci.appveyor.com/api/projects/status/ssg4jwu6ve3k594s/branch/master?svg=true"
+    <a href="https://github.com/Ryujinx/Ryujinx/actions/workflows/release.yml">
+        <img src="https://github.com/Ryujinx/Ryujinx/actions/workflows/release.yml/badge.svg"
             alt="">
     </a>
     <a href="https://discord.com/invite/VkQYXAZ">
@@ -137,4 +137,3 @@ See [LICENSE.txt](LICENSE.txt) and [THIRDPARTY.md](Ryujinx/THIRDPARTY.md) for mo
 
 - [LibHac](https://github.com/Thealexbarney/LibHac) is used for our file-system. 
 - [AmiiboAPI](https://www.amiiboapi.com) is used in our Amiibo emulation.
-# Ryujinx-CN
