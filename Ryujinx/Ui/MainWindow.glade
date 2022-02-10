@@ -39,7 +39,7 @@
                       <object class="GtkMenuItem" id="_loadApplicationFolder">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">打开文件选择器以选择要加载的Switch兼容的解压应用程序</property>
+                        <property name="tooltip_text" translatable="yes">打开文件选择器以选择要加载的Switch兼容的已解压应用程序</property>
                         <property name="label" translatable="yes">加载解包游戏</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="Load_Application_Folder" swapped="no"/>
@@ -59,7 +59,7 @@
                               <object class="GtkMenuItem" id="LoadMiiEditApplet">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">在独立模式下打开 Mii 编辑器小程序</property>
+                                <property name="tooltip_text" translatable="yes">单独打开 Mii 编辑器小程序</property>
                                 <property name="label" translatable="yes">Mii编辑器</property>
                                 <property name="use_underline">True</property>
                                 <signal name="activate" handler="Load_Mii_Edit_Applet" swapped="no"/>
@@ -79,7 +79,7 @@
                       <object class="GtkMenuItem" id="OpenRyuFolder">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">打开Ryujinx文件系统文件夹</property>
+                        <property name="tooltip_text" translatable="yes">打开Ryujinx文件夹</property>
                         <property name="label" translatable="yes">打开Ryujinx文件夹</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="Open_Ryu_Folder" swapped="no"/>
@@ -137,7 +137,7 @@
                       <object class="GtkCheckMenuItem" id="_startFullScreen">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">在全屏模式下启动游戏</property>
+                        <property name="label" translatable="yes">全屏启动游戏</property>
                         <property name="use_underline">True</property>
                         <signal name="toggled" handler="StartFullScreen_Toggled" swapped="no"/>
                       </object>
@@ -153,7 +153,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">选择要打开的GUI列表</property>
-                        <property name="label" translatable="yes">启用 GUI 列</property>
+                        <property name="label" translatable="yes">启用 GUI 列表</property>
                         <property name="use_underline">True</property>
                         <child type="submenu">
                           <object class="GtkMenu">
@@ -226,8 +226,8 @@
                               <object class="GtkCheckMenuItem" id="_fileExtToggle">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">开启或关闭File Ext列表</property>
-                                <property name="label" translatable="yes">开启File Ext列表</property>
+                                <property name="tooltip_text" translatable="yes">开启或关闭文件后缀列表</property>
+                                <property name="label" translatable="yes">开启文件后缀列表</property>
                                 <property name="use_underline">True</property>
                               </object>
                             </child>
@@ -317,7 +317,7 @@
                       <object class="GtkMenuItem" id="_stopEmulation">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">停止模拟当前游戏并返回游戏选择</property>
+                        <property name="tooltip_text" translatable="yes">停止模拟当前游戏并返回游戏选择界面</property>
                         <property name="label" translatable="yes">停止模拟</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="StopEmulation_Pressed" swapped="no"/>
@@ -333,8 +333,8 @@
                       <object class="GtkMenuItem" id="_simulateWakeUpMessage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">模拟醒来信息</property>
-                        <property name="label" translatable="yes">模拟醒来信息</property>
+                        <property name="tooltip_text" translatable="yes">模拟Wake Up信息</property>
+                        <property name="label" translatable="yes">模拟Wake Up信息</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="Simulate_WakeUp_Message_Pressed" swapped="no"/>
                       </object>
@@ -353,7 +353,7 @@
                       <object class="GtkMenuItem" id="_takeScreenshot">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">截张图</property>
+                        <property name="tooltip_text" translatable="yes">截图</property>
                         <property name="label" translatable="yes">截图</property>
                         <signal name="activate" handler="Take_Screenshot" swapped="no"/>
                       </object>

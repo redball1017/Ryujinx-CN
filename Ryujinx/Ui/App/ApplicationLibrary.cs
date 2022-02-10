@@ -387,7 +387,7 @@ namespace Ryujinx.Ui.App
                             }
                             catch (InvalidDataException)
                             {
-                                Logger.Warning?.Print(LogClass.Application, $"NCA 标头内容类型检查失败。 这通常是因为itle Key不正确或丢失。 错误文件: {applicationPath}");
+                                Logger.Warning?.Print(LogClass.Application, $"NCA 标头内容类型检查失败。 这通常是因为title Key不正确或丢失。 错误文件: {applicationPath}");
                             }
                             catch
                             {
