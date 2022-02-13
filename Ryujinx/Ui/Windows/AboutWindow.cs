@@ -10,7 +10,7 @@ namespace Ryujinx.Ui.Windows
 {
     public partial class AboutWindow : Window
     {
-        public AboutWindow() : base($"Ryujinx {Program.Version} - About")
+        public AboutWindow() : base($"Ryujinx {Program.Version} - 关于")
         {
             Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace Ryujinx.Ui.Windows
 
         private void GitHubButton_Pressed(object sender, ButtonPressEventArgs args)
         {
-            OpenHelper.OpenUrl("https://github.com/Ryujinx/Ryujinx");
+            OpenHelper.OpenUrl("https://github.com/redball1017/Ryujinx-CN");
         }
 
         private void DiscordButton_Pressed(object sender, ButtonPressEventArgs args)
