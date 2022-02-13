@@ -23,11 +23,11 @@ namespace Ryujinx.HLE.HOS.Services.Ssl.SslService
 
         private ISslConnectionBase _connection;
         private BsdContext _bsdContext;
-        private readonly ulong _processId;
+        private readonly long _processId;
 
         private byte[] _nextAplnProto;
 
-        public ISslConnection(ulong processId, SslVersion sslVersion)
+        public ISslConnection(long processId, SslVersion sslVersion)
         {
             _processId = processId;
             _sslVersion = sslVersion;

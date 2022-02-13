@@ -5,9 +5,9 @@ namespace Ryujinx.HLE.HOS.Services.Am.AppletAE.AllSystemAppletProxiesService
 {
     class ILibraryAppletProxy : IpcService
     {
-        private readonly ulong _pid;
+        private readonly long _pid;
 
-        public ILibraryAppletProxy(ulong pid)
+        public ILibraryAppletProxy(long pid)
         {
             _pid = pid;
         }

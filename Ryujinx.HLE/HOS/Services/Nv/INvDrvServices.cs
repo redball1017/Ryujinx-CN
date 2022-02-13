@@ -40,7 +40,7 @@ namespace Ryujinx.HLE.HOS.Services.Nv
         public static IdDictionary DeviceFileIdRegistry = new IdDictionary();
 
         private IVirtualMemoryManager _clientMemory;
-        private ulong _owner;
+        private long _owner;
 
         private bool _transferMemInitialized = false;
 
@@ -53,7 +53,7 @@ namespace Ryujinx.HLE.HOS.Services.Nv
         {
             if (_deviceFileRegistry.TryGetValue(path, out Type deviceFileClass))
             {
-                ConstructorInfo constructor = deviceFileClass.GetConstructor(new Type[] { typeof(ServiceCtx), typeof(IVirtualMemoryManager), typeof(ulong) });
+                ConstructorInfo constructor = deviceFileClass.GetConstructor(new Type[] { typeof(ServiceCtx), typeof(IVirtualMemoryManager), typeof(long) });
 
                 NvDeviceFile deviceFile = (NvDeviceFile)constructor.Invoke(new object[] { context, _clientMemory, _owner });
 
@@ -323,7 +323,7 @@ namespace Ryujinx.HLE.HOS.Services.Nv
 
             _clientMemory = context.Process.HandleTable.GetKProcess(clientHandle).CpuMemory;
 
-            context.Device.System.KernelContext.Syscall.GetProcessId(out _owner, clientHandle);
+            context.Device.System.KernelContext.Syscall.GetProcessId(clientHandle, out _owner);
 
             context.ResponseData.Write((uint)NvResult.Success);
 

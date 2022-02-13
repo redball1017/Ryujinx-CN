@@ -24,7 +24,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
         // Process
 
-        public KernelResult GetProcessId(out ulong pid, int handle)
+        public KernelResult GetProcessId(int handle, out long pid)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
@@ -50,9 +50,9 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult CreateProcess(
-            out int handle,
             ProcessCreationInfo info,
             ReadOnlySpan<int> capabilities,
+            out int handle,
             IProcessContextFactory contextFactory,
             ThreadStart customThreadStart = null)
         {
@@ -170,19 +170,19 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
         // IPC
 
-        public KernelResult ConnectToNamedPort(out int handle, ulong namePtr)
+        public KernelResult ConnectToNamedPort(ulong namePtr, out int handle)
         {
             handle = 0;
 
-            if (!KernelTransfer.UserToKernelString(out string name, namePtr, 12))
+            if (!KernelTransfer.UserToKernelString(_context, namePtr, 12, out string name))
             {
                 return KernelResult.UserCopyFailed;
             }
 
-            return ConnectToNamedPort(out handle, name);
+            return ConnectToNamedPort(name, out handle);
         }
 
-        public KernelResult ConnectToNamedPort(out int handle, string name)
+        public KernelResult ConnectToNamedPort(string name, out int handle)
         {
             handle = 0;
 
@@ -193,7 +193,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
             KAutoObject autoObj = KAutoObject.FindNamedObject(_context, name);
 
-            if (autoObj is not KClientPort clientPort)
+            if (!(autoObj is KClientPort clientPort))
             {
                 return KernelResult.NotFound;
             }
@@ -284,7 +284,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return result;
         }
 
-        public KernelResult SendAsyncRequestWithUserBuffer(out int doneEventHandle, ulong messagePtr, ulong messageSize, int handle)
+        public KernelResult SendAsyncRequestWithUserBuffer(ulong messagePtr, ulong messageSize, int handle, out int doneEventHandle)
         {
             doneEventHandle = 0;
 
@@ -355,10 +355,10 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult CreateSession(
-            out int serverSessionHandle,
-            out int clientSessionHandle,
             bool isLight,
-            ulong namePtr)
+            ulong namePtr,
+            out int serverSessionHandle,
+            out int clientSessionHandle)
         {
             serverSessionHandle = 0;
             clientSessionHandle = 0;
@@ -420,7 +420,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return result;
         }
 
-        public KernelResult AcceptSession(out int sessionHandle, int portHandle)
+        public KernelResult AcceptSession(int portHandle, out int sessionHandle)
         {
             sessionHandle = 0;
 
@@ -472,11 +472,11 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult ReplyAndReceive(
-            out int handleIndex,
             ulong handlesPtr,
             int handlesCount,
             int replyTargetHandle,
-            long timeout)
+            long timeout,
+            out int handleIndex)
         {
             handleIndex = 0;
 
@@ -501,7 +501,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
             int[] handles = new int[handlesCount];
 
-            if (!KernelTransfer.UserToKernelArray<int>(handlesPtr, handles))
+            if (!KernelTransfer.UserToKernelInt32Array(_context, handlesPtr, handles))
             {
                 return KernelResult.UserCopyFailed;
             }
@@ -511,10 +511,10 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                 timeout += KTimeManager.DefaultTimeIncrementNanoseconds;
             }
 
-            return ReplyAndReceive(out handleIndex, handles, replyTargetHandle, timeout);
+            return ReplyAndReceive(handles, replyTargetHandle, timeout, out handleIndex);
         }
 
-        public KernelResult ReplyAndReceive(out int handleIndex, ReadOnlySpan<int> handles, int replyTargetHandle, long timeout)
+        public KernelResult ReplyAndReceive(ReadOnlySpan<int> handles, int replyTargetHandle, long timeout, out int handleIndex)
         {
             handleIndex = 0;
 
@@ -577,13 +577,13 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult ReplyAndReceiveWithUserBuffer(
-            out int handleIndex,
             ulong handlesPtr,
             ulong messagePtr,
             ulong messageSize,
             int handlesCount,
             int replyTargetHandle,
-            long timeout)
+            long timeout,
+            out int handleIndex)
         {
             handleIndex = 0;
 
@@ -615,7 +615,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
             int[] handles = new int[handlesCount];
 
-            if (!KernelTransfer.UserToKernelArray<int>(handlesPtr, handles))
+            if (!KernelTransfer.UserToKernelInt32Array(_context, handlesPtr, handles))
             {
                 currentProcess.MemoryManager.UnborrowIpcBuffer(messagePtr, messageSize);
 
@@ -681,11 +681,11 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult CreatePort(
-            out int serverPortHandle,
-            out int clientPortHandle,
             int maxSessions,
             bool isLight,
-            ulong namePtr)
+            ulong namePtr,
+            out int serverPortHandle,
+            out int clientPortHandle)
         {
             serverPortHandle = clientPortHandle = 0;
 
@@ -715,11 +715,11 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return result;
         }
 
-        public KernelResult ManageNamedPort(out int handle, ulong namePtr, int maxSessions)
+        public KernelResult ManageNamedPort(ulong namePtr, int maxSessions, out int handle)
         {
             handle = 0;
 
-            if (!KernelTransfer.UserToKernelString(out string name, namePtr, 12))
+            if (!KernelTransfer.UserToKernelString(_context, namePtr, 12, out string name))
             {
                 return KernelResult.UserCopyFailed;
             }
@@ -729,10 +729,10 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                 return KernelResult.MaximumExceeded;
             }
 
-            return ManageNamedPort(out handle, name, maxSessions);
+            return ManageNamedPort(name, maxSessions, out handle);
         }
 
-        public KernelResult ManageNamedPort(out int handle, string name, int maxSessions)
+        public KernelResult ManageNamedPort(string name, int maxSessions, out int handle)
         {
             handle = 0;
 
@@ -767,7 +767,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return result;
         }
 
-        public KernelResult ConnectToPort(out int clientSessionHandle, int clientPortHandle)
+        public KernelResult ConnectToPort(int clientPortHandle, out int clientSessionHandle)
         {
             clientSessionHandle = 0;
 
@@ -820,18 +820,18 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
         // Memory
 
-        public KernelResult SetHeapSize(out ulong address, ulong size)
+        public KernelResult SetHeapSize(ulong size, out ulong position)
         {
             if ((size & 0xfffffffe001fffff) != 0)
             {
-                address = 0;
+                position = 0;
 
                 return KernelResult.InvalidSize;
             }
 
             KProcess process = KernelStatic.GetCurrentProcess();
 
-            return process.MemoryManager.SetHeapSize(size, out address);
+            return process.MemoryManager.SetHeapSize(size, out position);
         }
 
         public KernelResult SetMemoryPermission(ulong address, ulong size, KMemoryPermission permission)
@@ -867,12 +867,12 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         }
 
         public KernelResult SetMemoryAttribute(
-            ulong address,
+            ulong position,
             ulong size,
             MemoryAttribute attributeMask,
             MemoryAttribute attributeValue)
         {
-            if (!PageAligned(address))
+            if (!PageAligned(position))
             {
                 return KernelResult.InvalidAddress;
             }
@@ -892,13 +892,13 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
             KProcess process = KernelStatic.GetCurrentProcess();
 
-            if (!process.MemoryManager.InsideAddrSpace(address, size))
+            if (!process.MemoryManager.InsideAddrSpace(position, size))
             {
                 return KernelResult.InvalidMemState;
             }
 
             KernelResult result = process.MemoryManager.SetMemoryAttribute(
-                address,
+                position,
                 size,
                 attributeMask,
                 attributeValue);
@@ -978,34 +978,20 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return process.MemoryManager.Unmap(dst, src, size);
         }
 
-        public KernelResult QueryMemory(ulong infoPtr, out ulong pageInfo, ulong address)
-        {
-            KernelResult result = QueryMemory(out MemoryInfo info, out pageInfo, address);
-
-            if (result == KernelResult.Success)
-            {
-                return KernelTransfer.KernelToUser(infoPtr, info)
-                    ? KernelResult.Success
-                    : KernelResult.InvalidMemState;
-            }
-
-            return result;
-        }
-
-        public KernelResult QueryMemory(out MemoryInfo info, out ulong pageInfo, ulong address)
+        public KernelResult QueryMemory(ulong infoPtr, ulong position, out ulong pageInfo)
         {
             KProcess process = KernelStatic.GetCurrentProcess();
 
-            KMemoryInfo blockInfo = process.MemoryManager.QueryMemory(address);
+            KMemoryInfo blkInfo = process.MemoryManager.QueryMemory(position);
 
-            info = new MemoryInfo(
-                blockInfo.Address,
-                blockInfo.Size,
-                blockInfo.State & MemoryState.UserMask,
-                blockInfo.Attribute,
-                blockInfo.Permission & KMemoryPermission.UserMask,
-                blockInfo.IpcRefCount,
-                blockInfo.DeviceRefCount);
+            process.CpuMemory.Write(infoPtr + 0x00, blkInfo.Address);
+            process.CpuMemory.Write(infoPtr + 0x08, blkInfo.Size);
+            process.CpuMemory.Write(infoPtr + 0x10, (int)blkInfo.State & 0xff);
+            process.CpuMemory.Write(infoPtr + 0x14, (int)blkInfo.Attribute);
+            process.CpuMemory.Write(infoPtr + 0x18, (int)blkInfo.Permission);
+            process.CpuMemory.Write(infoPtr + 0x1c, blkInfo.IpcRefCount);
+            process.CpuMemory.Write(infoPtr + 0x20, blkInfo.DeviceRefCount);
+            process.CpuMemory.Write(infoPtr + 0x24, 0);
 
             pageInfo = 0;
 
@@ -1098,7 +1084,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                 currentProcess);
         }
 
-        public KernelResult CreateTransferMemory(out int handle, ulong address, ulong size, KMemoryPermission permission)
+        public KernelResult CreateTransferMemory(ulong address, ulong size, KMemoryPermission permission, out int handle)
         {
             handle = 0;
 
@@ -1428,9 +1414,9 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return targetProcess.MemoryManager.SetProcessMemoryPermission(src, size, permission);
         }
 
-        private static bool PageAligned(ulong address)
+        private static bool PageAligned(ulong position)
         {
-            return (address & (KPageTableBase.PageSize - 1)) == 0;
+            return (position & (KPageTableBase.PageSize - 1)) == 0;
         }
 
         // System
@@ -1589,7 +1575,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             Logger.Warning?.Print(LogClass.KernelSvc, str);
         }
 
-        public KernelResult GetInfo(out ulong value, InfoType id, int handle, long subId)
+        public KernelResult GetInfo(InfoType id, int handle, long subId, out long value)
         {
             value = 0;
 
@@ -1635,30 +1621,30 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                             case InfoType.CoreMask: value = process.Capabilities.AllowedCpuCoresMask; break;
                             case InfoType.PriorityMask: value = process.Capabilities.AllowedThreadPriosMask; break;
 
-                            case InfoType.AliasRegionAddress: value = process.MemoryManager.AliasRegionStart; break;
+                            case InfoType.AliasRegionAddress: value = (long)process.MemoryManager.AliasRegionStart; break;
                             case InfoType.AliasRegionSize:
-                                value = (process.MemoryManager.AliasRegionEnd -
-                                         process.MemoryManager.AliasRegionStart); break;
+                                value = (long)(process.MemoryManager.AliasRegionEnd -
+                                               process.MemoryManager.AliasRegionStart); break;
 
-                            case InfoType.HeapRegionAddress: value = process.MemoryManager.HeapRegionStart; break;
+                            case InfoType.HeapRegionAddress: value = (long)process.MemoryManager.HeapRegionStart; break;
                             case InfoType.HeapRegionSize:
-                                value = (process.MemoryManager.HeapRegionEnd -
-                                         process.MemoryManager.HeapRegionStart); break;
+                                value = (long)(process.MemoryManager.HeapRegionEnd -
+                                               process.MemoryManager.HeapRegionStart); break;
 
-                            case InfoType.TotalMemorySize: value = process.GetMemoryCapacity(); break;
+                            case InfoType.TotalMemorySize: value = (long)process.GetMemoryCapacity(); break;
 
-                            case InfoType.UsedMemorySize: value = process.GetMemoryUsage(); break;
+                            case InfoType.UsedMemorySize: value = (long)process.GetMemoryUsage(); break;
 
-                            case InfoType.AslrRegionAddress: value = process.MemoryManager.GetAddrSpaceBaseAddr(); break;
+                            case InfoType.AslrRegionAddress: value = (long)process.MemoryManager.GetAddrSpaceBaseAddr(); break;
 
-                            case InfoType.AslrRegionSize: value = process.MemoryManager.GetAddrSpaceSize(); break;
+                            case InfoType.AslrRegionSize: value = (long)process.MemoryManager.GetAddrSpaceSize(); break;
 
-                            case InfoType.StackRegionAddress: value = process.MemoryManager.StackRegionStart; break;
+                            case InfoType.StackRegionAddress: value = (long)process.MemoryManager.StackRegionStart; break;
                             case InfoType.StackRegionSize:
-                                value = (process.MemoryManager.StackRegionEnd -
-                                         process.MemoryManager.StackRegionStart); break;
+                                value = (long)(process.MemoryManager.StackRegionEnd -
+                                               process.MemoryManager.StackRegionStart); break;
 
-                            case InfoType.SystemResourceSizeTotal: value = process.PersonalMmHeapPagesCount * KPageTableBase.PageSize; break;
+                            case InfoType.SystemResourceSizeTotal: value = (long)process.PersonalMmHeapPagesCount * KPageTableBase.PageSize; break;
 
                             case InfoType.SystemResourceSizeUsed:
                                 if (process.PersonalMmHeapPagesCount != 0)
@@ -1668,21 +1654,20 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
                                 break;
 
-                            case InfoType.ProgramId: value = process.TitleId; break;
+                            case InfoType.ProgramId: value = (long)process.TitleId; break;
 
-                            case InfoType.UserExceptionContextAddress: value = process.UserExceptionContextAddress; break;
+                            case InfoType.UserExceptionContextAddress: value = (long)process.UserExceptionContextAddress; break;
 
-                            case InfoType.TotalNonSystemMemorySize: value = process.GetMemoryCapacityWithoutPersonalMmHeap(); break;
+                            case InfoType.TotalNonSystemMemorySize: value = (long)process.GetMemoryCapacityWithoutPersonalMmHeap(); break;
 
-                            case InfoType.UsedNonSystemMemorySize: value = process.GetMemoryUsageWithoutPersonalMmHeap(); break;
+                            case InfoType.UsedNonSystemMemorySize: value = (long)process.GetMemoryUsageWithoutPersonalMmHeap(); break;
 
-                            case InfoType.IsApplication: value = process.IsApplication ? 1UL : 0UL; break;
+                            case InfoType.IsApplication: value = process.IsApplication ? 1 : 0; break;
 
                             case InfoType.FreeThreadCount:
                                 if (process.ResourceLimit != null)
                                 {
-                                    value = (ulong)(process.ResourceLimit.GetLimitValue(LimitableResource.Thread) -
-                                                    process.ResourceLimit.GetCurrentValue(LimitableResource.Thread));
+                                    value = process.ResourceLimit.GetLimitValue(LimitableResource.Thread) - process.ResourceLimit.GetCurrentValue(LimitableResource.Thread);
                                 }
                                 else
                                 {
@@ -1707,7 +1692,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                             return KernelResult.InvalidCombination;
                         }
 
-                        value = KernelStatic.GetCurrentProcess().Debug ? 1UL : 0UL;
+                        value = KernelStatic.GetCurrentProcess().Debug ? 1 : 0;
 
                         break;
                     }
@@ -1758,7 +1743,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                             return KernelResult.InvalidCombination;
                         }
 
-                        value = (ulong)KTimeManager.ConvertHostTicksToTicks(_context.Schedulers[currentCore].TotalIdleTimeTicks);
+                        value = KTimeManager.ConvertHostTicksToTicks(_context.Schedulers[currentCore].TotalIdleTimeTicks);
 
                         break;
                     }
@@ -1811,7 +1796,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
                         if (subId != -1)
                         {
-                            value = (ulong)KTimeManager.ConvertHostTicksToTicks(timeDelta);
+                            value = KTimeManager.ConvertHostTicksToTicks(timeDelta);
                         }
                         else
                         {
@@ -1822,7 +1807,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                                 totalTimeRunning += timeDelta;
                             }
 
-                            value = (ulong)KTimeManager.ConvertHostTicksToTicks(totalTimeRunning);
+                            value = KTimeManager.ConvertHostTicksToTicks(totalTimeRunning);
                         }
 
                         break;
@@ -1859,7 +1844,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return result;
         }
 
-        public KernelResult GetProcessList(out int count, ulong address, int maxCount)
+        public KernelResult GetProcessList(ulong address, int maxCount, out int count)
         {
             count = 0;
 
@@ -1893,7 +1878,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                 {
                     if (copyCount < maxCount)
                     {
-                        if (!KernelTransfer.KernelToUser(address + (ulong)copyCount * 8, process.Pid))
+                        if (!KernelTransfer.KernelToUserInt64(_context, address + (ulong)copyCount * 8, process.Pid))
                         {
                             return KernelResult.UserCopyFailed;
                         }
@@ -1908,7 +1893,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelResult.Success;
         }
 
-        public KernelResult GetSystemInfo(out long value, uint id, int handle, long subId)
+        public KernelResult GetSystemInfo(uint id, int handle, long subId, out long value)
         {
             value = 0;
 
@@ -1964,7 +1949,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelResult.Success;
         }
 
-        public KernelResult GetResourceLimitLimitValue(out long limitValue, int handle, LimitableResource resource)
+        public KernelResult GetResourceLimitLimitValue(int handle, LimitableResource resource, out long limitValue)
         {
             limitValue = 0;
 
@@ -1985,7 +1970,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelResult.Success;
         }
 
-        public KernelResult GetResourceLimitCurrentValue(out long limitValue, int handle, LimitableResource resource)
+        public KernelResult GetResourceLimitCurrentValue(int handle, LimitableResource resource, out long limitValue)
         {
             limitValue = 0;
 
@@ -2006,7 +1991,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelResult.Success;
         }
 
-        public KernelResult GetResourceLimitPeakValue(out long peak, int handle, LimitableResource resource)
+        public KernelResult GetResourceLimitPeakValue(int handle, LimitableResource resource, out long peak)
         {
             peak = 0;
 
@@ -2056,12 +2041,12 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
         // Thread
 
         public KernelResult CreateThread(
-            out int handle,
             ulong entrypoint,
             ulong argsPtr,
             ulong stackTop,
             int priority,
-            int cpuCore)
+            int cpuCore,
+            out int handle)
         {
             handle = 0;
 
@@ -2167,7 +2152,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             }
         }
 
-        public KernelResult GetThreadPriority(out int priority, int handle)
+        public KernelResult GetThreadPriority(int handle, out int priority)
         {
             KProcess process = KernelStatic.GetCurrentProcess();
 
@@ -2205,7 +2190,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelResult.Success;
         }
 
-        public KernelResult GetThreadCoreMask(out int preferredCore, out ulong affinityMask, int handle)
+        public KernelResult GetThreadCoreMask(int handle, out int preferredCore, out long affinityMask)
         {
             KProcess process = KernelStatic.GetCurrentProcess();
 
@@ -2227,7 +2212,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             }
         }
 
-        public KernelResult SetThreadCoreMask(int handle, int preferredCore, ulong affinityMask)
+        public KernelResult SetThreadCoreMask(int handle, int preferredCore, long affinityMask)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
@@ -2235,7 +2220,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             {
                 preferredCore = currentProcess.DefaultCpuCore;
 
-                affinityMask = 1UL << preferredCore;
+                affinityMask = 1 << preferredCore;
             }
             else
             {
@@ -2257,7 +2242,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                         return KernelResult.InvalidCpuCore;
                     }
                 }
-                else if ((affinityMask & (1UL << preferredCore)) == 0)
+                else if ((affinityMask & (1 << preferredCore)) == 0)
                 {
                     return KernelResult.InvalidCombination;
                 }
@@ -2280,7 +2265,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
             return KernelStatic.GetCurrentThread().CurrentCore;
         }
 
-        public KernelResult GetThreadId(out ulong threadUid, int handle)
+        public KernelResult GetThreadId(int handle, out long threadUid)
         {
             KProcess process = KernelStatic.GetCurrentProcess();
 
@@ -2346,21 +2331,96 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
                 return KernelResult.InvalidThread;
             }
 
-            KernelResult result = thread.GetThreadContext3(out ThreadContext context);
+            IVirtualMemoryManager memory = currentProcess.CpuMemory;
 
-            if (result == KernelResult.Success)
-            {
-                return KernelTransfer.KernelToUser(address, context)
-                    ? KernelResult.Success
-                    : KernelResult.InvalidMemState;
-            }
+            memory.Write(address + 0x0, thread.Context.GetX(0));
+            memory.Write(address + 0x8, thread.Context.GetX(1));
+            memory.Write(address + 0x10, thread.Context.GetX(2));
+            memory.Write(address + 0x18, thread.Context.GetX(3));
+            memory.Write(address + 0x20, thread.Context.GetX(4));
+            memory.Write(address + 0x28, thread.Context.GetX(5));
+            memory.Write(address + 0x30, thread.Context.GetX(6));
+            memory.Write(address + 0x38, thread.Context.GetX(7));
+            memory.Write(address + 0x40, thread.Context.GetX(8));
+            memory.Write(address + 0x48, thread.Context.GetX(9));
+            memory.Write(address + 0x50, thread.Context.GetX(10));
+            memory.Write(address + 0x58, thread.Context.GetX(11));
+            memory.Write(address + 0x60, thread.Context.GetX(12));
+            memory.Write(address + 0x68, thread.Context.GetX(13));
+            memory.Write(address + 0x70, thread.Context.GetX(14));
+            memory.Write(address + 0x78, thread.Context.GetX(15));
+            memory.Write(address + 0x80, thread.Context.GetX(16));
+            memory.Write(address + 0x88, thread.Context.GetX(17));
+            memory.Write(address + 0x90, thread.Context.GetX(18));
+            memory.Write(address + 0x98, thread.Context.GetX(19));
+            memory.Write(address + 0xa0, thread.Context.GetX(20));
+            memory.Write(address + 0xa8, thread.Context.GetX(21));
+            memory.Write(address + 0xb0, thread.Context.GetX(22));
+            memory.Write(address + 0xb8, thread.Context.GetX(23));
+            memory.Write(address + 0xc0, thread.Context.GetX(24));
+            memory.Write(address + 0xc8, thread.Context.GetX(25));
+            memory.Write(address + 0xd0, thread.Context.GetX(26));
+            memory.Write(address + 0xd8, thread.Context.GetX(27));
+            memory.Write(address + 0xe0, thread.Context.GetX(28));
+            memory.Write(address + 0xe8, thread.Context.GetX(29));
+            memory.Write(address + 0xf0, thread.Context.GetX(30));
+            memory.Write(address + 0xf8, thread.Context.GetX(31));
 
-            return result;
+            memory.Write(address + 0x100, thread.LastPc);
+
+            memory.Write(address + 0x108, (ulong)GetPsr(thread.Context));
+
+            memory.Write(address + 0x110, thread.Context.GetV(0));
+            memory.Write(address + 0x120, thread.Context.GetV(1));
+            memory.Write(address + 0x130, thread.Context.GetV(2));
+            memory.Write(address + 0x140, thread.Context.GetV(3));
+            memory.Write(address + 0x150, thread.Context.GetV(4));
+            memory.Write(address + 0x160, thread.Context.GetV(5));
+            memory.Write(address + 0x170, thread.Context.GetV(6));
+            memory.Write(address + 0x180, thread.Context.GetV(7));
+            memory.Write(address + 0x190, thread.Context.GetV(8));
+            memory.Write(address + 0x1a0, thread.Context.GetV(9));
+            memory.Write(address + 0x1b0, thread.Context.GetV(10));
+            memory.Write(address + 0x1c0, thread.Context.GetV(11));
+            memory.Write(address + 0x1d0, thread.Context.GetV(12));
+            memory.Write(address + 0x1e0, thread.Context.GetV(13));
+            memory.Write(address + 0x1f0, thread.Context.GetV(14));
+            memory.Write(address + 0x200, thread.Context.GetV(15));
+            memory.Write(address + 0x210, thread.Context.GetV(16));
+            memory.Write(address + 0x220, thread.Context.GetV(17));
+            memory.Write(address + 0x230, thread.Context.GetV(18));
+            memory.Write(address + 0x240, thread.Context.GetV(19));
+            memory.Write(address + 0x250, thread.Context.GetV(20));
+            memory.Write(address + 0x260, thread.Context.GetV(21));
+            memory.Write(address + 0x270, thread.Context.GetV(22));
+            memory.Write(address + 0x280, thread.Context.GetV(23));
+            memory.Write(address + 0x290, thread.Context.GetV(24));
+            memory.Write(address + 0x2a0, thread.Context.GetV(25));
+            memory.Write(address + 0x2b0, thread.Context.GetV(26));
+            memory.Write(address + 0x2c0, thread.Context.GetV(27));
+            memory.Write(address + 0x2d0, thread.Context.GetV(28));
+            memory.Write(address + 0x2e0, thread.Context.GetV(29));
+            memory.Write(address + 0x2f0, thread.Context.GetV(30));
+            memory.Write(address + 0x300, thread.Context.GetV(31));
+
+            memory.Write(address + 0x310, (int)thread.Context.Fpcr);
+            memory.Write(address + 0x314, (int)thread.Context.Fpsr);
+            memory.Write(address + 0x318, thread.Context.Tpidr);
+
+            return KernelResult.Success;
+        }
+
+        private static int GetPsr(ARMeilleure.State.ExecutionContext context)
+        {
+            return (context.GetPstateFlag(ARMeilleure.State.PState.NFlag) ? (1 << (int)ARMeilleure.State.PState.NFlag) : 0) |
+                   (context.GetPstateFlag(ARMeilleure.State.PState.ZFlag) ? (1 << (int)ARMeilleure.State.PState.ZFlag) : 0) |
+                   (context.GetPstateFlag(ARMeilleure.State.PState.CFlag) ? (1 << (int)ARMeilleure.State.PState.CFlag) : 0) |
+                   (context.GetPstateFlag(ARMeilleure.State.PState.VFlag) ? (1 << (int)ARMeilleure.State.PState.VFlag) : 0);
         }
 
         // Thread synchronization
 
-        public KernelResult WaitSynchronization(out int handleIndex, ulong handlesPtr, int handlesCount, long timeout)
+        public KernelResult WaitSynchronization(ulong handlesPtr, int handlesCount, long timeout, out int handleIndex)
         {
             handleIndex = 0;
 
@@ -2396,7 +2456,7 @@ namespace Ryujinx.HLE.HOS.Kernel.SupervisorCall
 
                 Span<int> handles = new Span<int>(currentThread.WaitSyncHandles).Slice(0, handlesCount);
 
-                if (!KernelTransfer.UserToKernelArray(handlesPtr, handles))
+                if (!KernelTransfer.UserToKernelInt32Array(_context, handlesPtr, handles))
                 {
                     return KernelResult.UserCopyFailed;
                 }

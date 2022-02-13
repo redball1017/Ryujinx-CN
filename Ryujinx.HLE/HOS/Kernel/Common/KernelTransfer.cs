@@ -1,50 +1,54 @@
 using Ryujinx.Cpu;
 using Ryujinx.HLE.HOS.Kernel.Process;
 using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace Ryujinx.HLE.HOS.Kernel.Common
 {
     static class KernelTransfer
     {
-        public static bool UserToKernel<T>(out T value, ulong address) where T : unmanaged
+        public static bool UserToKernelInt32(KernelContext context, ulong address, out int value)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
-            if (currentProcess.CpuMemory.IsRangeMapped(address, (ulong)Unsafe.SizeOf<T>()))
+            if (currentProcess.CpuMemory.IsMapped(address) &&
+                currentProcess.CpuMemory.IsMapped(address + 3))
             {
-                value = currentProcess.CpuMemory.Read<T>(address);
+                value = currentProcess.CpuMemory.Read<int>(address);
 
                 return true;
             }
 
-            value = default;
+            value = 0;
 
             return false;
         }
 
-        public static bool UserToKernelArray<T>(ulong address, Span<T> values) where T : unmanaged
+        public static bool UserToKernelInt32Array(KernelContext context, ulong address, Span<int> values)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
-            Span<byte> data = MemoryMarshal.Cast<T, byte>(values);
-
-            if (currentProcess.CpuMemory.IsRangeMapped(address, (ulong)data.Length))
+            for (int index = 0; index < values.Length; index++, address += 4)
             {
-                currentProcess.CpuMemory.Read(address, data);
-
-                return true;
+                if (currentProcess.CpuMemory.IsMapped(address) &&
+                    currentProcess.CpuMemory.IsMapped(address + 3))
+                {
+                    values[index]= currentProcess.CpuMemory.Read<int>(address);
+                }
+                else
+                {
+                    return false;
+                }
             }
 
-            return false;
+            return true;
         }
 
-        public static bool UserToKernelString(out string value, ulong address, uint size)
+        public static bool UserToKernelString(KernelContext context, ulong address, int size, out string value)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
-            if (currentProcess.CpuMemory.IsRangeMapped(address, size))
+            if (currentProcess.CpuMemory.IsMapped(address) &&
+                currentProcess.CpuMemory.IsMapped(address + (ulong)size - 1))
             {
                 value = MemoryHelper.ReadAsciiString(currentProcess.CpuMemory, address, size);
 
@@ -56,11 +60,27 @@ namespace Ryujinx.HLE.HOS.Kernel.Common
             return false;
         }
 
-        public static bool KernelToUser<T>(ulong address, T value) where T: unmanaged
+        public static bool KernelToUserInt32(KernelContext context, ulong address, int value)
         {
             KProcess currentProcess = KernelStatic.GetCurrentProcess();
 
-            if (currentProcess.CpuMemory.IsRangeMapped(address, (ulong)Unsafe.SizeOf<T>()))
+            if (currentProcess.CpuMemory.IsMapped(address) &&
+                currentProcess.CpuMemory.IsMapped(address + 3))
+            {
+                currentProcess.CpuMemory.Write(address, value);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool KernelToUserInt64(KernelContext context, ulong address, long value)
+        {
+            KProcess currentProcess = KernelStatic.GetCurrentProcess();
+
+            if (currentProcess.CpuMemory.IsMapped(address) &&
+                currentProcess.CpuMemory.IsMapped(address + 7))
             {
                 currentProcess.CpuMemory.Write(address, value);
 
