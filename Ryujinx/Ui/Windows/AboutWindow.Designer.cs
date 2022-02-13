@@ -150,7 +150,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _disclaimerLabel
             //
-            _disclaimerLabel = new Label("Ryujinx不属于Nintendo™,\n也不是属于其合作伙伴。")
+            _disclaimerLabel = new Label("Ryujinx不属于Nintendo™,\n也不是其合作伙伴。")
             {
                 Expand     = true,
                 Justify    = Justification.Center,
@@ -393,7 +393,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _patreonNamesLabel
             //
-            _patreonNamesLabel = new Label("感谢以下在Patreon贡献的人:")
+            _patreonNamesLabel = new Label("Supported on Patreon by :")
             {
                 Halign     = Align.Start,
                 Attributes = new AttrList()
