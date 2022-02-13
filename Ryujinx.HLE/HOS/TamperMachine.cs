@@ -54,7 +54,7 @@ namespace Ryujinx.HLE.HOS
             Activate();
         }
 
-        private bool CanInstallOnPid(ulong pid)
+        private bool CanInstallOnPid(long pid)
         {
             // Do not allow tampering of kernel processes.
             if (pid < KernelConstants.InitialProcessId)

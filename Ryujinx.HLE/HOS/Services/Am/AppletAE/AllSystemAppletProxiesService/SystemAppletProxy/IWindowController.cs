@@ -4,9 +4,9 @@ namespace Ryujinx.HLE.HOS.Services.Am.AppletAE.AllSystemAppletProxiesService.Sys
 {
     class IWindowController : IpcService
     {
-        private readonly ulong _pid;
+        private readonly long _pid;
 
-        public IWindowController(ulong pid)
+        public IWindowController(long pid)
         {
             _pid = pid;
         }

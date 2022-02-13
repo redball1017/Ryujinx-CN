@@ -122,7 +122,7 @@ namespace Ryujinx.Graphics.Gpu
         /// <param name="userObj">User defined object passed to the release callback</param>
         /// <exception cref="ArgumentException">Thrown when <paramref name="pid"/> is invalid</exception>
         public void EnqueueFrameThreadSafe(
-            ulong                      pid,
+            long                       pid,
             ulong                      address,
             int                        width,
             int                        height,

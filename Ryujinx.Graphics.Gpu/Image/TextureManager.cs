@@ -434,7 +434,6 @@ namespace Ryujinx.Graphics.Gpu.Image
         {
             new Span<ITexture>(_rtHostColors).Fill(null);
             _rtHostColors[index] = _rtColors[index]?.HostTexture;
-            _rtHostDs = null;
 
             _context.Renderer.Pipeline.SetRenderTargets(_rtHostColors, null);
         }

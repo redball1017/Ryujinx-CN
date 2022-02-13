@@ -1864,8 +1864,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">启用图形后端多线程</property>
-                                        <property name="label" translatable="yes">图形后端多线程:</property>
+                                        <property name="tooltip-text" translatable="yes">开启图形后台多线程</property>
+                                        <property name="label" translatable="yes">图形后台多线程:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1884,6 +1884,51 @@
                                           <item id="Auto" translatable="yes">Auto</item>
                                           <item id="Off" translatable="yes">Off</item>
                                           <item id="On" translatable="yes">On</item>
+                                        </items>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="padding">5</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="margin-top">5</property>
+                                    <property name="margin-bottom">5</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">要使用的图形后端</property>
+                                        <property name="label" translatable="yes">图形后端:</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">True</property>
+                                        <property name="padding">5</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkComboBoxText" id="_graphicsBackend">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="tooltip-text" translatable="yes">要使用的图形后端</property>
+                                        <property name="active-id">-1</property>
+                                        <items>
+                                          <item id="0" translatable="yes">Vulkan</item>
+                                          <item id="1" translatable="yes">OpenGL</item>
                                         </items>
                                       </object>
                                       <packing>

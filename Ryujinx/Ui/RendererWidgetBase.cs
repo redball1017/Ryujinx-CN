@@ -68,6 +68,7 @@ namespace Ryujinx.Ui
         private InputManager _inputManager;
         private IKeyboard _keyboardInterface;
         private GraphicsDebugLevel _glLogLevel;
+        private string _gpuBackendName;
         private string _gpuVendorName;
 
         private int _windowHeight;
@@ -115,7 +116,12 @@ namespace Ryujinx.Ui
 
         public abstract void SwapBuffers();
 
-        public abstract string GetGpuVendorName();
+        protected abstract string GetGpuBackendName();
+
+        private string GetGpuVendorName()
+        {
+            return Renderer.GetHardwareInfo().GpuVendor;
+        }
 
         private void HideCursorStateChanged(object sender, ReactiveEventArgs<bool> state)
         {
@@ -222,7 +228,7 @@ namespace Ryujinx.Ui
             _windowWidth = evnt.Width * monitor.ScaleFactor;
             _windowHeight = evnt.Height * monitor.ScaleFactor;
 
-            Renderer?.Window.SetSize(_windowWidth, _windowHeight);
+            Renderer?.Window?.SetSize(_windowWidth, _windowHeight);
 
             return result;
         }
@@ -303,7 +309,7 @@ namespace Ryujinx.Ui
             }
 
             Renderer = renderer;
-            Renderer?.Window.SetSize(_windowWidth, _windowHeight);
+            Renderer.Window?.SetSize(_windowWidth, _windowHeight);
 
             if (Renderer != null)
             {
@@ -338,7 +344,7 @@ namespace Ryujinx.Ui
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error?.Print(LogClass.Application, $"无法在 {directory}  创建一个目录. 错误 : {ex.GetType().Name}", "Screenshot");
+                            Logger.Error?.Print(LogClass.Application, $"Failed to create directory at path {directory}. Error : {ex.GetType().Name}", "Screenshot");
 
                             return;
                         }
@@ -363,13 +369,13 @@ namespace Ryujinx.Ui
 
                         image.Dispose();
 
-                        Logger.Notice.Print(LogClass.Application, $"截图已保存至 {path}", "Screenshot");
+                        Logger.Notice.Print(LogClass.Application, $"Screenshot saved to {path}", "Screenshot");
                     }
                 });
             }
             else
             {
-                Logger.Error?.Print(LogClass.Application, $"没有截图. 尺寸 : {e.Data.Length} bytes. 分辨率 : {e.Width}x{e.Height}", "Screenshot");
+                Logger.Error?.Print(LogClass.Application, $"Screenshot is empty. Size : {e.Data.Length} bytes. Resolution : {e.Width}x{e.Height}", "Screenshot");
             }
         }
 
@@ -382,6 +388,7 @@ namespace Ryujinx.Ui
 
             Device.Gpu.Renderer.Initialize(_glLogLevel);
 
+            _gpuBackendName = GetGpuBackendName();
             _gpuVendorName = GetGpuVendorName();
 
             Device.Gpu.Renderer.RunLoop(() =>
@@ -417,7 +424,7 @@ namespace Ryujinx.Ui
 
                     if (_ticks >= _ticksPerFrame)
                     {
-                        string dockedMode = ConfigurationState.Instance.System.EnableDockedMode ? "主机" : "掌机";
+                        string dockedMode = ConfigurationState.Instance.System.EnableDockedMode ? "Docked" : "Handheld";
                         float scale = Graphics.Gpu.GraphicsConfig.ResScale;
                         if (scale != 1)
                         {
@@ -427,6 +434,7 @@ namespace Ryujinx.Ui
                         StatusUpdatedEvent?.Invoke(this, new StatusUpdatedEventArgs(
                             Device.EnableDeviceVsync,
                             Device.GetVolume(),
+                            _gpuBackendName,
                             dockedMode,
                             ConfigurationState.Instance.Graphics.AspectRatio.Value.ToText(),
                             $"Game: {Device.Statistics.GetGameFrameRate():00.00} FPS ({Device.Statistics.GetGameFrameTime():00.00} ms)",
@@ -603,7 +611,7 @@ namespace Ryujinx.Ui
                 if (currentHotkeyState.HasFlag(KeyboardHotkeyState.ToggleMute) &&
                     !_prevHotkeyState.HasFlag(KeyboardHotkeyState.ToggleMute))
                 {
-                    if (Device.IsAudioMuted()) 
+                    if (Device.IsAudioMuted())
                     {
                         Device.SetVolume(ConfigurationState.Instance.System.AudioVolume);
                     }

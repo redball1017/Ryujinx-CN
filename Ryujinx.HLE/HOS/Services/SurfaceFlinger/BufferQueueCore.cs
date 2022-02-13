@@ -40,7 +40,7 @@ namespace Ryujinx.HLE.HOS.Services.SurfaceFlinger
         private KEvent _waitBufferFreeEvent;
         private KEvent _frameAvailableEvent;
 
-        public ulong Owner { get; }
+        public long Owner { get; }
 
         public bool Active { get; private set; }
 
@@ -48,7 +48,7 @@ namespace Ryujinx.HLE.HOS.Services.SurfaceFlinger
 
         public event Action BufferQueued;
 
-        public BufferQueueCore(Switch device, ulong pid)
+        public BufferQueueCore(Switch device, long pid)
         {
             Slots                    = new BufferSlotArray();
             IsAbandoned              = false;

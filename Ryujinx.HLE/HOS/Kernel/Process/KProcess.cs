@@ -45,7 +45,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
         public KAddressArbiter AddressArbiter { get; private set; }
 
-        public ulong[] RandomEntropy { get; private set; }
+        public long[] RandomEntropy { get; private set; }
         public KThread[] PinnedThreads { get; private set; }
 
         private bool _signaled;
@@ -62,7 +62,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
         public ulong TitleId { get; private set; }
         public bool IsApplication { get; private set; }
-        public ulong Pid { get; private set; }
+        public long Pid { get; private set; }
 
         private long _creationTimestamp;
         private ulong _entrypoint;
@@ -102,7 +102,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
             Capabilities = new KProcessCapabilities();
 
-            RandomEntropy = new ulong[KScheduler.CpuCoresCount];
+            RandomEntropy = new long[KScheduler.CpuCoresCount];
             PinnedThreads = new KThread[KScheduler.CpuCoresCount];
 
             // TODO: Remove once we no longer need to initialize it externally.
@@ -131,7 +131,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
             Pid = KernelContext.NewKipId();
 
-            if (Pid == 0 || Pid >= KernelConstants.InitialProcessId)
+            if (Pid == 0 || (ulong)Pid >= KernelConstants.InitialProcessId)
             {
                 throw new InvalidOperationException($"Invalid KIP Id {Pid}.");
             }
@@ -239,7 +239,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
             Pid = KernelContext.NewProcessId();
 
-            if (Pid == ulong.MaxValue || Pid < KernelConstants.InitialProcessId)
+            if (Pid == -1 || (ulong)Pid < KernelConstants.InitialProcessId)
             {
                 throw new InvalidOperationException($"Invalid Process Id {Pid}.");
             }
@@ -868,12 +868,12 @@ namespace Ryujinx.HLE.HOS.Kernel.Process
 
         public bool IsCpuCoreAllowed(int core)
         {
-            return (Capabilities.AllowedCpuCoresMask & (1UL << core)) != 0;
+            return (Capabilities.AllowedCpuCoresMask & (1L << core)) != 0;
         }
 
         public bool IsPriorityAllowed(int priority)
         {
-            return (Capabilities.AllowedThreadPriosMask & (1UL << priority)) != 0;
+            return (Capabilities.AllowedThreadPriosMask & (1L << priority)) != 0;
         }
 
         public override bool IsSignaled()
