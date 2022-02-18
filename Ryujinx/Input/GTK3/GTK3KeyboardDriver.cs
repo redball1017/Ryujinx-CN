@@ -87,7 +87,7 @@ namespace Ryujinx.Input.GTK3
                 return null;
             }
 
-            return new GTK3Keyboard(this, _keyboardIdentifers[0], "全部键盘");
+            return new GTK3Keyboard(this, _keyboardIdentifers[0], "All keyboards");
         }
     }
 }
