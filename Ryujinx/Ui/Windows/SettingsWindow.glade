@@ -1201,13 +1201,13 @@
                                         <property name="tooltip-text" translatable="yes">改变系统地区</property>
                                         <property name="margin-left">5</property>
                                         <items>
-                                          <item id="Japan" translatable="yes">Japan</item>
-                                          <item id="USA" translatable="yes">USA</item>
-                                          <item id="Europe" translatable="yes">Europe</item>
-                                          <item id="Australia" translatable="yes">Australia</item>
-                                          <item id="China" translatable="yes">China</item>
-                                          <item id="Korea" translatable="yes">Korea</item>
-                                          <item id="Taiwan" translatable="yes">Taiwan</item>
+                                          <item id="Japan" translatable="yes">日本</item>
+                                          <item id="USA" translatable="yes">美国</item>
+                                          <item id="Europe" translatable="yes">欧洲</item>
+                                          <item id="Australia" translatable="yes">澳大利亚</item>
+                                          <item id="China" translatable="yes">中国</item>
+                                          <item id="Korea" translatable="yes">韩国</item>
+                                          <item id="Taiwan" translatable="yes">台湾</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -1249,24 +1249,24 @@
                                         <property name="can-focus">False</property>
                                         <property name="tooltip-text" translatable="yes">改变系统语言</property>
                                         <items>
-                                          <item id="AmericanEnglish" translatable="yes">American English</item>
-                                          <item id="BritishEnglish" translatable="yes">British English</item>
-                                          <item id="CanadianFrench" translatable="yes">Canadian French</item>
-                                          <item id="Chinese" translatable="yes">Chinese</item>
-                                          <item id="Dutch" translatable="yes">Dutch</item>
-                                          <item id="French" translatable="yes">French</item>
-                                          <item id="German" translatable="yes">German</item>
-                                          <item id="Italian" translatable="yes">Italian</item>
-                                          <item id="Japanese" translatable="yes">Japanese</item>
-                                          <item id="Korean" translatable="yes">Korean</item>
-                                          <item id="LatinAmericanSpanish" translatable="yes">Latin American Spanish</item>
-                                          <item id="Portuguese" translatable="yes">Portuguese</item>
-                                          <item id="Russian" translatable="yes">Russian</item>
-                                          <item id="SimplifiedChinese" translatable="yes">Simplified Chinese</item>
-                                          <item id="Spanish" translatable="yes">Spanish</item>
-                                          <item id="Taiwanese" translatable="yes">Taiwanese</item>
-                                          <item id="TraditionalChinese" translatable="yes">Traditional Chinese</item>
-                                          <item id="BrazilianPortuguese" translatable="yes">Brazilian Portuguese</item>
+                                          <item id="AmericanEnglish" translatable="yes">美式英语</item>
+                                          <item id="BritishEnglish" translatable="yes">英式英语</item>
+                                          <item id="CanadianFrench" translatable="yes">加拿大式英语</item>
+                                          <item id="Chinese" translatable="yes">中文(不推荐选这个)</item>
+                                          <item id="Dutch" translatable="yes">荷兰语</item>
+                                          <item id="French" translatable="yes">法语</item>
+                                          <item id="German" translatable="yes">德语</item>
+                                          <item id="Italian" translatable="yes">意大利语</item>
+                                          <item id="Japanese" translatable="yes">日语</item>
+                                          <item id="Korean" translatable="yes">韩语</item>
+                                          <item id="LatinAmericanSpanish" translatable="yes">拉丁美洲英语</item>
+                                          <item id="Portuguese" translatable="yes">葡萄牙语</item>
+                                          <item id="Russian" translatable="yes">俄语</item>
+                                          <item id="SimplifiedChinese" translatable="yes">简体中文</item>
+                                          <item id="Spanish" translatable="yes">西班牙语</item>
+                                          <item id="Taiwanese" translatable="yes">台湾中文(不推荐选这个)</item>
+                                          <item id="TraditionalChinese" translatable="yes">繁体中文</item>
+                                          <item id="BrazilianPortuguese" translatable="yes">巴西葡萄牙语</item>
                                         </items>
                                       </object>
                                       <packing>
