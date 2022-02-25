@@ -79,7 +79,7 @@ namespace Ryujinx.Ui.App
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"无法访问目录: \"{dir}\"");
+                    Logger.Warning?.Print(LogClass.Application, $"Failed to get access to directory: \"{dir}\"");
                 }
 
                 if (content.Length > 0)
@@ -96,7 +96,7 @@ namespace Ryujinx.Ui.App
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"无法访问目录: \"{dir}\"");
+                    Logger.Warning?.Print(LogClass.Application, $"Failed to get access to directory: \"{dir}\"");
                 }
 
                 if (content.Length > 0)
@@ -132,7 +132,7 @@ namespace Ryujinx.Ui.App
 
                 if (!Directory.Exists(appDir))
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"此 \"game_dirs\" 的一部分 \"Config.json\" 包含无效目录: \"{appDir}\"");
+                    Logger.Warning?.Print(LogClass.Application, $"The \"game_dirs\" section in \"Config.json\" contains an invalid directory: \"{appDir}\"");
 
                     continue;
                 }
@@ -156,7 +156,7 @@ namespace Ryujinx.Ui.App
             foreach (string applicationPath in applications)
             {
                 double fileSize        = new FileInfo(applicationPath).Length * 0.000000000931;
-                string titleName       = "未知";
+                string titleName       = "Unknown";
                 string titleId         = "0000000000000000";
                 string developer       = "Unknown";
                 string version         = "0";
@@ -242,15 +242,18 @@ namespace Ryujinx.Ui.App
                                 }
                                 else
                                 {
-                                    // Store the ControlFS in variable called controlFs
                                     GetControlFsAndTitleId(pfs, out IFileSystem controlFs, out titleId);
+
+                                    // Check if there is an update available.
+                                    if (IsUpdateApplied(titleId, out IFileSystem updatedControlFs))
+                                    {
+                                        // Replace the original ControlFs by the updated one.
+                                        controlFs = updatedControlFs;
+                                    }
 
                                     ReadControlData(controlFs, controlHolder.ByteSpan);
 
-                                    // Get the title name, title ID, developer name and version number from the NACP
-                                    version = IsUpdateApplied(titleId, out string updateVersion) ? updateVersion : controlHolder.Value.DisplayVersion.ToString();
-
-                                    GetNameIdDeveloper(ref controlHolder.Value, out titleName, out _, out developer);
+                                    GetGameInformation(ref controlHolder.Value, out titleName, out _, out developer, out version);
 
                                     // Read the icon from the ControlFS and store it as a byte array
                                     try
@@ -301,17 +304,17 @@ namespace Ryujinx.Ui.App
                             {
                                 applicationIcon = Path.GetExtension(applicationPath).ToLower() == ".xci" ? _xciIcon : _nspIcon;
 
-                                Logger.Warning?.Print(LogClass.Application, $"你的密钥文件没有此名称的密钥: {exception.Name}");
+                                Logger.Warning?.Print(LogClass.Application, $"Your key set is missing a key with the name: {exception.Name}");
                             }
                             catch (InvalidDataException)
                             {
                                 applicationIcon = Path.GetExtension(applicationPath).ToLower() == ".xci" ? _xciIcon : _nspIcon;
 
-                                Logger.Warning?.Print(LogClass.Application, $"标头密钥不正确或丢失，因此 NCA 标头内容类型检查失败。 错误文件: {applicationPath}");
+                                Logger.Warning?.Print(LogClass.Application, $"The header key is incorrect or missing and therefore the NCA header content type check has failed. Errored File: {applicationPath}");
                             }
                             catch (Exception exception)
                             {
-                                Logger.Warning?.Print(LogClass.Application, $"遇到的文件不是有效类型。 文件: '{applicationPath}' Error: {exception}");
+                                Logger.Warning?.Print(LogClass.Application, $"The file encountered was not of a valid type. File: '{applicationPath}' Error: {exception}");
 
                                 numApplicationsFound--;
 
@@ -351,10 +354,7 @@ namespace Ryujinx.Ui.App
                                     // Read the NACP data
                                     Read(assetOffset + (int)nacpOffset, (int)nacpSize).AsSpan().CopyTo(controlHolder.ByteSpan);
 
-                                    // Get the title name, title ID, developer name and version number from the NACP
-                                    version = controlHolder.Value.DisplayVersion.ToString();
-
-                                    GetNameIdDeveloper(ref controlHolder.Value, out titleName, out titleId, out developer);
+                                    GetGameInformation(ref controlHolder.Value, out titleName, out titleId, out developer, out version);
                                 }
                                 else
                                 {
@@ -364,7 +364,7 @@ namespace Ryujinx.Ui.App
                             }
                             catch
                             {
-                                Logger.Warning?.Print(LogClass.Application, $"遇到的文件不是有效类型。 错误文件: {applicationPath}");
+                                Logger.Warning?.Print(LogClass.Application, $"The file encountered was not of a valid type. Errored File: {applicationPath}");
 
                                 numApplicationsFound--;
 
@@ -387,11 +387,11 @@ namespace Ryujinx.Ui.App
                             }
                             catch (InvalidDataException)
                             {
-                                Logger.Warning?.Print(LogClass.Application, $"NCA 标头内容类型检查失败。 这通常是因为title Key不正确或丢失。 错误文件: {applicationPath}");
+                                Logger.Warning?.Print(LogClass.Application, $"The NCA header content type check has failed. This is usually because the header key is incorrect or missing. Errored File: {applicationPath}");
                             }
                             catch
                             {
-                                Logger.Warning?.Print(LogClass.Application, $"遇到的文件不是有效类型。 错误文件: {applicationPath}");
+                                Logger.Warning?.Print(LogClass.Application, $"The file encountered was not of a valid type. Errored File: {applicationPath}");
 
                                 numApplicationsFound--;
 
@@ -420,11 +420,11 @@ namespace Ryujinx.Ui.App
 
                 ApplicationMetadata appMetadata = LoadAndSaveMetaData(titleId);
 
-                if (appMetadata.LastPlayed != "从不" && !DateTime.TryParse(appMetadata.LastPlayed, out _))
+                if (appMetadata.LastPlayed != "Never" && !DateTime.TryParse(appMetadata.LastPlayed, out _))
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"上次游玩时间 \"{appMetadata.LastPlayed}\" 对当前系统区域无效, 跳过 (当前地区是否发生了变化?)");
+                    Logger.Warning?.Print(LogClass.Application, $"Last played datetime \"{appMetadata.LastPlayed}\" is invalid for current system culture, skipping (did current culture change?)");
 
-                    appMetadata.LastPlayed = "从不";
+                    appMetadata.LastPlayed = "Never";
                 }
 
                 ApplicationData data = new ApplicationData
@@ -508,7 +508,7 @@ namespace Ryujinx.Ui.App
             }
             catch (JsonException)
             {
-                Logger.Warning?.Print(LogClass.Application, $"无法解析 {titleId} 的元数据 json。 加载默认值。");
+                Logger.Warning?.Print(LogClass.Application, $"Failed to parse metadata json for {titleId}. Loading defaults.");
 
                 appMetadata = new ApplicationMetadata();
             }
@@ -554,7 +554,7 @@ namespace Ryujinx.Ui.App
             return readableString;
         }
 
-        private void GetNameIdDeveloper(ref ApplicationControlProperty controlData, out string titleName, out string titleId, out string publisher)
+        private void GetGameInformation(ref ApplicationControlProperty controlData, out string titleName, out string titleId, out string publisher, out string version)
         {
             _ = Enum.TryParse(_desiredTitleLanguage.ToString(), out TitleLanguage desiredTitleLanguage);
 
@@ -611,11 +611,15 @@ namespace Ryujinx.Ui.App
             {
                 titleId = "0000000000000000";
             }
+
+            version = controlData.DisplayVersion.ToString();
         }
 
-        private bool IsUpdateApplied(string titleId, out string version)
+        private bool IsUpdateApplied(string titleId, out IFileSystem updatedControlFs)
         {
-            string updatePath = "(未知)";
+            updatedControlFs = null;
+            
+            string updatePath = "(unknown)";
 
             try
             {
@@ -623,14 +627,7 @@ namespace Ryujinx.Ui.App
 
                 if (patchNca != null && controlNca != null)
                 {
-                    ApplicationControlProperty controlData = new ApplicationControlProperty();
-                    using var nacpFile = new UniqueRef<IFile>();
-
-                    controlNca.OpenFileSystem(NcaSectionType.Data, IntegrityCheckLevel.None).OpenFile(ref nacpFile.Ref(), "/control.nacp".ToU8Span(), OpenMode.Read).ThrowIfFailure();
-
-                    nacpFile.Get.Read(out _, 0, SpanHelpers.AsByteSpan(ref controlData), ReadOption.None).ThrowIfFailure();
-
-                    version = controlData.DisplayVersion.ToString();
+                    updatedControlFs = controlNca?.OpenFileSystem(NcaSectionType.Data, IntegrityCheckLevel.None);
 
                     return true;
                 }
@@ -638,14 +635,12 @@ namespace Ryujinx.Ui.App
             catch (InvalidDataException)
             {
                 Logger.Warning?.Print(LogClass.Application,
-                    $"标头密钥不正确或丢失，因此 NCA 标头内容类型检查失败。 错误文件: {updatePath}");
+                    $"The header key is incorrect or missing and therefore the NCA header content type check has failed. Errored File: {updatePath}");
             }
             catch (MissingKeyException exception)
             {
-                Logger.Warning?.Print(LogClass.Application, $"你的密钥文件中不包含此名称的密钥: {exception.Name}. 错误文件: {updatePath}");
+                Logger.Warning?.Print(LogClass.Application, $"Your key set is missing a key with the name: {exception.Name}. Errored File: {updatePath}");
             }
-
-            version = "";
 
             return false;
         }
