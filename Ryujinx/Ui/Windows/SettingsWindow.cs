@@ -182,7 +182,7 @@ namespace Ryujinx.Ui.Windows
                 _fsAccessLogToggle.Click();
             }
 
-            foreach (GraphicsDebugLevel level in Enum.GetValues(typeof(GraphicsDebugLevel)))
+            foreach (GraphicsDebugLevel level in Enum.GetValues<GraphicsDebugLevel>())
             {
                 _graphicsDebugLevel.Append(level.ToString(), level.ToString());
             }
