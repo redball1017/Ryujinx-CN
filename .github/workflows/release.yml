@@ -14,7 +14,7 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     env:
       POWERSHELL_TELEMETRY_OPTOUT: 1
