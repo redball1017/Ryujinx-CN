@@ -14,11 +14,7 @@ on:
 
 jobs:
   release:
-<<<<<<< HEAD
-    runs-on: self-hosted
-=======
     runs-on: windows-lastest
->>>>>>> parent of d522d58 (Update release.yml)
 
     env:
       POWERSHELL_TELEMETRY_OPTOUT: 1
