@@ -30,7 +30,7 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Clear
-        run: dotnet clean && dotnet nuget locals all --clear
+        run: (dotnet clean) -and (dotnet nuget locals all --clear)
       - name: Get version info
         id: version_info
         run: |
