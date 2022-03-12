@@ -11,6 +11,7 @@ namespace Ryujinx.Ui.Widgets
         private MenuItem _manageDlcMenuItem;
         private MenuItem _manageCheatMenuItem;
         private MenuItem _openTitleModDirMenuItem;
+        private MenuItem _openTitleSdModDirMenuItem;
         private Menu     _extractSubMenu;
         private MenuItem _extractMenuItem;
         private MenuItem _extractRomFsMenuItem;
@@ -87,6 +88,15 @@ namespace Ryujinx.Ui.Widgets
                 TooltipText = "打开包含应用程序模组的目录"
             };
             _openTitleModDirMenuItem.Activated += OpenTitleModDir_Clicked;
+
+            //
+            // _openTitleSdModDirMenuItem
+            //
+            _openTitleSdModDirMenuItem = new MenuItem("打开大气层模组目录")
+            {
+                TooltipText = "打开包含应用程序模组的大气层SD卡目录."
+            };
+            _openTitleSdModDirMenuItem.Activated += OpenTitleSdModDir_Clicked;
 
             //
             // _extractSubMenu
@@ -199,6 +209,7 @@ namespace Ryujinx.Ui.Widgets
             Add(_manageDlcMenuItem);
             Add(_manageCheatMenuItem);
             Add(_openTitleModDirMenuItem);
+            Add(_openTitleSdModDirMenuItem);
             Add(new SeparatorMenuItem());
             Add(_manageCacheMenuItem);
             Add(_extractMenuItem);
