@@ -1,5 +1,5 @@
 ﻿using Ryujinx.Common.Logging;
-using Ryujinx.HLE.FileSystem.Content;
+using Ryujinx.HLE.FileSystem;
 using Ryujinx.Ui.Widgets;
 using System;
 using System.IO;
@@ -68,11 +68,11 @@ namespace Ryujinx.Ui.Helper
                     {
                         try
                         {
-                            Logger.Info?.Print(LogClass.Application, $"安装固件 {firmwareVersion.VersionString}");
+                            Logger.Info?.Print(LogClass.Application, $"Installing firmware {firmwareVersion.VersionString}");
 
                             contentManager.InstallFirmware(baseApplicationPath);
 
-                            Logger.Info?.Print(LogClass.Application, $"系统版本 {firmwareVersion.VersionString} 已成功安装.");
+                            Logger.Info?.Print(LogClass.Application, $"System version {firmwareVersion.VersionString} successfully installed.");
 
                             outError = UserError.Success;
 

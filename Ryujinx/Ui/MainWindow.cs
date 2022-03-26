@@ -1,18 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-
-using ARMeilleure.Translation;
+﻿using ARMeilleure.Translation;
 using ARMeilleure.Translation.PTC;
-
 using Gtk;
-
 using LibHac.Common;
 using LibHac.Common.Keys;
 using LibHac.FsSystem;
+using LibHac.Ncm;
 using LibHac.Ns;
 using LibHac.Tools.FsSystem;
 using Ryujinx.Audio.Backends.Dummy;
@@ -29,7 +21,6 @@ using Ryujinx.Graphics.GAL;
 using Ryujinx.Graphics.GAL.Multithreading;
 using Ryujinx.Graphics.OpenGL;
 using Ryujinx.HLE.FileSystem;
-using Ryujinx.HLE.FileSystem.Content;
 using Ryujinx.HLE.HOS;
 using Ryujinx.HLE.HOS.Services.Account.Acc;
 using Ryujinx.HLE.HOS.SystemState;
@@ -42,9 +33,14 @@ using Ryujinx.Ui.Applet;
 using Ryujinx.Ui.Helper;
 using Ryujinx.Ui.Widgets;
 using Ryujinx.Ui.Windows;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 using GUI = Gtk.Builder.ObjectAttribute;
-
 using PtcLoadingState = ARMeilleure.Translation.PTC.PtcLoadingState;
 using ShaderCacheLoadingState = Ryujinx.Graphics.Gpu.Shader.ShaderCacheState;
 
@@ -107,6 +103,7 @@ namespace Ryujinx.Ui
         [GUI] MenuItem        _hideUi;
         [GUI] MenuItem        _fullScreen;
         [GUI] CheckMenuItem   _startFullScreen;
+        [GUI] CheckMenuItem   _showConsole;
         [GUI] CheckMenuItem   _favToggle;
         [GUI] MenuItem        _firmwareInstallDirectory;
         [GUI] MenuItem        _firmwareInstallFile;
@@ -212,6 +209,9 @@ namespace Ryujinx.Ui
             {
                 _startFullScreen.Active = true;
             }
+
+            _showConsole.Active = ConfigurationState.Instance.Ui.ShowConsole.Value;
+            _showConsole.Visible = ConsoleHelper.SetConsoleWindowStateSupported;
 
             _actionMenu.Sensitive = false;
             _pauseEmulation.Sensitive = false;
@@ -338,15 +338,15 @@ namespace Ryujinx.Ui
             favToggle.Toggled += FavToggle_Toggled;
 
             if (ConfigurationState.Instance.Ui.GuiColumns.FavColumn)        _gameTable.AppendColumn("Fav",         favToggle,                "active", 0);
-            if (ConfigurationState.Instance.Ui.GuiColumns.IconColumn)       _gameTable.AppendColumn("图标",        new CellRendererPixbuf(), "pixbuf", 1);
-            if (ConfigurationState.Instance.Ui.GuiColumns.AppColumn)        _gameTable.AppendColumn("应用程序", new CellRendererText(),   "text",   2);
-            if (ConfigurationState.Instance.Ui.GuiColumns.DevColumn)        _gameTable.AppendColumn("开发者",   new CellRendererText(),   "text",   3);
-            if (ConfigurationState.Instance.Ui.GuiColumns.VersionColumn)    _gameTable.AppendColumn("版本",     new CellRendererText(),   "text",   4);
-            if (ConfigurationState.Instance.Ui.GuiColumns.TimePlayedColumn) _gameTable.AppendColumn("游玩时间", new CellRendererText(),   "text",   5);
-            if (ConfigurationState.Instance.Ui.GuiColumns.LastPlayedColumn) _gameTable.AppendColumn("上一次游玩日期", new CellRendererText(),   "text",   6);
+            if (ConfigurationState.Instance.Ui.GuiColumns.IconColumn)       _gameTable.AppendColumn("Icon",        new CellRendererPixbuf(), "pixbuf", 1);
+            if (ConfigurationState.Instance.Ui.GuiColumns.AppColumn)        _gameTable.AppendColumn("Application", new CellRendererText(),   "text",   2);
+            if (ConfigurationState.Instance.Ui.GuiColumns.DevColumn)        _gameTable.AppendColumn("Developer",   new CellRendererText(),   "text",   3);
+            if (ConfigurationState.Instance.Ui.GuiColumns.VersionColumn)    _gameTable.AppendColumn("Version",     new CellRendererText(),   "text",   4);
+            if (ConfigurationState.Instance.Ui.GuiColumns.TimePlayedColumn) _gameTable.AppendColumn("Time Played", new CellRendererText(),   "text",   5);
+            if (ConfigurationState.Instance.Ui.GuiColumns.LastPlayedColumn) _gameTable.AppendColumn("Last Played", new CellRendererText(),   "text",   6);
             if (ConfigurationState.Instance.Ui.GuiColumns.FileExtColumn)    _gameTable.AppendColumn("File Ext",    new CellRendererText(),   "text",   7);
-            if (ConfigurationState.Instance.Ui.GuiColumns.FileSizeColumn)   _gameTable.AppendColumn("文件大小",   new CellRendererText(),   "text",   8);
-            if (ConfigurationState.Instance.Ui.GuiColumns.PathColumn)       _gameTable.AppendColumn("路径",        new CellRendererText(),   "text",   9);
+            if (ConfigurationState.Instance.Ui.GuiColumns.FileSizeColumn)   _gameTable.AppendColumn("File Size",   new CellRendererText(),   "text",   8);
+            if (ConfigurationState.Instance.Ui.GuiColumns.PathColumn)       _gameTable.AppendColumn("Path",        new CellRendererText(),   "text",   9);
 
             foreach (TreeViewColumn column in _gameTable.Columns)
             {
@@ -421,7 +421,7 @@ namespace Ryujinx.Ui
                 renderer = new ThreadedRenderer(renderer);
             }
 
-            Logger.Info?.PrintMsg(LogClass.Gpu, $"后端多线程 ({threadingMode}): {threadedGAL}");
+            Logger.Info?.PrintMsg(LogClass.Gpu, $"后端线程 ({threadingMode}): {threadedGAL}");
 
             IHardwareDeviceDriver deviceDriver = new DummyHardwareDeviceDriver();
 
@@ -433,11 +433,11 @@ namespace Ryujinx.Ui
                 }
                 else
                 {
-                    Logger.Warning?.Print(LogClass.Audio, "不支持SDL2, 试图回退到 OpenAL。");
+                    Logger.Warning?.Print(LogClass.Audio, "SDL2 is not supported, trying to fall back to OpenAL.");
 
                     if (OpenALHardwareDeviceDriver.IsSupported)
                     {
-                        Logger.Warning?.Print(LogClass.Audio, "发现OpenAL, 改变配置中.");
+                        Logger.Warning?.Print(LogClass.Audio, "Found OpenAL, changing configuration.");
 
                         ConfigurationState.Instance.System.AudioBackend.Value = AudioBackend.OpenAl;
                         SaveConfig();
@@ -446,11 +446,11 @@ namespace Ryujinx.Ui
                     }
                     else
                     {
-                        Logger.Warning?.Print(LogClass.Audio, "不支持OpenAL, 尝试切换到SoundIO.");
+                        Logger.Warning?.Print(LogClass.Audio, "OpenAL is not supported, trying to fall back to SoundIO.");
 
                         if (SoundIoHardwareDeviceDriver.IsSupported)
                         {
-                            Logger.Warning?.Print(LogClass.Audio, "发现SoundIO, 改变配置中");
+                            Logger.Warning?.Print(LogClass.Audio, "Found SoundIO, changing configuration.");
 
                             ConfigurationState.Instance.System.AudioBackend.Value = AudioBackend.SoundIo;
                             SaveConfig();
@@ -459,7 +459,7 @@ namespace Ryujinx.Ui
                         }
                         else
                         {
-                            Logger.Warning?.Print(LogClass.Audio, "不支持SoundIO, 切换到dummy audio.");
+                            Logger.Warning?.Print(LogClass.Audio, "SoundIO is not supported, falling back to dummy audio out.");
                         }
                     }
                 }
@@ -472,11 +472,11 @@ namespace Ryujinx.Ui
                 }
                 else
                 {
-                    Logger.Warning?.Print(LogClass.Audio, "不支持SoundIO, 尝试切换到SDL2.");
+                    Logger.Warning?.Print(LogClass.Audio, "SoundIO is not supported, trying to fall back to SDL2.");
 
                     if (SDL2HardwareDeviceDriver.IsSupported)
                     {
-                        Logger.Warning?.Print(LogClass.Audio, "发现SDL2, 更改配置.");
+                        Logger.Warning?.Print(LogClass.Audio, "Found SDL2, changing configuration.");
 
                         ConfigurationState.Instance.System.AudioBackend.Value = AudioBackend.SDL2;
                         SaveConfig();
@@ -485,11 +485,11 @@ namespace Ryujinx.Ui
                     }
                     else
                     {
-                        Logger.Warning?.Print(LogClass.Audio, "不支持SDL2, 尝试切换到OpenAL.");
+                        Logger.Warning?.Print(LogClass.Audio, "SDL2 is not supported, trying to fall back to OpenAL.");
 
                         if (OpenALHardwareDeviceDriver.IsSupported)
                         {
-                            Logger.Warning?.Print(LogClass.Audio, "发现OpenAL, 更改配置.");
+                            Logger.Warning?.Print(LogClass.Audio, "Found OpenAL, changing configuration.");
 
                             ConfigurationState.Instance.System.AudioBackend.Value = AudioBackend.OpenAl;
                             SaveConfig();
@@ -498,7 +498,7 @@ namespace Ryujinx.Ui
                         }
                         else
                         {
-                            Logger.Warning?.Print(LogClass.Audio, "不支持OpenAL, 尝试dummy audio out.");
+                            Logger.Warning?.Print(LogClass.Audio, "OpenAL is not supported, falling back to dummy audio out.");
                         }
                     }
                 }
@@ -638,18 +638,18 @@ namespace Ryujinx.Ui
         [Conditional("RELEASE")]
         public void PerformanceCheck()
         {
-            if (ConfigurationState.Instance.Logger.EnableDebug.Value)
+            if (ConfigurationState.Instance.Logger.EnableTrace.Value)
             {
                 MessageDialog debugWarningDialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, null)
                 {
                     Title         = "Ryujinx - 警告",
-                    Text          = "您已启用调试日志记录，它仅供开发人员使用.",
-                    SecondaryText = "为了获得最佳性能，建议禁用调试日志记录。 您想现在禁用调试日志记录吗？"
+                    Text          = "你已开启追踪日志, 仅供开发人员使用.",
+                    SecondaryText = "为了更好的性能, 推荐关闭追踪日志. 你想要现在关闭吗?"
                 };
 
                 if (debugWarningDialog.Run() == (int)ResponseType.Yes)
                 {
-                    ConfigurationState.Instance.Logger.EnableDebug.Value = false;
+                    ConfigurationState.Instance.Logger.EnableTrace.Value = false;
                     SaveConfig();
                 }
 
@@ -661,8 +661,8 @@ namespace Ryujinx.Ui
                 MessageDialog shadersDumpWarningDialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, null)
                 {
                     Title         = "Ryujinx - 警告",
-                    Text          = "您启用了着色器转储，它仅供开发人员使用。",
-                    SecondaryText = "为了获得最佳性能，建议禁用着色器转储。 您想现在禁用着色器转储吗？"
+                    Text          = "你已开启着色器转储, 仅供开发人员使用.",
+                    SecondaryText = "为了更好的性能, 推荐你关闭着色器转储. 你想要现在关闭吗?"
                 };
 
                 if (shadersDumpWarningDialog.Run() == (int)ResponseType.Yes)
@@ -679,7 +679,7 @@ namespace Ryujinx.Ui
         {
             if (_gameLoaded)
             {
-                GtkDialog.CreateInfoDialog("一个游戏已经加载了", "请停止模拟或者在启动其他游戏前关闭模拟.");
+                GtkDialog.CreateInfoDialog("已经启动一个游戏了", "请在启动其他游戏之前停止模拟或关闭模拟器.");
             }
             else
             {
@@ -715,9 +715,9 @@ namespace Ryujinx.Ui
                     {
                         if (userError == UserError.NoFirmware)
                         {
-                            string message = $"你想安装嵌入在这个游戏中的固件吗? (固件 {firmwareVersion.VersionString})";
+                            string message = $"你想安装嵌入在这个游戏中的固件吗？ (固件 {firmwareVersion.VersionString})";
 
-                            ResponseType responseDialog = (ResponseType)GtkDialog.CreateConfirmationDialog("没有固件已安装", message).Run();
+                            ResponseType responseDialog = (ResponseType)GtkDialog.CreateConfirmationDialog("没有已安装的固件", message).Run();
 
                             if (responseDialog != ResponseType.Yes)
                             {
@@ -749,7 +749,7 @@ namespace Ryujinx.Ui
 
                             RefreshFirmwareLabel();
 
-                            string message = $"未找到已安装的固件，但 Ryujinx 能够从提供的游戏中安装固件 {firmwareVersion.VersionString}。\n模拟器将会现在启动.";
+                            string message = $"未找到已安装的固件，但 Ryujinx 能够从提供的游戏安装固件 {firmwareVersion.VersionString}。\n模拟器现在将启动.";
 
                             GtkDialog.CreateInfoDialog($"Firmware {firmwareVersion.VersionString} was installed", message);
                         }
@@ -766,11 +766,11 @@ namespace Ryujinx.Ui
                     }
                 }
 
-                Logger.Notice.Print(LogClass.Application, $"使用固件版本: {firmwareVersion?.VersionString}");
+                Logger.Notice.Print(LogClass.Application, $"正在使用固件版本: {firmwareVersion?.VersionString}");
 
                 if (isFirmwareTitle)
                 {
-                    Logger.Info?.Print(LogClass.Application, "作为固件标题加载 (NCA).");
+                    Logger.Info?.Print(LogClass.Application, "当作固件标题加载 (NCA).");
 
                     _emulationContext.LoadNca(path);
                 }
@@ -785,7 +785,7 @@ namespace Ryujinx.Ui
 
                     if (romFsFiles.Length > 0)
                     {
-                        Logger.Info?.Print(LogClass.Application, "使用 RomFS加载 ");
+                        Logger.Info?.Print(LogClass.Application, "Loading as cart with RomFS.");
                         _emulationContext.LoadCart(path, romFsFiles[0]);
                     }
                     else
@@ -799,34 +799,34 @@ namespace Ryujinx.Ui
                     switch (System.IO.Path.GetExtension(path).ToLowerInvariant())
                     {
                         case ".xci":
-                            Logger.Info?.Print(LogClass.Application, "使用 XCI.");
+                            Logger.Info?.Print(LogClass.Application, "Loading as XCI.");
                             _emulationContext.LoadXci(path);
                             break;
                         case ".nca":
-                            Logger.Info?.Print(LogClass.Application, "使用NCA.");
+                            Logger.Info?.Print(LogClass.Application, "Loading as NCA.");
                             _emulationContext.LoadNca(path);
                             break;
                         case ".nsp":
                         case ".pfs0":
-                            Logger.Info?.Print(LogClass.Application, "使用NSP.");
+                            Logger.Info?.Print(LogClass.Application, "Loading as NSP.");
                             _emulationContext.LoadNsp(path);
                             break;
                         default:
-                            Logger.Info?.Print(LogClass.Application, "使用Homebrew.");
+                            Logger.Info?.Print(LogClass.Application, "Loading as Homebrew.");
                             try
                             {
                                 _emulationContext.LoadProgram(path);
                             }
                             catch (ArgumentOutOfRangeException)
                             {
-                                Logger.Error?.Print(LogClass.Application, "Ryujinx 不支持指定的文件.");
+                                Logger.Error?.Print(LogClass.Application, "The specified file is not supported by Ryujinx.");
                             }
                             break;
                     }
                 }
                 else
                 {
-                    Logger.Warning?.Print(LogClass.Application, "请选中一个有效的XCI/NCA/NSP/PFS0/NRO 文件.");
+                    Logger.Warning?.Print(LogClass.Application, "Please specify a valid XCI/NCA/NSP/PFS0/NRO file.");
 
                     _emulationContext.Dispose();
                     RendererWidget.Dispose();
@@ -1095,7 +1095,7 @@ namespace Ryujinx.Ui
         {
             Application.Invoke(delegate
             {
-                _progressLabel.Text = $"{args.NumAppsLoaded}/{args.NumAppsFound} 已加载";
+                _progressLabel.Text = $"{args.NumAppsLoaded}/{args.NumAppsFound} Games Loaded";
                 float barValue      = 0;
 
                 if (args.NumAppsFound != 0)
@@ -1175,7 +1175,7 @@ namespace Ryujinx.Ui
         {
             _emulationContext.EnableDeviceVsync = !_emulationContext.EnableDeviceVsync;
 
-            Logger.Info?.Print(LogClass.Application, $"垂直同步切换到: {_emulationContext.EnableDeviceVsync}");
+            Logger.Info?.Print(LogClass.Application, $"VSync toggled to: {_emulationContext.EnableDeviceVsync}");
         }
 
         private void DockedMode_Clicked(object sender, ButtonReleaseEventArgs args)
@@ -1209,7 +1209,7 @@ namespace Ryujinx.Ui
         {
             AspectRatio aspectRatio = ConfigurationState.Instance.Graphics.AspectRatio.Value;
 
-            ConfigurationState.Instance.Graphics.AspectRatio.Value = ((int)aspectRatio + 1) > Enum.GetNames(typeof(AspectRatio)).Length - 1 ? AspectRatio.Fixed4x3 : aspectRatio + 1;
+            ConfigurationState.Instance.Graphics.AspectRatio.Value = ((int)aspectRatio + 1) > Enum.GetNames<AspectRatio>().Length - 1 ? AspectRatio.Fixed4x3 : aspectRatio + 1;
         }
 
         private void Row_Clicked(object sender, ButtonReleaseEventArgs args)
@@ -1237,11 +1237,11 @@ namespace Ryujinx.Ui
 
         private void Load_Application_File(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("选择一个文件来打开", this, FileChooserAction.Open, "打开", "返回"))
+            using (FileChooserNative fileChooser = new FileChooserNative("Choose the file to open", this, FileChooserAction.Open, "Open", "Cancel"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Switch可执行文件"
+                    Name = "Switch Executables"
                 };
                 filter.AddPattern("*.xci");
                 filter.AddPattern("*.nsp");
@@ -1261,7 +1261,7 @@ namespace Ryujinx.Ui
 
         private void Load_Application_Folder(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("选择一个文件夹打开", this, FileChooserAction.SelectFolder, "打开", "返回"))
+            using (FileChooserNative fileChooser = new FileChooserNative("Choose the folder to open", this, FileChooserAction.SelectFolder, "Open", "Cancel"))
             {
                 if (fileChooser.Run() == (int)ResponseType.Accept)
                 {
@@ -1279,7 +1279,7 @@ namespace Ryujinx.Ui
 
         private void Load_Mii_Edit_Applet(object sender, EventArgs args)
         {
-            string contentPath = _contentManager.GetInstalledContentPath(0x0100000000001009, StorageId.NandSystem, NcaContentType.Program);
+            string contentPath = _contentManager.GetInstalledContentPath(0x0100000000001009, StorageId.BuiltInSystem, NcaContentType.Program);
 
             LoadApplication(contentPath);
         }
@@ -1291,7 +1291,7 @@ namespace Ryujinx.Ui
 
         private void OpenLogsFolder_Pressed(object sender, EventArgs args)
         {
-            string logPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "日志");
+            string logPath = System.IO.Path.Combine(ReleaseInformations.GetBaseApplicationDirectory(), "Logs");
 
             new DirectoryInfo(logPath).Create();
 
@@ -1359,11 +1359,11 @@ namespace Ryujinx.Ui
 
         private void Installer_File_Pressed(object o, EventArgs args)
         {
-            FileChooserNative fileChooser = new FileChooserNative("选择一个固件文件打开", this, FileChooserAction.Open, "打开", "返回");
+            FileChooserNative fileChooser = new FileChooserNative("Choose the firmware file to open", this, FileChooserAction.Open, "Open", "Cancel");
 
             FileFilter filter = new FileFilter
             {
-                Name = "Switch固件文件"
+                Name = "Switch Firmware Files"
             };
             filter.AddPattern("*.zip");
             filter.AddPattern("*.xci");
@@ -1375,7 +1375,7 @@ namespace Ryujinx.Ui
 
         private void Installer_Directory_Pressed(object o, EventArgs args)
         {
-            FileChooserNative directoryChooser = new FileChooserNative("选择一个固件目录打开", this, FileChooserAction.SelectFolder, "打开", "返回");
+            FileChooserNative directoryChooser = new FileChooserNative("Choose the firmware directory to open", this, FileChooserAction.SelectFolder, "Open", "Cancel");
 
             HandleInstallerDialog(directoryChooser);
         }
@@ -1394,31 +1394,31 @@ namespace Ryujinx.Ui
 
                     if (firmwareVersion is null)
                     {
-                        GtkDialog.CreateErrorDialog($"无法在 {filename} 找到一个有效的系统固件.");
+                        GtkDialog.CreateErrorDialog($"A valid system firmware was not found in {filename}.");
 
                         return;
                     }
 
-                    string dialogTitle = $"安装系统固件 {firmwareVersion.VersionString}";
+                    string dialogTitle = $"Install Firmware {firmwareVersion.VersionString}";
 
                     SystemVersion currentVersion = _contentManager.GetCurrentFirmwareVersion();
 
-                    string dialogMessage = $"系统固件 {firmwareVersion.VersionString} 将会被安装.";
+                    string dialogMessage = $"System version {firmwareVersion.VersionString} will be installed.";
 
                     if (currentVersion != null)
                     {
-                        dialogMessage += $"\n\n这将替换当前系统版本 {currentVersion.VersionString}. ";
+                        dialogMessage += $"\n\nThis will replace the current system version {currentVersion.VersionString}. ";
                     }
 
-                    dialogMessage += "\n\n你想要继续吗?";
+                    dialogMessage += "\n\nDo you want to continue?";
 
                     ResponseType responseInstallDialog = (ResponseType)GtkDialog.CreateConfirmationDialog(dialogTitle, dialogMessage).Run();
 
-                    MessageDialog waitingDialog = GtkDialog.CreateWaitingDialog(dialogTitle, "安装系统固件中...");
+                    MessageDialog waitingDialog = GtkDialog.CreateWaitingDialog(dialogTitle, "Installing firmware...");
 
                     if (responseInstallDialog == ResponseType.Yes)
                     {
-                        Logger.Info?.Print(LogClass.Application, $"安装系统固件中 {firmwareVersion.VersionString}");
+                        Logger.Info?.Print(LogClass.Application, $"Installing firmware {firmwareVersion.VersionString}");
 
                         Thread thread = new Thread(() =>
                         {
@@ -1436,7 +1436,7 @@ namespace Ryujinx.Ui
                                 {
                                     waitingDialog.Dispose();
 
-                                    string message = $"系统版本 {firmwareVersion.VersionString} 已成功安装.";
+                                    string message = $"System version {firmwareVersion.VersionString} successfully installed.";
 
                                     GtkDialog.CreateInfoDialog(dialogTitle, message);
                                     Logger.Info?.Print(LogClass.Application, message);
@@ -1535,6 +1535,13 @@ namespace Ryujinx.Ui
             SaveConfig();
         }
 
+        private void ShowConsole_Toggled(object sender, EventArgs args)
+        {
+            ConfigurationState.Instance.Ui.ShowConsole.Value = _showConsole.Active;
+
+            SaveConfig();
+        }
+
         private void OptionMenu_StateChanged(object o, StateChangedArgs args)
         {
             _manageUserProfiles.Sensitive = _emulationContext == null;
@@ -1607,7 +1614,7 @@ namespace Ryujinx.Ui
             }
             else
             {
-                GtkDialog.CreateInfoDialog($"Amiibo", "游戏目前尚未准备好接收 Amiibo 扫描数据。 确保您已打开兼容 Amiibo 的游戏并准备好接收 Amiibo 扫描数据.");
+                GtkDialog.CreateInfoDialog($"Amiibo", "The game is currently not ready to receive Amiibo scan data. Ensure that you have an Amiibo-compatible game open and ready to receive Amiibo scan data.");
             }
         }
 
@@ -1636,7 +1643,7 @@ namespace Ryujinx.Ui
             {
                 Updater.BeginParse(this, true).ContinueWith(task =>
                 {
-                    Logger.Error?.Print(LogClass.Application, $"更新器错误: {task.Exception}");
+                    Logger.Error?.Print(LogClass.Application, $"Updater error: {task.Exception}");
                 }, TaskContinuationOptions.OnlyOnFaulted);
             }
         }

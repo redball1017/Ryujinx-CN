@@ -59,7 +59,7 @@ namespace Ryujinx.Ui.Widgets
 
             if (!ulong.TryParse(_titleIdText, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out _titleId))
             {
-                GtkDialog.CreateErrorDialog("选中文件没有一个有效的Title Id");
+                GtkDialog.CreateErrorDialog("The selected game did not have a valid Title Id");
 
                 return;
             }
@@ -91,8 +91,8 @@ namespace Ryujinx.Ui.Widgets
                 {
                     Title          = "Ryujinx",
                     Icon           = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png"),
-                    Text           = $"这里没有可用于 {titleName} [{titleId:x16}]的保存文件",
-                    SecondaryText  = "你想要为此游戏创建保存文件吗?",
+                    Text           = $"There is no savedata for {titleName} [{titleId:x16}]",
+                    SecondaryText  = "Would you like to create savedata for this game?",
                     WindowPosition = WindowPosition.Center
                 };
 
@@ -113,16 +113,16 @@ namespace Ryujinx.Ui.Widgets
                     control.UserAccountSaveDataSize        = 0x4000;
                     control.UserAccountSaveDataJournalSize = 0x4000;
 
-                    Logger.Warning?.Print(LogClass.Application, "没有找到这个游戏的控制文件。 将改用一个虚拟的。 这可能会导致某些游戏不准确。");
+                    Logger.Warning?.Print(LogClass.Application, "No control file was found for this game. Using a dummy one instead. This may cause inaccuracies in some games.");
                 }
 
                 Uid user = new Uid((ulong)_accountManager.LastOpenedUser.UserId.High, (ulong)_accountManager.LastOpenedUser.UserId.Low);
 
-                 result = _horizonClient.Fs.EnsureApplicationSaveData(out _, new LibHac.Ncm.ApplicationId(titleId), in control, in user);
+                result = _horizonClient.Fs.EnsureApplicationSaveData(out _, new LibHac.Ncm.ApplicationId(titleId), in control, in user);
 
                 if (result.IsFailure())
                 {
-                    GtkDialog.CreateErrorDialog($"在创建保存文件是发生了一个错误: {result.ToStringWithName()}");
+                    GtkDialog.CreateErrorDialog($"There was an error creating the specified savedata: {result.ToStringWithName()}");
 
                     return false;
                 }
@@ -138,7 +138,7 @@ namespace Ryujinx.Ui.Widgets
                 return true;
             }
 
-            GtkDialog.CreateErrorDialog($"在寻找保存文件时发生了错误: {result.ToStringWithName()}");
+            GtkDialog.CreateErrorDialog($"There was an error finding the specified savedata: {result.ToStringWithName()}");
 
             return false;
         }
@@ -181,7 +181,7 @@ namespace Ryujinx.Ui.Widgets
 
         private void ExtractSection(NcaSectionType ncaSectionType, int programIndex = 0)
         {
-            FileChooserNative fileChooser = new FileChooserNative("要提取到哪个文件夹？", _parent, FileChooserAction.SelectFolder, "提取", "取消");
+            FileChooserNative fileChooser = new FileChooserNative("Choose the folder to extract into", _parent, FileChooserAction.SelectFolder, "Extract", "Cancel");
 
             ResponseType response    = (ResponseType)fileChooser.Run();
             string       destination = fileChooser.Filename;
@@ -196,9 +196,9 @@ namespace Ryujinx.Ui.Widgets
                     {
                         _dialog = new MessageDialog(null, DialogFlags.DestroyWithParent, MessageType.Info, ButtonsType.Cancel, null)
                         {
-                            Title          = "Ryujinx - NCA部分提取器",
+                            Title          = "Ryujinx - NCA Section Extractor",
                             Icon           = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png"),
-                            SecondaryText  = $"提取 {ncaSectionType} 的一部分 {System.IO.Path.GetFileName(_titleFilePath)}...",
+                            SecondaryText  = $"Extracting {ncaSectionType} section from {System.IO.Path.GetFileName(_titleFilePath)}...",
                             WindowPosition = WindowPosition.Center
                         };
 
@@ -262,11 +262,11 @@ namespace Ryujinx.Ui.Widgets
 
                         if (mainNca == null)
                         {
-                            Logger.Error?.Print(LogClass.Application, "提取失败. 所选文件中不存在主 NCA.");
+                            Logger.Error?.Print(LogClass.Application, "Extraction failure. The main NCA is not present in the selected file.");
 
                             Gtk.Application.Invoke(delegate
                             {
-                                GtkDialog.CreateErrorDialog("所选文件中不存在主 NCA.");
+                                GtkDialog.CreateErrorDialog("Extraction failure. The main NCA is not present in the selected file.");
                             });
 
                             return;
@@ -301,13 +301,13 @@ namespace Ryujinx.Ui.Widgets
                         {
                             if (resultCode.Value.IsFailure())
                             {
-                                Logger.Error?.Print(LogClass.Application, $"LibHac返回了一个错误代码: {resultCode.Value.ErrorCode}");
+                                Logger.Error?.Print(LogClass.Application, $"LibHac returned error code: {resultCode.Value.ErrorCode}");
 
                                 Gtk.Application.Invoke(delegate
                                 {
                                     _dialog?.Dispose();
 
-                                    GtkDialog.CreateErrorDialog("提取失败. 阅读日志文件以获取更多信息。");
+                                    GtkDialog.CreateErrorDialog("Extraction failed. Read the log file for further information.");
                                 });
                             }
                             else if (resultCode.Value.IsSuccess())
@@ -318,9 +318,9 @@ namespace Ryujinx.Ui.Widgets
 
                                     MessageDialog dialog = new MessageDialog(null, DialogFlags.DestroyWithParent, MessageType.Info, ButtonsType.Ok, null)
                                     {
-                                        Title          = "Ryujinx - NCA部分提取器",
+                                        Title          = "Ryujinx - NCA Section Extractor",
                                         Icon           = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png"),
-                                        SecondaryText  = "提取成功.",
+                                        SecondaryText  = "Extraction completed successfully.",
                                         WindowPosition = WindowPosition.Center
                                     };
 
@@ -477,14 +477,13 @@ namespace Ryujinx.Ui.Widgets
             OpenHelper.OpenFolder(titleModsPath);
         }
 
-       private void OpenTitleSdModDir_Clicked(object sender, EventArgs args)
+        private void OpenTitleSdModDir_Clicked(object sender, EventArgs args)
         {
             string sdModsBasePath  = _virtualFileSystem.ModLoader.GetSdModsBasePath();
             string titleModsPath   = _virtualFileSystem.ModLoader.GetTitleDir(sdModsBasePath, _titleIdText);
 
             OpenHelper.OpenFolder(titleModsPath);
         }
-
 
         private void ExtractRomFs_Clicked(object sender, EventArgs args)
         {
@@ -535,7 +534,7 @@ namespace Ryujinx.Ui.Widgets
             DirectoryInfo mainDir   = new DirectoryInfo(System.IO.Path.Combine(AppDataManager.GamesDirPath, _titleIdText, "cache", "cpu", "0"));
             DirectoryInfo backupDir = new DirectoryInfo(System.IO.Path.Combine(AppDataManager.GamesDirPath, _titleIdText, "cache", "cpu", "1"));
 
-            MessageDialog warningDialog = GtkDialog.CreateConfirmationDialog("警告", $"您即将删除 PPTC 缓存 :\n\n<b>{_titleName}</b>\n\n您确定要继续吗?");
+            MessageDialog warningDialog = GtkDialog.CreateConfirmationDialog("Warning", $"You are about to delete the PPTC cache for :\n\n<b>{_titleName}</b>\n\nAre you sure you want to proceed?");
 
             List<FileInfo> cacheFiles = new List<FileInfo>();
 
@@ -559,7 +558,7 @@ namespace Ryujinx.Ui.Widgets
                     }
                     catch(Exception e)
                     {
-                        GtkDialog.CreateErrorDialog($"清除 PPTC 缓存时出错 {file.Name}: {e}");
+                        GtkDialog.CreateErrorDialog($"Error purging PPTC cache {file.Name}: {e}");
                     }
                 }
             }
@@ -571,7 +570,7 @@ namespace Ryujinx.Ui.Widgets
         {
             DirectoryInfo shaderCacheDir = new DirectoryInfo(System.IO.Path.Combine(AppDataManager.GamesDirPath, _titleIdText, "cache", "shader"));
 
-            MessageDialog warningDialog = GtkDialog.CreateConfirmationDialog("警告", $"你即将删除着色器 :\n\n<b>{_titleName}</b>\n\n你确定要继续吗?");
+            MessageDialog warningDialog = GtkDialog.CreateConfirmationDialog("Warning", $"You are about to delete the shader cache for :\n\n<b>{_titleName}</b>\n\nAre you sure you want to proceed?");
 
             List<DirectoryInfo> cacheDirectory = new List<DirectoryInfo>();
 
@@ -590,7 +589,7 @@ namespace Ryujinx.Ui.Widgets
                     }
                     catch (Exception e)
                     {
-                        GtkDialog.CreateErrorDialog($"无法删除在 {directory.Name}: {e}的着色器缓存");
+                        GtkDialog.CreateErrorDialog($"Error purging shader cache at {directory.Name}: {e}");
                     }
                 }
             }

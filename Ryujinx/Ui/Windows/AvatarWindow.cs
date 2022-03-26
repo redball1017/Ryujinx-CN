@@ -3,10 +3,10 @@ using LibHac.Common;
 using LibHac.Fs;
 using LibHac.Fs.Fsa;
 using LibHac.FsSystem;
+using LibHac.Ncm;
 using LibHac.Tools.FsSystem;
 using LibHac.Tools.FsSystem.NcaUtils;
 using Ryujinx.HLE.FileSystem;
-using Ryujinx.HLE.FileSystem.Content;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
@@ -33,7 +33,7 @@ namespace Ryujinx.Ui.Windows
         private Button    _setBackgroungColorButton;
         private Gdk.RGBA  _backgroundColor;
 
-        public AvatarWindow() : base($"Ryujinx {Program.Version} - 管理账号 - Avatar")
+        public AvatarWindow() : base($"Ryujinx {Program.Version} - Manage Accounts - Avatar")
         {
             Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
 
@@ -58,7 +58,7 @@ namespace Ryujinx.Ui.Windows
 
             Button chooseButton = new Button()
             {
-                Label           = "选择",
+                Label           = "Choose",
                 CanFocus        = true,
                 ReceivesDefault = true
             };
@@ -66,7 +66,7 @@ namespace Ryujinx.Ui.Windows
 
             _setBackgroungColorButton = new Button()
             {
-                Label    = "设置背景颜色",
+                Label    = "Set Background Color",
                 CanFocus = true
             };
             _setBackgroungColorButton.Clicked += SetBackgroungColorButton_Pressed;
@@ -115,7 +115,7 @@ namespace Ryujinx.Ui.Windows
                 return;
             }
 
-            string contentPath = contentManager.GetInstalledContentPath(0x010000000000080A, StorageId.NandSystem, NcaContentType.Data);
+            string contentPath = contentManager.GetInstalledContentPath(0x010000000000080A, StorageId.BuiltInSystem, NcaContentType.Data);
             string avatarPath  = virtualFileSystem.SwitchPathToSystemPath(contentPath);
 
             if (!string.IsNullOrWhiteSpace(avatarPath))
@@ -201,7 +201,7 @@ namespace Ryujinx.Ui.Windows
 
         private void SetBackgroungColorButton_Pressed(object sender, EventArgs e)
         {
-            using (ColorChooserDialog colorChooserDialog = new ColorChooserDialog("设置背景颜色", this))
+            using (ColorChooserDialog colorChooserDialog = new ColorChooserDialog("Set Background Color", this))
             {
                 colorChooserDialog.UseAlpha = false;
                 colorChooserDialog.Rgba     = _backgroundColor;

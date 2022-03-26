@@ -24,7 +24,7 @@ namespace Ryujinx.Ui.Helper
             }
             else
             {
-                Logger.Warning?.Print(LogClass.Application, $"此 \"custom_theme_path\" 的一部分 \"Config.json\" 指定了无效的路径: \"{ConfigurationState.Instance.Ui.CustomThemePath}\".");
+                Logger.Warning?.Print(LogClass.Application, $"The \"custom_theme_path\" section in \"Config.json\" contains an invalid path: \"{ConfigurationState.Instance.Ui.CustomThemePath}\".");
 
                 ConfigurationState.Instance.Ui.CustomThemePath.Value   = "";
                 ConfigurationState.Instance.Ui.EnableCustomTheme.Value = false;

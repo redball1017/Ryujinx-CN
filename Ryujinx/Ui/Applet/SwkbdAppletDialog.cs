@@ -58,14 +58,14 @@ namespace Ryujinx.Ui.Applet
             else if (_inputMin > 0 && _inputMax == int.MaxValue)
             {
                 _validationInfo.Visible = true;
-                _validationInfo.Markup  = $"<i>必须至少 {_inputMin} 个字符那么长</i>";
+                _validationInfo.Markup  = $"<i>Must be at least {_inputMin} characters long</i>";
 
                 _checkLength = (length) => _inputMin <= length;
             }
             else
             {
                 _validationInfo.Visible = true;
-                _validationInfo.Markup  = $"<i>必须在 {_inputMin}-{_inputMax} 个字符</i>";
+                _validationInfo.Markup  = $"<i>Must be {_inputMin}-{_inputMax} characters long</i>";
 
                 _checkLength = (length) => _inputMin <= length && length <= _inputMax;
             }

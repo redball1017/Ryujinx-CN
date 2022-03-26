@@ -7,7 +7,7 @@ namespace Ryujinx.Modules
 {
     static class DiscordIntegrationModule
     {
-        private const string Description = "一个简单，实验性的Switch模拟器.";
+        private const string Description = "一个普通的，实验性的Nintendo Switch模拟器.";
         private const string CliendId    = "568815339807309834";
 
         private static DiscordRpcClient _discordClient;
@@ -29,7 +29,7 @@ namespace Ryujinx.Modules
                 {
                     new Button()
                     { 
-                        Label = "网页", 
+                        Label = "网站", 
                         Url   = "https://ryujinx.org/"
                     }
                 }
@@ -72,14 +72,14 @@ namespace Ryujinx.Modules
                     SmallImageKey  = "ryujinx",
                     SmallImageText = Description,
                 },
-                Details    = $"Playing {titleName}",
+                Details    = $"正在游玩 {titleName}",
                 State      = (titleId == "0000000000000000") ? "Homebrew" : titleId.ToUpper(),
                 Timestamps = Timestamps.Now,
                 Buttons    = new Button[]
                 {
                     new Button()
                     {
-                        Label = "网页",
+                        Label = "Website",
                         Url   = "https://ryujinx.org/"
                     }
                 }

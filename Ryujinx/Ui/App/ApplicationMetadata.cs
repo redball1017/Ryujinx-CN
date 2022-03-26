@@ -4,6 +4,6 @@
     {
         public bool   Favorite   { get; set; }
         public double TimePlayed { get; set; }
-        public string LastPlayed { get; set; } = "从不";
+        public string LastPlayed { get; set; } = "Never";
     }
 }

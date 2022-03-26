@@ -32,7 +32,7 @@ namespace Ryujinx.Modules
             _buildUrl   = buildUrl;
 
             Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
-            MainText.Text      = "你想要更新Ryujinx到最新版吗?";
+            MainText.Text      = "Do you want to update Ryujinx to the latest version?";
             SecondaryText.Text = $"{Program.Version} -> {newVersion}";
 
             ProgressBar.Hide();

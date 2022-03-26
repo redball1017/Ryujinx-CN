@@ -32,7 +32,7 @@ namespace Ryujinx.Ui.Helper
             }
             else
             {
-                Logger.Notice.Print(LogClass.Application, $" 无法在此平台打开链接 \"{url}\"!");
+                Logger.Notice.Print(LogClass.Application, $"Cannot open url \"{url}\" on this platform!");
             }
         }
     }

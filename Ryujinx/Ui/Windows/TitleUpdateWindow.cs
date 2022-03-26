@@ -64,7 +64,7 @@ namespace Ryujinx.Ui.Windows
                 };
             }
 
-            _baseTitleInfoLabel.Text = $"更新可用于 {titleName} [{titleId.ToUpper()}]";
+            _baseTitleInfoLabel.Text = $"Updates Available for {titleName} [{titleId.ToUpper()}]";
             
             foreach (string path in _titleUpdateWindowData.Paths)
             {
@@ -116,7 +116,7 @@ namespace Ryujinx.Ui.Windows
                         }
                         else
                         {
-                            GtkDialog.CreateErrorDialog("选中文件并非已选游戏的更新文件!");
+                            GtkDialog.CreateErrorDialog("The specified file does not contain an update for the selected title!");
                         }
                     }
                     catch (Exception exception)
@@ -142,13 +142,13 @@ namespace Ryujinx.Ui.Windows
 
         private void AddButton_Clicked(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("请选择更新文件", this, FileChooserAction.Open, "添加", "取消"))
+            using (FileChooserNative fileChooser = new FileChooserNative("Select update files", this, FileChooserAction.Open, "Add", "Cancel"))
             {
                 fileChooser.SelectMultiple = true;
 
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Switch游戏更新文件"
+                    Name = "Switch Game Updates"
                 };
                 filter.AddPattern("*.nsp");
 

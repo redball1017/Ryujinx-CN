@@ -26,10 +26,10 @@ namespace Ryujinx.Ui.Applet
         {
             string playerCount = args.PlayerCountMin == args.PlayerCountMax ? $"exactly {args.PlayerCountMin}" : $"{args.PlayerCountMin}-{args.PlayerCountMax}";
 
-            string message = $"应用请求 <b>{playerCount}</b> 玩家 与\n\n"
+            string message = $"Application requests <b>{playerCount}</b> player(s) with:\n\n"
                            + $"<tt><b>TYPES:</b> {args.SupportedStyles}</tt>\n\n"
-                           + $"<tt><b>玩家</b> {string.Join(", ", args.SupportedPlayers)}</tt>\n\n"
-                           + (args.IsDocked ? "主机模式设定. <tt>掌机模式</tt> 将会失效.\n\n" : "")
+                           + $"<tt><b>PLAYERS:</b> {string.Join(", ", args.SupportedPlayers)}</tt>\n\n"
+                           + (args.IsDocked ? "Docked mode set. <tt>Handheld</tt> is also invalid.\n\n" : "")
                            + "<i>Please reconfigure Input now and then press OK.</i>";
 
             return DisplayMessageDialog("Controller Applet", message);
@@ -71,7 +71,7 @@ namespace Ryujinx.Ui.Applet
                 }
                 catch (Exception ex)
                 {
-                    GtkDialog.CreateErrorDialog($"显示消息对话框时出错: {ex}");
+                    GtkDialog.CreateErrorDialog($"Error displaying Message Dialog: {ex}");
 
                     dialogCloseEvent.Set();
                 }
@@ -96,7 +96,7 @@ namespace Ryujinx.Ui.Applet
                 {
                     var swkbdDialog = new SwkbdAppletDialog(_parent)
                     {
-                        Title         = "软件键盘",
+                        Title         = "Software Keyboard",
                         Text          = args.HeaderText,
                         SecondaryText = args.SubtitleText
                     };
@@ -119,7 +119,7 @@ namespace Ryujinx.Ui.Applet
                 {
                     error = true;
 
-                    GtkDialog.CreateErrorDialog($"显示软件键盘时出错: {ex}");
+                    GtkDialog.CreateErrorDialog($"Error displaying Software Keyboard: {ex}");
                 }
                 finally
                 {
@@ -181,7 +181,7 @@ namespace Ryujinx.Ui.Applet
                 }
                 catch (Exception ex)
                 {
-                    GtkDialog.CreateErrorDialog($"显示错误的小程序出错日志文件: {ex}");
+                    GtkDialog.CreateErrorDialog($"Error displaying ErrorApplet Dialog: {ex}");
 
                     dialogCloseEvent.Set();
                 }

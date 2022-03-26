@@ -254,7 +254,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                GtkDialog.CreateInfoDialog($"Amiibo API", "从api获取信息时发生了错误");
+                GtkDialog.CreateInfoDialog($"Amiibo API", "An error occured while fetching information from the API.");
 
                 Close();
             }
@@ -283,7 +283,7 @@ namespace Ryujinx.Ui.Windows
 
         private void ShowInfoDialog()
         {
-            GtkDialog.CreateInfoDialog($"Amiibo API", "无法连接到Amiibo API服务器. 此服务可能已经关闭或你可能需要检查你的网络连接是否在线");
+            GtkDialog.CreateInfoDialog($"Amiibo API", "Unable to connect to Amiibo API server. The service may be down or you may need to verify your internet connection is online.");
         }
 
         //
@@ -366,7 +366,7 @@ namespace Ryujinx.Ui.Windows
 
                     if (usageString.Length == 0)
                     {
-                        usageString = "未知.";
+                        usageString = "Unknown.";
                     }
 
                     _gameUsageLabel.Text = $"Usage{(writable ? " (Writable)" : "")} : {usageString}";

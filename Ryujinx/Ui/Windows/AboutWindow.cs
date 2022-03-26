@@ -22,7 +22,7 @@ namespace Ryujinx.Ui.Windows
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
-                _patreonNamesText.Buffer.Text = "链接错误";
+                _patreonNamesText.Buffer.Text = "Connection Error.";
             }
 
             HttpClient httpClient = new HttpClient();
@@ -35,7 +35,7 @@ namespace Ryujinx.Ui.Windows
             }
             catch
             {
-                _patreonNamesText.Buffer.Text = "API错误.";
+                _patreonNamesText.Buffer.Text = "API Error.";
             }
         }
 

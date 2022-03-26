@@ -105,9 +105,9 @@ namespace Ryujinx.Ui.Windows
 
 #pragma warning restore CS0649, IDE0044
 
-        public SettingsWindow(MainWindow parent, VirtualFileSystem virtualFileSystem, HLE.FileSystem.Content.ContentManager contentManager) : this(parent, new Builder("Ryujinx.Ui.Windows.SettingsWindow.glade"), virtualFileSystem, contentManager) { }
+        public SettingsWindow(MainWindow parent, VirtualFileSystem virtualFileSystem, ContentManager contentManager) : this(parent, new Builder("Ryujinx.Ui.Windows.SettingsWindow.glade"), virtualFileSystem, contentManager) { }
 
-        private SettingsWindow(MainWindow parent, Builder builder, VirtualFileSystem virtualFileSystem, HLE.FileSystem.Content.ContentManager contentManager) : base(builder.GetObject("_settingsWin").Handle)
+        private SettingsWindow(MainWindow parent, Builder builder, VirtualFileSystem virtualFileSystem, ContentManager contentManager) : base(builder.GetObject("_settingsWin").Handle)
         {
             Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
 
@@ -137,7 +137,7 @@ namespace Ryujinx.Ui.Windows
             {
                 if (_galThreading.ActiveId != ConfigurationState.Instance.Graphics.BackendThreading.Value.ToString())
                 {
-                    GtkDialog.CreateInfoDialog("警告 - 后端多线程", "更改此选项后必须重新启动 Ryujinx 才能完全应用. 根据您的平台，您可能需要在使用 Ryujinx 时手动禁用驱动程序自己的多线程.");
+                    GtkDialog.CreateInfoDialog("Warning - Backend Threading", "Ryujinx must be restarted after changing this option for it to apply fully. Depending on your platform, you may need to manually disable your driver's own multithreading when using Ryujinx's.");
                 }
             };
 
@@ -145,6 +145,11 @@ namespace Ryujinx.Ui.Windows
             if (ConfigurationState.Instance.Logger.EnableTrace)
             {
                 _traceLogToggle.Click();
+            }
+
+            if (ConfigurationState.Instance.Logger.EnableFileLog)
+            {
+                _fileLogToggle.Click();
             }
 
             if (ConfigurationState.Instance.Logger.EnableError)
@@ -376,7 +381,7 @@ namespace Ryujinx.Ui.Windows
             _audioBackendSelect.Show();
 
             _previousVolumeLevel            = ConfigurationState.Instance.System.AudioVolume;
-            _audioVolumeLabel               = new Label("音量: ");
+            _audioVolumeLabel               = new Label("Volume: ");
             _audioVolumeSlider              = new Scale(Orientation.Horizontal, 0, 100, 1);
             _audioVolumeLabel.MarginStart   = 10;
             _audioVolumeSlider.ValuePos     = PositionType.Right;
@@ -593,7 +598,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                FileChooserNative fileChooser = new FileChooserNative("选择一个游戏目录来添加到列表中", this, FileChooserAction.SelectFolder, "添加", "取消")
+                FileChooserNative fileChooser = new FileChooserNative("Choose the game directory to add to the list", this, FileChooserAction.SelectFolder, "Add", "Cancel")
                 {
                     SelectMultiple = true
                 };
@@ -652,11 +657,11 @@ namespace Ryujinx.Ui.Windows
 
         private void BrowseThemeDir_Pressed(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("请选择要加载的主题", this, FileChooserAction.Open, "选择", "取消"))
+            using (FileChooserNative fileChooser = new FileChooserNative("Choose the theme to load", this, FileChooserAction.Open, "Select", "Cancel"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "主题文件"
+                    Name = "Theme Files"
                 };
                 filter.AddPattern("*.css");
 

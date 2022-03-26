@@ -24,7 +24,7 @@ namespace Ryujinx.Ui.Widgets
 
             Label inputMaxTextLabel = new Label
             {
-                Text = $"(最长长度: {inputMax})"
+                Text = $"(Max length: {inputMax})"
             };
 
             ((Box)MessageArea).PackStart(mainTextLabel,     true, true, 0);
