@@ -20,9 +20,6 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 
-AppCenter.Start("{c617d808 - eecd - 443c - bee3 - 495053c804c6}}",
-                   typeof(Analytics), typeof(Crashes));
-
 namespace Ryujinx
 {
     class Program

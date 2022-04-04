@@ -79,7 +79,7 @@ namespace Ryujinx.Ui.App
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"Failed to get access to directory: \"{dir}\"");
+                    Logger.Warning?.Print(LogClass.Application, $"无法读取目录: \"{dir}\"");
                 }
 
                 if (content.Length > 0)
@@ -96,7 +96,7 @@ namespace Ryujinx.Ui.App
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Logger.Warning?.Print(LogClass.Application, $"Failed to get access to directory: \"{dir}\"");
+                    Logger.Warning?.Print(LogClass.Application, $"无法读取目录: \"{dir}\"");
                 }
 
                 if (content.Length > 0)

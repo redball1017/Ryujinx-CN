@@ -338,7 +338,7 @@ namespace Ryujinx.Ui
                         }
                         catch (Exception ex)
                         {
-                            Logger.Error?.Print(LogClass.Application, $"Failed to create directory at path {directory}. Error : {ex.GetType().Name}", "Screenshot");
+                            Logger.Error?.Print(LogClass.Application, $"Failed to create directory at path 无法在 {directory} 中创建一个文件夹. 错误 : {ex.GetType().Name}", "Screenshot");
 
                             return;
                         }
@@ -363,7 +363,7 @@ namespace Ryujinx.Ui
 
                         image.Dispose();
 
-                        Logger.Notice.Print(LogClass.Application, $"Screenshot saved to {path}", "Screenshot");
+                        Logger.Notice.Print(LogClass.Application, $"截图已保存至 {path}", "Screenshot");
                     }
                 });
             }

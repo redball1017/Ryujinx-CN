@@ -751,7 +751,7 @@ namespace Ryujinx.Ui
 
                             string message = $"未找到已安装的固件，但 Ryujinx 能够从提供的游戏安装固件 {firmwareVersion.VersionString}。\n模拟器现在将启动.";
 
-                            GtkDialog.CreateInfoDialog($"Firmware {firmwareVersion.VersionString} was installed", message);
+                            GtkDialog.CreateInfoDialog($"固件 {firmwareVersion.VersionString} 已安装", message);
                         }
                     }
                     else
@@ -819,14 +819,14 @@ namespace Ryujinx.Ui
                             }
                             catch (ArgumentOutOfRangeException)
                             {
-                                Logger.Error?.Print(LogClass.Application, "The specified file is not supported by Ryujinx.");
+                                Logger.Error?.Print(LogClass.Application, "选中文件不受Ryujixn的支持.");
                             }
                             break;
                     }
                 }
                 else
                 {
-                    Logger.Warning?.Print(LogClass.Application, "Please specify a valid XCI/NCA/NSP/PFS0/NRO file.");
+                    Logger.Warning?.Print(LogClass.Application, "请选择一个有效的XCI/NCA/NSP/PFS0/NRO文件.");
 
                     _emulationContext.Dispose();
                     RendererWidget.Dispose();
@@ -1175,7 +1175,7 @@ namespace Ryujinx.Ui
         {
             _emulationContext.EnableDeviceVsync = !_emulationContext.EnableDeviceVsync;
 
-            Logger.Info?.Print(LogClass.Application, $"VSync toggled to: {_emulationContext.EnableDeviceVsync}");
+            Logger.Info?.Print(LogClass.Application, $"垂直同步已切换到: {_emulationContext.EnableDeviceVsync}");
         }
 
         private void DockedMode_Clicked(object sender, ButtonReleaseEventArgs args)
@@ -1237,11 +1237,11 @@ namespace Ryujinx.Ui
 
         private void Load_Application_File(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("Choose the file to open", this, FileChooserAction.Open, "Open", "Cancel"))
+            using (FileChooserNative fileChooser = new FileChooserNative("选择一个文件", this, FileChooserAction.Open, "打开", "返回"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Switch Executables"
+                    Name = "Switch可执行文件"
                 };
                 filter.AddPattern("*.xci");
                 filter.AddPattern("*.nsp");
@@ -1261,7 +1261,7 @@ namespace Ryujinx.Ui
 
         private void Load_Application_Folder(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("Choose the folder to open", this, FileChooserAction.SelectFolder, "Open", "Cancel"))
+            using (FileChooserNative fileChooser = new FileChooserNative("选择一个文件夹", this, FileChooserAction.SelectFolder, "打开", "返回"))
             {
                 if (fileChooser.Run() == (int)ResponseType.Accept)
                 {
@@ -1359,11 +1359,11 @@ namespace Ryujinx.Ui
 
         private void Installer_File_Pressed(object o, EventArgs args)
         {
-            FileChooserNative fileChooser = new FileChooserNative("Choose the firmware file to open", this, FileChooserAction.Open, "Open", "Cancel");
+            FileChooserNative fileChooser = new FileChooserNative("选择一个固件文件", this, FileChooserAction.Open, "打开", "返回");
 
             FileFilter filter = new FileFilter
             {
-                Name = "Switch Firmware Files"
+                Name = "Switch固件文件"
             };
             filter.AddPattern("*.zip");
             filter.AddPattern("*.xci");
@@ -1375,7 +1375,7 @@ namespace Ryujinx.Ui
 
         private void Installer_Directory_Pressed(object o, EventArgs args)
         {
-            FileChooserNative directoryChooser = new FileChooserNative("Choose the firmware directory to open", this, FileChooserAction.SelectFolder, "Open", "Cancel");
+            FileChooserNative directoryChooser = new FileChooserNative("选择一个固件文件夹", this, FileChooserAction.SelectFolder, "打开", "返回");
 
             HandleInstallerDialog(directoryChooser);
         }
@@ -1394,31 +1394,31 @@ namespace Ryujinx.Ui
 
                     if (firmwareVersion is null)
                     {
-                        GtkDialog.CreateErrorDialog($"A valid system firmware was not found in {filename}.");
+                        GtkDialog.CreateErrorDialog($"无法在 {filename} 中找到一个有效的系统固件.");
 
                         return;
                     }
 
-                    string dialogTitle = $"Install Firmware {firmwareVersion.VersionString}";
+                    string dialogTitle = $"安装固件 {firmwareVersion.VersionString}";
 
                     SystemVersion currentVersion = _contentManager.GetCurrentFirmwareVersion();
 
-                    string dialogMessage = $"System version {firmwareVersion.VersionString} will be installed.";
+                    string dialogMessage = $"系统版本 {firmwareVersion.VersionString} 将会被安装.";
 
                     if (currentVersion != null)
                     {
-                        dialogMessage += $"\n\nThis will replace the current system version {currentVersion.VersionString}. ";
+                        dialogMessage += $"\n\n这将会覆盖现有的系统版本 {currentVersion.VersionString}. ";
                     }
 
-                    dialogMessage += "\n\nDo you want to continue?";
+                    dialogMessage += "\n\n你想要继续吗?";
 
                     ResponseType responseInstallDialog = (ResponseType)GtkDialog.CreateConfirmationDialog(dialogTitle, dialogMessage).Run();
 
-                    MessageDialog waitingDialog = GtkDialog.CreateWaitingDialog(dialogTitle, "Installing firmware...");
+                    MessageDialog waitingDialog = GtkDialog.CreateWaitingDialog(dialogTitle, "正在安装固件...");
 
                     if (responseInstallDialog == ResponseType.Yes)
                     {
-                        Logger.Info?.Print(LogClass.Application, $"Installing firmware {firmwareVersion.VersionString}");
+                        Logger.Info?.Print(LogClass.Application, $"正在安装固件 {firmwareVersion.VersionString}");
 
                         Thread thread = new Thread(() =>
                         {
@@ -1436,7 +1436,7 @@ namespace Ryujinx.Ui
                                 {
                                     waitingDialog.Dispose();
 
-                                    string message = $"System version {firmwareVersion.VersionString} successfully installed.";
+                                    string message = $"系统版本 {firmwareVersion.VersionString} 已被成功安装.";
 
                                     GtkDialog.CreateInfoDialog(dialogTitle, message);
                                     Logger.Info?.Print(LogClass.Application, message);
@@ -1614,7 +1614,7 @@ namespace Ryujinx.Ui
             }
             else
             {
-                GtkDialog.CreateInfoDialog($"Amiibo", "The game is currently not ready to receive Amiibo scan data. Ensure that you have an Amiibo-compatible game open and ready to receive Amiibo scan data.");
+                GtkDialog.CreateInfoDialog($"Amiibo", "此游戏目前还无法接受Amiibo的扫描数据。请确保你有打开一个兼容Amiibo而且可以接收Amiibo扫描数据的游戏");
             }
         }
 
@@ -1643,7 +1643,7 @@ namespace Ryujinx.Ui
             {
                 Updater.BeginParse(this, true).ContinueWith(task =>
                 {
-                    Logger.Error?.Print(LogClass.Application, $"Updater error: {task.Exception}");
+                    Logger.Error?.Print(LogClass.Application, $"更新器错误: {task.Exception}");
                 }, TaskContinuationOptions.OnlyOnFaulted);
             }
         }
