@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ryujinx.Common\Ryujinx.Common.csproj" />
     <ProjectReference Include="..\Ryujinx.Graphics.Device\Ryujinx.Graphics.Device.csproj" />
     <ProjectReference Include="..\Ryujinx.Graphics.Gpu\Ryujinx.Graphics.Gpu.csproj" />

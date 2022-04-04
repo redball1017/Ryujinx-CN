@@ -12,6 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
     <PackageReference Include="Ryujinx.Graphics.Nvdec.Dependencies" Version="4.4.0-build7" Condition="'$(RuntimeIdentifier)' != 'linux-x64' AND '$(RuntimeIdentifier)' != 'osx-x64'" />
   </ItemGroup>
 

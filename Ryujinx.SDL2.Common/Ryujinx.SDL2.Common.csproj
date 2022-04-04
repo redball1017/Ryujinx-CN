@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AppCenter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
     <PackageReference Include="Ryujinx.SDL2-CS" Version="2.0.17-build18" />
   </ItemGroup>
 
