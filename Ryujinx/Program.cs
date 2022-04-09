@@ -16,9 +16,6 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 
 namespace Ryujinx
 {
@@ -87,7 +84,7 @@ namespace Ryujinx
 
             Version = ReleaseInformations.GetVersion();
 
-            Console.Title = $"Ryujinx控制台 {Version}";
+            Console.Title = $"Ryujinx Console {Version}";
 
             // NOTE: GTK3 doesn't init X11 in a multi threaded way.
             // This ends up causing race condition and abort of XCB when a context is created by SPB (even if SPB do call XInitThreads).
@@ -149,7 +146,7 @@ namespace Ryujinx
                 else
                 {
                     ConfigurationState.Instance.LoadDefault();
-                    Logger.Warning?.PrintMsg(LogClass.Application, $"无法加载配置! 正在载入默认配置.\n错误配置路径 {ConfigurationPath}");
+                    Logger.Warning?.PrintMsg(LogClass.Application, $"Failed to load config! Loading the default config instead.\nFailed config location {ConfigurationPath}");
                 }
             }
 
@@ -184,7 +181,7 @@ namespace Ryujinx
             {
                 Updater.BeginParse(mainWindow, false).ContinueWith(task =>
                 {
-                    Logger.Error?.Print(LogClass.Application, $"更新器错误: {task.Exception}");
+                    Logger.Error?.Print(LogClass.Application, $"Updater Error: {task.Exception}");
                 }, TaskContinuationOptions.OnlyOnFaulted);
             }
 
@@ -193,19 +190,19 @@ namespace Ryujinx
 
         private static void PrintSystemInfo()
         {
-            Logger.Notice.Print(LogClass.Application, $"Ryujinx版本: {Version}");
+            Logger.Notice.Print(LogClass.Application, $"Ryujinx Version: {Version}");
             SystemInfo.Gather().Print();
 
             var enabledLogs = Logger.GetEnabledLevels();
-            Logger.Notice.Print(LogClass.Application, $"日志已开启: {(enabledLogs.Count == 0 ? "<None>" : string.Join(", ", enabledLogs))}");
+            Logger.Notice.Print(LogClass.Application, $"Logs Enabled: {(enabledLogs.Count == 0 ? "<None>" : string.Join(", ", enabledLogs))}");
 
             if (AppDataManager.Mode == AppDataManager.LaunchMode.Custom)
             {
-                Logger.Notice.Print(LogClass.Application, $"启动模式: 自定义路径 {AppDataManager.BaseDirPath}");
+                Logger.Notice.Print(LogClass.Application, $"Launch Mode: Custom Path {AppDataManager.BaseDirPath}");
             }
             else
             {
-                Logger.Notice.Print(LogClass.Application, $"启动模式: {AppDataManager.Mode}");
+                Logger.Notice.Print(LogClass.Application, $"Launch Mode: {AppDataManager.Mode}");
             }
         }
 
@@ -214,7 +211,7 @@ namespace Ryujinx
             Ptc.Close();
             PtcProfiler.Stop();
 
-            string message = $"未处理的异常捕获: {ex}";
+            string message = $"Unhandled exception caught: {ex}";
 
             Logger.Error?.PrintMsg(LogClass.Application, message);
 
