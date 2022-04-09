@@ -86,7 +86,7 @@ jobs:
           name: ${{ steps.version_info.outputs.build_version }}
           artifacts: "release_output/*.tar.gz,release_output/*.zip"
           tag: ${{ steps.version_info.outputs.build_version }}
-          body: "For more informations about this release please check out the official [Changelog](https://github.com/Ryujinx/Ryujinx/wiki/Changelog)."
+          body: "有关此版本的更多信息，请查看 [更新日志](https://redball1017.gitee.io/2022/04/09/ryujinx-cn-changelog)."
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
