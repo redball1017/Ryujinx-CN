@@ -45,7 +45,7 @@ namespace Ryujinx.Ui.Widgets
             }
             else
             {
-                _errorMessage.Text = "The file name contains invalid characters. Please try again.";
+                _errorMessage.Text = "文件名包含无效字符。 请再试一次.";
             }
         }
 

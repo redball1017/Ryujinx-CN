@@ -28,7 +28,7 @@ namespace Ryujinx.Ui.Widgets
 
             if (isInSetupGuide)
             {
-                AddButton("Open the Setup Guide", SetupGuideResponseId);
+                AddButton("打开设置指南", SetupGuideResponseId);
             }
 
             string errorCode = GetErrorCode(error);
@@ -41,7 +41,7 @@ namespace Ryujinx.Ui.Widgets
 
             if (isInSetupGuide)
             {
-                SecondaryText += "\n<b>For more information on how to fix this error, follow our Setup Guide.</b>";
+                SecondaryText += "\n<b>有关如何修复此错误的更多信息，请遵循我们的设置指南.</b>";
             }
         }
 
@@ -54,8 +54,8 @@ namespace Ryujinx.Ui.Widgets
         {
             return error switch
             {
-                UserError.NoKeys                => "Keys not found",
-                UserError.NoFirmware            => "Firmware not found",
+                UserError.NoKeys                => "找不到密钥",
+                UserError.NoFirmware            => "找不到固件",
                 UserError.FirmwareParsingFailed => "Firmware parsing error",
                 UserError.ApplicationNotFound   => "Application not found",
                 UserError.Unknown               => "Unknown error",

@@ -64,7 +64,7 @@ namespace Ryujinx.Ui.Windows
                 };
             }
 
-            _baseTitleInfoLabel.Text = $"Updates Available for {titleName} [{titleId.ToUpper()}]";
+            _baseTitleInfoLabel.Text = $"适用于 {titleName} [{titleId.ToUpper()}] 的更新文件";
             
             foreach (string path in _titleUpdateWindowData.Paths)
             {
@@ -116,7 +116,7 @@ namespace Ryujinx.Ui.Windows
                         }
                         else
                         {
-                            GtkDialog.CreateErrorDialog("The specified file does not contain an update for the selected title!");
+                            GtkDialog.CreateErrorDialog("指定的文件不包含所选游戏的更新!");
                         }
                     }
                     catch (Exception exception)
@@ -131,7 +131,7 @@ namespace Ryujinx.Ui.Windows
         {
             foreach (RadioButton radioButton in _noUpdateRadioButton.Group)
             {
-                if (radioButton.Label != "No Update" && (!removeSelectedOnly || radioButton.Active))
+                if (radioButton.Label != "无更新" && (!removeSelectedOnly || radioButton.Active))
                 {
                     _availableUpdatesBox.Remove(radioButton);
                     _radioButtonToPathDictionary.Remove(radioButton);
@@ -142,13 +142,13 @@ namespace Ryujinx.Ui.Windows
 
         private void AddButton_Clicked(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("Select update files", this, FileChooserAction.Open, "Add", "Cancel"))
+            using (FileChooserNative fileChooser = new FileChooserNative("选择更新文件", this, FileChooserAction.Open, "添加", "返回"))
             {
                 fileChooser.SelectMultiple = true;
 
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Switch Game Updates"
+                    Name = "Switch游戏更新"
                 };
                 filter.AddPattern("*.nsp");
 
