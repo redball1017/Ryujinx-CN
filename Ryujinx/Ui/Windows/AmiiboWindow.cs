@@ -2,6 +2,7 @@
 using Ryujinx.Common;
 using Ryujinx.Common.Configuration;
 using Ryujinx.Common.Utilities;
+using Ryujinx.Ui.Common.Configuration;
 using Ryujinx.Ui.Widgets;
 using System;
 using System.Collections.Generic;
@@ -97,7 +98,7 @@ namespace Ryujinx.Ui.Windows
 
         public AmiiboWindow() : base($"Ryujinx {Program.Version} - Amiibo")
         {
-            Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
+            Icon = new Gdk.Pixbuf(Assembly.GetAssembly(typeof(ConfigurationState)), "Ryujinx.Ui.Common.Resources.Logo_Ryujinx.png");
 
             InitializeComponent();
 
@@ -111,7 +112,7 @@ namespace Ryujinx.Ui.Windows
             _amiiboJsonPath = System.IO.Path.Join(AppDataManager.BaseDirPath, "system", "amiibo", "Amiibo.json");
             _amiiboList     = new List<AmiiboApi>();
 
-            _amiiboLogoBytes    = EmbeddedResources.Read("Ryujinx/Ui/Resources/Logo_Amiibo.png");
+            _amiiboLogoBytes    = EmbeddedResources.Read("Ryujinx.Ui.Common/Resources/Logo_Amiibo.png");
             _amiiboImage.Pixbuf = new Gdk.Pixbuf(_amiiboLogoBytes);
 
             _scanButton.Sensitive         = false;
@@ -254,7 +255,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                GtkDialog.CreateInfoDialog($"Amiibo API", "在从API获取信息时发生了错误.");
+                GtkDialog.CreateInfoDialog($"Amiibo API", "An error occured while fetching information from the API.");
 
                 Close();
             }
@@ -283,7 +284,7 @@ namespace Ryujinx.Ui.Windows
 
         private void ShowInfoDialog()
         {
-            GtkDialog.CreateInfoDialog($"Amiibo API", "无法连接到Amiibo API服务器。可能是此服务已关闭或者你可能需要检查一下你的网络连接是否在线");
+            GtkDialog.CreateInfoDialog($"Amiibo API", "Unable to connect to Amiibo API server. The service may be down or you may need to verify your internet connection is online.");
         }
 
         //

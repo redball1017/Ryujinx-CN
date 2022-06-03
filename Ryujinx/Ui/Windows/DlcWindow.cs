@@ -41,7 +41,7 @@ namespace Ryujinx.Ui.Windows
             _titleId                 = titleId;
             _virtualFileSystem       = virtualFileSystem;
             _dlcJsonPath             = System.IO.Path.Combine(AppDataManager.GamesDirPath, _titleId, "dlc.json");
-            _baseTitleInfoLabel.Text = $"适用于 {titleName} [{titleId.ToUpper()}] 的DLC";
+            _baseTitleInfoLabel.Text = $"DLC Available for {titleName} [{titleId.ToUpper()}]";
 
             try
             {
@@ -118,7 +118,7 @@ namespace Ryujinx.Ui.Windows
             }
             catch (Exception exception)
             {
-                GtkDialog.CreateErrorDialog($"{exception.Message}. 错误文件: {containerPath}");
+                GtkDialog.CreateErrorDialog($"{exception.Message}. Errored File: {containerPath}");
             }
 
             return null;
@@ -126,14 +126,14 @@ namespace Ryujinx.Ui.Windows
 
         private void AddButton_Clicked(object sender, EventArgs args)
         {
-            FileChooserNative fileChooser = new FileChooserNative("选择一个DLC文件", this, FileChooserAction.Open, "添加", "返回")
+            FileChooserNative fileChooser = new FileChooserNative("Select DLC files", this, FileChooserAction.Open, "Add", "Cancel")
             {
                 SelectMultiple = true
             };
 
             FileFilter filter = new FileFilter()
             {
-                Name = "Switch游戏DLC"
+                Name = "Switch Game DLCs"
             };
             filter.AddPattern("*.nsp");
 
@@ -183,7 +183,7 @@ namespace Ryujinx.Ui.Windows
 
                         if (!containsDlc)
                         {
-                            GtkDialog.CreateErrorDialog("The specified file does not contain DLC for the selected title选中的文件并不是所选游戏的一个有效的DLC文件!");
+                            GtkDialog.CreateErrorDialog("The specified file does not contain DLC for the selected title!");
                         }
                     }
                 }

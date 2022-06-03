@@ -7,6 +7,7 @@ using LibHac.Ncm;
 using LibHac.Tools.FsSystem;
 using LibHac.Tools.FsSystem.NcaUtils;
 using Ryujinx.HLE.FileSystem;
+using Ryujinx.Ui.Common.Configuration;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
@@ -35,7 +36,7 @@ namespace Ryujinx.Ui.Windows
 
         public AvatarWindow() : base($"Ryujinx {Program.Version} - Manage Accounts - Avatar")
         {
-            Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
+            Icon = new Gdk.Pixbuf(Assembly.GetAssembly(typeof(ConfigurationState)), "Ryujinx.Ui.Common.Resources.Logo_Ryujinx.png");
 
             CanFocus  = false;
             Resizable = false;
@@ -58,7 +59,7 @@ namespace Ryujinx.Ui.Windows
 
             Button chooseButton = new Button()
             {
-                Label           = "选择",
+                Label           = "Choose",
                 CanFocus        = true,
                 ReceivesDefault = true
             };
@@ -66,7 +67,7 @@ namespace Ryujinx.Ui.Windows
 
             _setBackgroungColorButton = new Button()
             {
-                Label    = "设置背景颜色",
+                Label    = "Set Background Color",
                 CanFocus = true
             };
             _setBackgroungColorButton.Clicked += SetBackgroungColorButton_Pressed;
@@ -78,7 +79,7 @@ namespace Ryujinx.Ui.Windows
 
             Button closeButton = new Button()
             {
-                Label           = "关闭",
+                Label           = "Close",
                 CanFocus        = true
             };
             closeButton.Clicked += CloseButton_Pressed;

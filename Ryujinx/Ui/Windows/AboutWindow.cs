@@ -1,6 +1,6 @@
 ﻿using Gtk;
 using Ryujinx.Common.Utilities;
-using Ryujinx.Ui.Helper;
+using Ryujinx.Ui.Common.Helper;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -10,9 +10,9 @@ namespace Ryujinx.Ui.Windows
 {
     public partial class AboutWindow : Window
     {
-        public AboutWindow() : base($"Ryujinx {Program.Version} - 关于")
+        public AboutWindow() : base($"Ryujinx {Program.Version} - About")
         {
-            Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
+            Icon = new Gdk.Pixbuf(Assembly.GetAssembly(typeof(OpenHelper)), "Ryujinx.Ui.Common.Resources.Logo_Ryujinx.png");
             InitializeComponent();
 
             _ = DownloadPatronsJson();
@@ -22,7 +22,7 @@ namespace Ryujinx.Ui.Windows
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
-                _patreonNamesText.Buffer.Text = "连接错误.";
+                _patreonNamesText.Buffer.Text = "Connection Error.";
             }
 
             HttpClient httpClient = new HttpClient();
@@ -35,7 +35,7 @@ namespace Ryujinx.Ui.Windows
             }
             catch
             {
-                _patreonNamesText.Buffer.Text = "API错误.";
+                _patreonNamesText.Buffer.Text = "API Error.";
             }
         }
 

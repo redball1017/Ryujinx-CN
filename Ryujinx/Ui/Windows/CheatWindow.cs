@@ -27,7 +27,7 @@ namespace Ryujinx.Ui.Windows
         private CheatWindow(Builder builder, VirtualFileSystem virtualFileSystem, ulong titleId, string titleName) : base(builder.GetObject("_cheatWindow").Handle)
         {
             builder.Autoconnect(this);
-            _baseTitleInfoLabel.Text = $"适用于 {titleName} [{titleId:X16}] 的补丁";
+            _baseTitleInfoLabel.Text = $"Cheats Available for {titleName} [{titleId:X16}]";
 
             string modsBasePath  = virtualFileSystem.ModLoader.GetModsBasePath();
             string titleModsPath = virtualFileSystem.ModLoader.GetTitleDir(modsBasePath, titleId.ToString("X16"));
@@ -96,7 +96,7 @@ namespace Ryujinx.Ui.Windows
 
             if (cheatAdded == 0)
             {
-                ((TreeStore)_cheatTreeView.Model).AppendValues(false, "找不到补丁", "", "");
+                ((TreeStore)_cheatTreeView.Model).AppendValues(false, "No Cheats Found", "", "");
                 _cheatTreeView.GetColumn(0).Visible = false;
 
                 _noCheatsFound = true;
@@ -131,7 +131,7 @@ namespace Ryujinx.Ui.Windows
                                 var name = _cheatTreeView.Model.GetValue(childIter, 1).ToString();
                                 var buildId = _cheatTreeView.Model.GetValue(childIter, 3).ToString();
 
-                                enabledCheats.Add($"{buildId}-<{name} 补丁>");
+                                enabledCheats.Add($"{buildId}-<{name} Cheat>");
                             }
                         }
                         while (_cheatTreeView.Model.IterNext(ref childIter));

@@ -27,7 +27,7 @@
                 <property name="margin_right">10</property>
                 <property name="margin_top">10</property>
                 <property name="margin_bottom">10</property>
-                <property name="label" translatable="yes">可用更新</property>
+                <property name="label" translatable="yes">Available Updates</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -53,7 +53,7 @@
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkRadioButton" id="_noUpdateRadioButton">
-                            <property name="label" translatable="yes">无更新</property>
+                            <property name="label" translatable="yes">No Update</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
@@ -97,11 +97,11 @@
                 <property name="layout_style">start</property>
                 <child>
                   <object class="GtkButton" id="_addUpdate">
-                    <property name="label" translatable="yes">添加</property>
+                    <property name="label" translatable="yes">Add</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">向此列表添加更新</property>
+                    <property name="tooltip_text" translatable="yes">Adds an update to this list</property>
                     <property name="margin_left">10</property>
                     <signal name="clicked" handler="AddButton_Clicked" swapped="no"/>
                   </object>
@@ -113,11 +113,11 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="_removeUpdate">
-                    <property name="label" translatable="yes">移除</property>
+                    <property name="label" translatable="yes">Remove</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">移除所选更新</property>
+                    <property name="tooltip_text" translatable="yes">Removes the selected update</property>
                     <property name="margin_left">10</property>
                     <signal name="clicked" handler="RemoveButton_Clicked" swapped="no"/>
                   </object>
@@ -129,11 +129,11 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="_removeAllButton">
-                    <property name="label" translatable="yes">移除全部</property>
+                    <property name="label" translatable="yes">Remove All</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">移除所选更新</property>
+                    <property name="tooltip_text" translatable="yes">Removes the selected update</property>
                     <property name="margin_left">10</property>
                     <signal name="clicked" handler="RemoveAllButton_Clicked" swapped="no"/>
                   </object>
@@ -159,7 +159,7 @@
                 <property name="layout_style">end</property>
                 <child>
                   <object class="GtkButton" id="_saveButton">
-                    <property name="label" translatable="yes">保存</property>
+                    <property name="label" translatable="yes">Save</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -176,7 +176,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="_cancelButton">
-                    <property name="label" translatable="yes">取消</property>
+                    <property name="label" translatable="yes">Cancel</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>

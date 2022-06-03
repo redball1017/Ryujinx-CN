@@ -6,8 +6,7 @@ using Ryujinx.Audio.Backends.SoundIo;
 using Ryujinx.Common.Configuration;
 using Ryujinx.Common.Configuration.Hid;
 using Ryujinx.Common.GraphicsDriver;
-using Ryujinx.Configuration;
-using Ryujinx.Configuration.System;
+using Ryujinx.Ui.Common.Configuration;
 using Ryujinx.HLE.FileSystem;
 using Ryujinx.HLE.HOS.Services.Time.TimeZone;
 using Ryujinx.Ui.Helper;
@@ -20,6 +19,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 using GUI = Gtk.Builder.ObjectAttribute;
+using Ryujinx.Ui.Common.Configuration.System;
 
 namespace Ryujinx.Ui.Windows
 {
@@ -109,7 +109,7 @@ namespace Ryujinx.Ui.Windows
 
         private SettingsWindow(MainWindow parent, Builder builder, VirtualFileSystem virtualFileSystem, ContentManager contentManager) : base(builder.GetObject("_settingsWin").Handle)
         {
-            Icon = new Gdk.Pixbuf(Assembly.GetExecutingAssembly(), "Ryujinx.Ui.Resources.Logo_Ryujinx.png");
+            Icon = new Gdk.Pixbuf(Assembly.GetAssembly(typeof(ConfigurationState)), "Ryujinx.Ui.Common.Resources.Logo_Ryujinx.png");
 
             _parent = parent;
 
@@ -137,7 +137,7 @@ namespace Ryujinx.Ui.Windows
             {
                 if (_galThreading.ActiveId != ConfigurationState.Instance.Graphics.BackendThreading.Value.ToString())
                 {
-                    GtkDialog.CreateInfoDialog("警告 - 后端多线程", "Ryujinx必须重新启动才能完全应用此选项. 根据您所在的平台,你可能需要关闭驱动程序自己的后段多线程才能使用Ryujinx的.");
+                    GtkDialog.CreateInfoDialog("Warning - Backend Threading", "Ryujinx must be restarted after changing this option for it to apply fully. Depending on your platform, you may need to manually disable your driver's own multithreading when using Ryujinx's.");
                 }
             };
 
@@ -381,7 +381,7 @@ namespace Ryujinx.Ui.Windows
             _audioBackendSelect.Show();
 
             _previousVolumeLevel            = ConfigurationState.Instance.System.AudioVolume;
-            _audioVolumeLabel               = new Label("音量: ");
+            _audioVolumeLabel               = new Label("Volume: ");
             _audioVolumeSlider              = new Scale(Orientation.Horizontal, 0, 100, 1);
             _audioVolumeLabel.MarginStart   = 10;
             _audioVolumeSlider.ValuePos     = PositionType.Right;
@@ -519,7 +519,7 @@ namespace Ryujinx.Ui.Windows
             ConfigurationState.Instance.Hid.EnableMouse.Value                  = _directMouseAccess.Active;
             ConfigurationState.Instance.Ui.EnableCustomTheme.Value             = _custThemeToggle.Active;
             ConfigurationState.Instance.System.Language.Value                  = Enum.Parse<Language>(_systemLanguageSelect.ActiveId);
-            ConfigurationState.Instance.System.Region.Value                    = Enum.Parse<Configuration.System.Region>(_systemRegionSelect.ActiveId);
+            ConfigurationState.Instance.System.Region.Value                    = Enum.Parse<Common.Configuration.System.Region>(_systemRegionSelect.ActiveId);
             ConfigurationState.Instance.System.SystemTimeOffset.Value          = _systemTimeOffset;
             ConfigurationState.Instance.Ui.CustomThemePath.Value               = _custThemePath.Buffer.Text;
             ConfigurationState.Instance.Graphics.ShadersDumpPath.Value         = _graphicsShadersDumpPath.Buffer.Text;
@@ -598,7 +598,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                FileChooserNative fileChooser = new FileChooserNative("Choose the game directory to add to the list添加一个游戏目录到列表里", this, FileChooserAction.SelectFolder, "Add", "Cancel")
+                FileChooserNative fileChooser = new FileChooserNative("Choose the game directory to add to the list", this, FileChooserAction.SelectFolder, "Add", "Cancel")
                 {
                     SelectMultiple = true
                 };
@@ -657,11 +657,11 @@ namespace Ryujinx.Ui.Windows
 
         private void BrowseThemeDir_Pressed(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("选择要加载的主题文件", this, FileChooserAction.Open, "选择", "返回"))
+            using (FileChooserNative fileChooser = new FileChooserNative("Choose the theme to load", this, FileChooserAction.Open, "Select", "Cancel"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "主题文件"
+                    Name = "Theme Files"
                 };
                 filter.AddPattern("*.css");
 
