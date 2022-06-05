@@ -151,7 +151,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _disclaimerLabel
             //
-            _disclaimerLabel = new Label("Ryujinx不是任天堂™的附属公司,\也没有任何合作伙伴.")
+            _disclaimerLabel = new Label("Ryujinx不是任天堂™的附属公司,也没有任何合作伙伴.")
             {
                 Expand     = true,
                 Justify    = Justification.Center,
@@ -371,7 +371,7 @@ namespace Ryujinx.Ui.Windows
                 Margin        = 15,
                 MarginRight   = 30
             };
-            _createdByText.Buffer.Text = "gdkchan、Ac\K、Thog、rip in peri peri、LDj3SNuD、emmaus、Thealexbarney、Xpl0itR、GoffyDude、»jD«等。。。";
+            _createdByText.Buffer.Text = "gdkchan、Ac/K、Thog、rip in peri peri、LDj3SNuD、emmaus、Thealexbarney、Xpl0itR、GoffyDude、»jD«等。。。";
 
             //
             // _contributorsEventBox
