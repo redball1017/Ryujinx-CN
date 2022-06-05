@@ -114,7 +114,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_right">5</property>
-                                <property name="label" translatable="yes">Input Device</property>
+                                <property name="label" translatable="yes">输入设备</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -155,10 +155,10 @@
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">The controller's type</property>
+                                <property name="tooltip_text" translatable="yes">控制器的类型</property>
                                 <property name="halign">center</property>
                                 <property name="margin_right">5</property>
-                                <property name="label" translatable="yes">Controller Type:</property>
+                                <property name="label" translatable="yes">控制器类型:</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -170,7 +170,7 @@
                               <object class="GtkComboBoxText" id="_controllerType">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="tooltip_text" translatable="yes">The controller's type</property>
+                                <property name="tooltip_text" translatable="yes">控制器的类型</property>
                                 <property name="active">0</property>
                                 <signal name="changed" handler="Controller_Changed" swapped="no"/>
                               </object>
@@ -197,7 +197,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_right">5</property>
-                                <property name="label" translatable="yes">Profile:</property>
+                                <property name="label" translatable="yes">配置文件:</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -221,7 +221,7 @@
                             </child>
                             <child>
                               <object class="GtkToggleButton">
-                                <property name="label" translatable="yes">Load</property>
+                                <property name="label" translatable="yes">加载</property>
                                 <property name="width_request">60</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
@@ -237,7 +237,7 @@
                             </child>
                             <child>
                               <object class="GtkToggleButton">
-                                <property name="label" translatable="yes">Add</property>
+                                <property name="label" translatable="yes">添加</property>
                                 <property name="width_request">60</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
@@ -253,7 +253,7 @@
                             </child>
                             <child>
                               <object class="GtkToggleButton">
-                                <property name="label" translatable="yes">Remove</property>
+                                <property name="label" translatable="yes">移除</property>
                                 <property name="width_request">60</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
@@ -308,7 +308,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Buttons</property>
+                                        <property name="label" translatable="yes">按钮</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -514,7 +514,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Left Stick</property>
+                                        <property name="label" translatable="yes">左摇杆</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -537,7 +537,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick Button</property>
+                                            <property name="label" translatable="yes">左摇杆按钮</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -628,7 +628,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick Down</property>
+                                            <property name="label" translatable="yes">左摇杆下</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -641,7 +641,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick Up</property>
+                                            <property name="label" translatable="yes">左摇杆上</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -654,7 +654,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick Right</property>
+                                            <property name="label" translatable="yes">左摇杆右</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -667,7 +667,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick Left</property>
+                                            <property name="label" translatable="yes">左摇杆左</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -693,7 +693,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">LStick</property>
+                                            <property name="label" translatable="yes">左摇杆</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -742,7 +742,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_rotateL90CW">
-                                            <property name="label" translatable="yes">Rotate 90° Clockwise</property>
+                                            <property name="label" translatable="yes">顺时针旋转90度</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -771,7 +771,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="halign">start</property>
-                                            <property name="label" translatable="yes">Deadzone Left</property>
+                                            <property name="label" translatable="yes">左侧死区</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1200,7 +1200,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Directional Pad</property>
+                                        <property name="label" translatable="yes">十字方向键</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -1340,7 +1340,7 @@
                                             <property name="can_focus">False</property>
                                             <property name="margin_top">10</property>
                                             <property name="margin_bottom">5</property>
-                                            <property name="label" translatable="yes">Rumble</property>
+                                            <property name="label" translatable="yes">隆隆声</property>
                                             <attributes>
                                               <attribute name="weight" value="bold"/>
                                             </attributes>
@@ -1353,7 +1353,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_enableRumble">
-                                            <property name="label" translatable="yes">Enable</property>
+                                            <property name="label" translatable="yes">开启</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -1376,7 +1376,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
                                                 <property name="halign">start</property>
-                                                <property name="label" translatable="yes">Strong rumble multiplier</property>
+                                                <property name="label" translatable="yes">强隆隆声倍增器</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1416,7 +1416,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
                                                 <property name="halign">start</property>
-                                                <property name="label" translatable="yes">Weak rumble multiplier</property>
+                                                <property name="label" translatable="yes">弱隆隆声乘数</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1842,7 +1842,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Motion</property>
+                                        <property name="label" translatable="yes">体感</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -1855,7 +1855,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkCheckButton" id="_enableMotion">
-                                        <property name="label" translatable="yes">Enable Motion Controls</property>
+                                        <property name="label" translatable="yes">启用体感控制</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
@@ -1869,7 +1869,7 @@
                                     </child>
                                     <child>
                                       <object class="GtkCheckButton" id="_enableCemuHook">
-                                        <property name="label" translatable="yes">Use CemuHook compatible motion</property>
+                                        <property name="label" translatable="yes">使用CemuHook兼容的体感</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="receives_default">False</property>
@@ -1891,7 +1891,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="margin_right">17</property>
-                                            <property name="label" translatable="yes">Controller Slot</property>
+                                            <property name="label" translatable="yes">控制器插槽</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1934,7 +1934,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="margin_right">5</property>
-                                            <property name="label" translatable="yes">Gyro Sensitivity %</property>
+                                            <property name="label" translatable="yes">陀螺灵敏度 %</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1974,7 +1974,7 @@
                                         <property name="orientation">vertical</property>
                                         <child>
                                           <object class="GtkCheckButton" id="_mirrorInput">
-                                            <property name="label" translatable="yes">Mirror Input</property>
+                                            <property name="label" translatable="yes">镜像输入</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -1995,7 +1995,7 @@
                                               <object class="GtkLabel">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
-                                                <property name="label" translatable="yes">Right JoyCon Slot</property>
+                                                <property name="label" translatable="yes">右JoyCon插槽</property>
                                               </object>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -2044,7 +2044,7 @@
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Server Host</property>
+                                            <property name="label" translatable="yes">服务器主机</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2081,7 +2081,7 @@
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Server Port</property>
+                                            <property name="label" translatable="yes">服务器端口</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2114,7 +2114,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="halign">start</property>
-                                        <property name="label" translatable="yes">Gyro Deadzone</property>
+                                        <property name="label" translatable="yes">陀螺仪死区</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2200,7 +2200,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkToggleButton" id="SaveToggle">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label" translatable="yes">保存</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -2214,7 +2214,7 @@
             </child>
             <child>
               <object class="GtkToggleButton" id="CloseToggle">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label" translatable="yes">关闭</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

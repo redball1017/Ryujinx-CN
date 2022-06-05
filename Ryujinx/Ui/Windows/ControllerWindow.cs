@@ -134,7 +134,7 @@ namespace Ryujinx.Ui.Windows
             _playerIndex = controllerId;
             _inputConfig = ConfigurationState.Instance.Hid.InputConfig.Value.Find(inputConfig => inputConfig.PlayerIndex == _playerIndex);
 
-            Title = $"Ryujinx - Controller Settings - {_playerIndex}";
+            Title = $"Ryujinx - 控制器设置 - {_playerIndex}";
 
             if (_playerIndex == PlayerIndex.Handheld)
             {
@@ -756,7 +756,7 @@ namespace Ryujinx.Ui.Windows
 
             if (!_inputDevice.ActiveId.StartsWith("disabled"))
             {
-                GtkDialog.CreateErrorDialog("Invalid data detected in one or more fields; the configuration was not saved.");
+                GtkDialog.CreateErrorDialog("在一个或多个字段中检测到无效数据；未保存配置.");
             }
 
             return null;
@@ -851,7 +851,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                throw new Exception("Controller not supported");
+                throw new Exception("不支持的控制器");
             }
             
             return assigner;
@@ -1162,7 +1162,7 @@ namespace Ryujinx.Ui.Windows
 
             if (_inputDevice.ActiveId == "disabled" || _profile.ActiveId == "default" || _profile.ActiveId == null) return;
 
-            MessageDialog confirmDialog = GtkDialog.CreateConfirmationDialog("Deleting Profile", "This action is irreversible, are you sure you want to continue?");
+            MessageDialog confirmDialog = GtkDialog.CreateConfirmationDialog("删除配置文件", "此操作是不可逆的，是否确实要继续?");
 
             if (confirmDialog.Run() == (int)ResponseType.Yes)
             {

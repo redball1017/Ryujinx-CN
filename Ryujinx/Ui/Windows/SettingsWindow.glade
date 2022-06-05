@@ -42,7 +42,7 @@
   </object>
   <object class="GtkWindow" id="_settingsWin">
     <property name="can-focus">False</property>
-    <property name="title" translatable="yes">Ryujinx - Settings</property>
+    <property name="title" translatable="yes">Ryujinx - 设置</property>
     <property name="modal">True</property>
     <property name="window-position">center</property>
     <property name="default-width">650</property>
@@ -86,7 +86,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">General</property>
+                                <property name="label" translatable="yes">全局</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -106,11 +106,11 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="_discordToggle">
-                                    <property name="label" translatable="yes">Enable Discord Rich Presence</property>
+                                    <property name="label" translatable="yes">启用Discord Rich Presence</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables or disables Discord Rich Presence</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用Discord Rich Presence</property>
                                     <property name="halign">start</property>
                                     <property name="draw-indicator">True</property>
                                   </object>
@@ -123,7 +123,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_checkUpdatesToggle">
-                                    <property name="label" translatable="yes">Check for Updates on Launch</property>
+                                    <property name="label" translatable="yes">启动时检查更新</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
@@ -139,7 +139,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_showConfirmExitToggle">
-                                    <property name="label" translatable="yes">Show "Confirm Exit" Dialog</property>
+                                    <property name="label" translatable="yes">显示“确认退出”对话框</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
@@ -155,7 +155,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_hideCursorOnIdleToggle">
-                                    <property name="label" translatable="yes">Hide Cursor On Idle</property>
+                                    <property name="label" translatable="yes">空闲时隐藏光标</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
@@ -211,7 +211,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Game Directories</property>
+                                <property name="label" translatable="yes">游戏目录</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -264,7 +264,7 @@
                                       <object class="GtkEntry" id="_addGameDirBox">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Enter a game directroy to add to the list</property>
+                                        <property name="tooltip-text" translatable="yes">输入要添加到列表中的游戏目录</property>
                                       </object>
                                       <packing>
                                         <property name="expand">True</property>
@@ -279,7 +279,7 @@
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="receives-default">True</property>
-                                        <property name="tooltip-text" translatable="yes"> Add a game directory to the list</property>
+                                        <property name="tooltip-text" translatable="yes"> 将游戏目录添加到列表中</property>
                                         <property name="margin-left">5</property>
                                         <signal name="toggled" handler="AddDir_Pressed" swapped="no"/>
                                       </object>
@@ -291,12 +291,12 @@
                                     </child>
                                     <child>
                                       <object class="GtkToggleButton" id="_removeDir">
-                                        <property name="label" translatable="yes">Remove</property>
+                                        <property name="label" translatable="yes">移除</property>
                                         <property name="width-request">80</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="receives-default">True</property>
-                                        <property name="tooltip-text" translatable="yes">Remove selected game directory</property>
+                                        <property name="tooltip-text" translatable="yes">删除所选游戏目录</property>
                                         <property name="margin-left">5</property>
                                         <signal name="toggled" handler="RemoveDir_Pressed" swapped="no"/>
                                       </object>
@@ -355,7 +355,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Themes</property>
+                                <property name="label" translatable="yes">主题</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -375,11 +375,11 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="_custThemeToggle">
-                                    <property name="label" translatable="yes">Use Custom Theme</property>
+                                    <property name="label" translatable="yes">使用自定义主题</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enable or disable custom themes in the GUI</property>
+                                    <property name="tooltip-text" translatable="yes">在GUI中启用或禁用自定义主题</property>
                                     <property name="halign">start</property>
                                     <property name="draw-indicator">True</property>
                                     <signal name="toggled" handler="CustThemeToggle_Activated" swapped="no"/>
@@ -399,8 +399,8 @@
                                       <object class="GtkLabel" id="_custThemePathLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Path to custom GUI theme</property>
-                                        <property name="label" translatable="yes">Custom Theme Path:</property>
+                                        <property name="tooltip-text" translatable="yes">自定义GUI主题的路径</property>
+                                        <property name="label" translatable="yes">自定义主题路径:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -413,7 +413,7 @@
                                       <object class="GtkEntry" id="_custThemePath">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Path to custom GUI theme</property>
+                                        <property name="tooltip-text" translatable="yes">自定义GUI主题的路径</property>
                                         <property name="valign">center</property>
                                       </object>
                                       <packing>
@@ -429,7 +429,7 @@
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
                                         <property name="receives-default">True</property>
-                                        <property name="tooltip-text" translatable="yes">Browse for a custom GUI theme</property>
+                                        <property name="tooltip-text" translatable="yes">浏览自定义GUI主题</property>
                                         <property name="margin-left">5</property>
                                         <signal name="toggled" handler="BrowseThemeDir_Pressed" swapped="no"/>
                                       </object>
@@ -468,7 +468,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">General</property>
+                        <property name="label" translatable="yes">全局</property>
                       </object>
                       <packing>
                         <property name="tab-fill">False</property>
@@ -490,11 +490,11 @@
                             <property name="margin-bottom">5</property>
                             <child>
                               <object class="GtkCheckButton" id="_dockedModeToggle">
-                                <property name="label" translatable="yes">Enable Docked Mode</property>
+                                <property name="label" translatable="yes">开启主机模式</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Enable or disable Docked Mode</property>
+                                <property name="tooltip-text" translatable="yes">开启或关闭主机模式</property>
                                 <property name="draw-indicator">True</property>
                               </object>
                               <packing>
@@ -506,11 +506,11 @@
                             </child>
                             <child>
                               <object class="GtkCheckButton" id="_directKeyboardAccess">
-                                <property name="label" translatable="yes">Direct Keyboard Access</property>
+                                <property name="label" translatable="yes">直接键盘访问</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Enable or disable "direct keyboard access (HID) support" (Provides games access to your keyboard as a text entry device)</property>
+                                <property name="tooltip-text" translatable="yes">启用或禁用“直接键盘访问（HID）支持”（将游戏作为文本输入设备访问键盘）</property>
                                 <property name="draw-indicator">True</property>
                               </object>
                               <packing>
@@ -522,11 +522,11 @@
                             </child>
                             <child>
                               <object class="GtkCheckButton" id="_directMouseAccess">
-                                <property name="label" translatable="yes">Direct Mouse Access</property>
+                                <property name="label" translatable="yes">直接鼠标访问</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
-                                <property name="tooltip-text" translatable="yes">Enable or disable "direct mouse access (HID) support" (Provides games access to your mouse as a pointing device)</property>
+                                <property name="tooltip-text" translatable="yes">启用或禁用“直接鼠标访问（HID）支持”（将鼠标作为定点设备提供游戏访问）</property>
                                 <property name="draw-indicator">True</property>
                               </object>
                               <packing>
@@ -574,7 +574,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 1</property>
+                                    <property name="label" translatable="yes">玩家 1</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -584,7 +584,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController1">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -616,7 +616,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 3</property>
+                                    <property name="label" translatable="yes">玩家 3</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -626,7 +626,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController3">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -658,7 +658,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 2</property>
+                                    <property name="label" translatable="yes">玩家 2</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -668,7 +668,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController2">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -710,7 +710,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureControllerH">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -742,7 +742,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 6</property>
+                                    <property name="label" translatable="yes">玩家 6</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -752,7 +752,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController6">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -784,7 +784,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 5</property>
+                                    <property name="label" translatable="yes">玩家 5</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -794,7 +794,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController5">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -826,7 +826,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 7</property>
+                                    <property name="label" translatable="yes">玩家 7</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -836,7 +836,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController7">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -868,7 +868,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 4</property>
+                                    <property name="label" translatable="yes">玩家 4</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -878,7 +878,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController4">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -910,7 +910,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-top">20</property>
                                     <property name="margin-bottom">20</property>
-                                    <property name="label" translatable="yes">Player 8</property>
+                                    <property name="label" translatable="yes">玩家 8</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -920,7 +920,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkToggleButton" id="_configureController8">
-                                    <property name="label" translatable="yes">Configure</property>
+                                    <property name="label" translatable="yes">配置</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
@@ -1128,7 +1128,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Input</property>
+                        <property name="label" translatable="yes">输入</property>
                       </object>
                       <packing>
                         <property name="position">1</property>
@@ -1157,7 +1157,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Core</property>
+                                <property name="label" translatable="yes">核心</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -1183,9 +1183,9 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System Region</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统区域</property>
                                         <property name="halign">end</property>
-                                        <property name="label" translatable="yes">System Region:</property>
+                                        <property name="label" translatable="yes">系统区域:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1198,16 +1198,16 @@
                                       <object class="GtkComboBoxText" id="_systemRegionSelect">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System Region</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统区域</property>
                                         <property name="margin-left">5</property>
                                         <items>
-                                          <item id="Japan" translatable="yes">Japan</item>
-                                          <item id="USA" translatable="yes">USA</item>
-                                          <item id="Europe" translatable="yes">Europe</item>
-                                          <item id="Australia" translatable="yes">Australia</item>
-                                          <item id="China" translatable="yes">China</item>
-                                          <item id="Korea" translatable="yes">Korea</item>
-                                          <item id="Taiwan" translatable="yes">Taiwan</item>
+                                          <item id="Japan" translatable="yes">日本</item>
+                                          <item id="USA" translatable="yes">美国</item>
+                                          <item id="Europe" translatable="yes">欧洲</item>
+                                          <item id="Australia" translatable="yes">澳大利亚</item>
+                                          <item id="China" translatable="yes">中国</item>
+                                          <item id="Korea" translatable="yes">韩国</item>
+                                          <item id="Taiwan" translatable="yes">台湾</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -1232,9 +1232,9 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System Language</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统语言</property>
                                         <property name="halign">end</property>
-                                        <property name="label" translatable="yes">System Language:</property>
+                                        <property name="label" translatable="yes">系统语言:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1247,26 +1247,26 @@
                                       <object class="GtkComboBoxText" id="_systemLanguageSelect">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System Language</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统语言</property>
                                         <items>
-                                          <item id="AmericanEnglish" translatable="yes">American English</item>
-                                          <item id="BritishEnglish" translatable="yes">British English</item>
-                                          <item id="CanadianFrench" translatable="yes">Canadian French</item>
-                                          <item id="Chinese" translatable="yes">Chinese</item>
-                                          <item id="Dutch" translatable="yes">Dutch</item>
-                                          <item id="French" translatable="yes">French</item>
-                                          <item id="German" translatable="yes">German</item>
-                                          <item id="Italian" translatable="yes">Italian</item>
-                                          <item id="Japanese" translatable="yes">Japanese</item>
-                                          <item id="Korean" translatable="yes">Korean</item>
-                                          <item id="LatinAmericanSpanish" translatable="yes">Latin American Spanish</item>
-                                          <item id="Portuguese" translatable="yes">Portuguese</item>
-                                          <item id="Russian" translatable="yes">Russian</item>
-                                          <item id="SimplifiedChinese" translatable="yes">Simplified Chinese</item>
-                                          <item id="Spanish" translatable="yes">Spanish</item>
-                                          <item id="Taiwanese" translatable="yes">Taiwanese</item>
-                                          <item id="TraditionalChinese" translatable="yes">Traditional Chinese</item>
-                                          <item id="BrazilianPortuguese" translatable="yes">Brazilian Portuguese</item>
+                                          <item id="AmericanEnglish" translatable="yes">美式英语</item>
+                                          <item id="BritishEnglish" translatable="yes">英式英语</item>
+                                          <item id="CanadianFrench" translatable="yes">加拿大法语</item>
+                                          <item id="Chinese" translatable="yes">中文</item>
+                                          <item id="Dutch" translatable="yes">荷兰语</item>
+                                          <item id="French" translatable="yes">法语</item>
+                                          <item id="German" translatable="yes">德语</item>
+                                          <item id="Italian" translatable="yes">意大利语</item>
+                                          <item id="Japanese" translatable="yes">日语</item>
+                                          <item id="Korean" translatable="yes">韩语</item>
+                                          <item id="LatinAmericanSpanish" translatable="yes">拉丁美洲西班牙语</item>
+                                          <item id="Portuguese" translatable="yes">葡萄牙语</item>
+                                          <item id="Russian" translatable="yes">俄语</item>
+                                          <item id="SimplifiedChinese" translatable="yes">简体中文</item>
+                                          <item id="Spanish" translatable="yes">西班牙语</item>
+                                          <item id="Taiwanese" translatable="yes">台湾中文</item>
+                                          <item id="TraditionalChinese" translatable="yes">繁体中文</item>
+                                          <item id="BrazilianPortuguese" translatable="yes">巴西葡萄牙语</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -1291,9 +1291,9 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System TimeZone</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统时区</property>
                                         <property name="halign">end</property>
-                                        <property name="label" translatable="yes">System TimeZone:</property>
+                                        <property name="label" translatable="yes">系统时区:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1306,7 +1306,7 @@
                                       <object class="GtkEntry" id="_systemTimeZoneEntry">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Change System TimeZone</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统时区</property>
                                         <property name="margin-left">5</property>
                                         <property name="completion">_systemTimeZoneCompletion</property>
                                       </object>
@@ -1332,9 +1332,9 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Change System Time</property>
+                                        <property name="tooltip-text" translatable="yes">更改系统时间</property>
                                         <property name="halign">end</property>
-                                        <property name="label" translatable="yes">System Time:</property>
+                                        <property name="label" translatable="yes">系统时间:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1473,11 +1473,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_vSyncToggle">
-                                    <property name="label" translatable="yes">Enable VSync</property>
+                                    <property name="label" translatable="yes">启用VSync</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables or disables Vertical Sync</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用垂直同步</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1491,11 +1491,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_ptcToggle">
-                                    <property name="label" translatable="yes">Enable PPTC (Profiled Persistent Translation Cache)</property>
+                                    <property name="label" translatable="yes">启用PPTC（已分析的持久转译缓存）</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables or disables profiled translation cache persistency</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用已分析的持久转译缓存</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1509,11 +1509,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_internetToggle">
-                                    <property name="label" translatable="yes">Enable guest Internet access</property>
+                                    <property name="label" translatable="yes">启用来宾Internet访问</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables guest Internet access. If enabled, the application will behave as if the emulated Switch console was connected to the Internet. Note that in some cases, applications may still access the Internet even with this option disabled</property>
+                                    <property name="tooltip-text" translatable="yes">启用来宾Internet访问。如果启用，应用程序的行为将如同模拟Switch连接到Internet一样。请注意，在某些情况下，即使禁用此选项，应用程序仍可以访问Internet</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1527,11 +1527,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_fsicToggle">
-                                    <property name="label" translatable="yes">Enable FS Integrity Checks</property>
+                                    <property name="label" translatable="yes">启用FS完整性检查</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables integrity checks on Game content files</property>
+                                    <property name="tooltip-text" translatable="yes">启用对游戏内容文件的完整性检查</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1561,10 +1561,10 @@
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="tooltip-text" translatable="yes">Change Audio Backend</property>
+                                    <property name="tooltip-text" translatable="yes">更改音频后端</property>
                                     <property name="halign">end</property>
                                     <property name="margin-right">5</property>
-                                    <property name="label" translatable="yes">Audio Backend: </property>
+                                    <property name="label" translatable="yes">音频后端: </property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1592,10 +1592,10 @@
                                   <object class="GtkLabel">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="tooltip-text" translatable="yes">Change how guest memory is mapped and accessed. Greatly affects emulated CPU performance.</property>
+                                    <property name="tooltip-text" translatable="yes">更改来宾内存的映射和访问方式。极大地影响仿真CPU性能.</property>
                                     <property name="halign">end</property>
                                     <property name="margin-right">5</property>
-                                    <property name="label" translatable="yes">Memory Manager Mode: </property>
+                                    <property name="label" translatable="yes">内存管理器模式: </property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1606,11 +1606,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkRadioButton" id="_mmSoftware">
-                                    <property name="label" translatable="yes">Software</property>
+                                    <property name="label" translatable="yes">软件</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Use a software page table for address translation. Highest accuracy but slowest performance.</property>
+                                    <property name="tooltip-text" translatable="yes">使用软件页表进行地址转换。精度最高但性能最小.</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1624,11 +1624,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkRadioButton" id="_mmHost">
-                                    <property name="label" translatable="yes">Host (fast)</property>
+                                    <property name="label" translatable="yes">主机（快速）</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Directly map memory in the host address space. Much faster JIT compilation and execution.</property>
+                                    <property name="tooltip-text" translatable="yes">直接映射主机地址空间中的内存。更快的JIT编译和执行.</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1647,7 +1647,7 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Directly map memory, but do not mask the address within the guest address space before access. Faster, but at the cost of safety. The guest application can access memory from anywhere in Ryujinx, so only run programs you trust with this mode.</property>
+                                    <property name="tooltip-text" translatable="yes">直接映射内存，但在访问之前不要屏蔽来宾地址空间中的地址。速度更快，但以安全为代价。来宾应用程序可以从Ryujinx中的任何位置访问内存，因此只能使用此模式运行您信任的程序.</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1708,7 +1708,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="margin-bottom">5</property>
-                                    <property name="label" translatable="yes">Hacks</property>
+                                    <property name="label" translatable="yes">高级</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
@@ -1725,7 +1725,7 @@
                                     <property name="can-focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="margin-bottom">5</property>
-                                    <property name="label" translatable="yes"> - These may cause instability</property>
+                                    <property name="label" translatable="yes"> - 这些可能会导致不稳定</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -1749,11 +1749,11 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="_expandRamToggle">
-                                    <property name="label" translatable="yes">Expand DRAM size to 6GB</property>
+                                    <property name="label" translatable="yes">将DRAM大小扩展到6GB</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Expands the amount of memory on the emulated system from 4GB to 6GB</property>
+                                    <property name="tooltip-text" translatable="yes">将仿真系统上的内存量从4GB扩展到6GB</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1767,11 +1767,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_ignoreToggle">
-                                    <property name="label" translatable="yes">Ignore Missing Services</property>
+                                    <property name="label" translatable="yes">忽略缺少的服务</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enable or disable ignoring missing services</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用忽略丢失的服务</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1808,7 +1808,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">end</property>
-                        <property name="label" translatable="yes">System</property>
+                        <property name="label" translatable="yes">系统</property>
                       </object>
                       <packing>
                         <property name="position">2</property>
@@ -1864,8 +1864,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Enable Graphics Backend Multithreading</property>
-                                        <property name="label" translatable="yes">Graphics Backend Multithreading:</property>
+                                        <property name="tooltip-text" translatable="yes">启用图形后端多线程</property>
+                                        <property name="label" translatable="yes">图形后端多线程:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1878,10 +1878,10 @@
                                       <object class="GtkComboBoxText" id="_galThreading">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Executes graphics backend commands on a second thread. Allows runtime multithreading of shader compilation, reduces stuttering, and improves performance on drivers without multithreading support of their own. Slightly varying peak performance on drivers with multithreading. Ryujinx may need to be restarted to correctly disable driver built-in multithreading, or you may need to do it manually to get the best performance.</property>
+                                        <property name="tooltip-text" translatable="yes">在第二个线程上执行图形后端命令。允许着色器编译的运行时多线程，减少卡顿，并提高驱动程序的性能，而无需自身的多线程支持。多线程驱动程序的峰值性能略有不同。Ryujinx可能需要重新启动以正确禁用驱动程序内置的多线程，或者您可能需要手动执行此操作以获得最佳性能.</property>
                                         <property name="active-id">-1</property>
                                         <items>
-                                          <item id="Auto" translatable="yes">Auto</item>
+                                          <item id="Auto" translatable="yes">自动</item>
                                           <item id="Off" translatable="yes">Off</item>
                                           <item id="On" translatable="yes">On</item>
                                         </items>
@@ -1930,7 +1930,7 @@
                                 <property name="margin-left">5</property>
                                 <property name="margin-right">5</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Enhancements</property>
+                                <property name="label" translatable="yes">增强功能</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -1950,11 +1950,11 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="_shaderCacheToggle">
-                                    <property name="label" translatable="yes">Enable Shader Cache</property>
+                                    <property name="label" translatable="yes">启用着色器缓存</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables or disables Shader Cache</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用着色器缓存</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -1976,8 +1976,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Resolution Scale applied to applicable render targets.</property>
-                                        <property name="label" translatable="yes">Resolution Scale:</property>
+                                        <property name="tooltip-text" translatable="yes">应用于适用渲染目标的分辨率比例.</property>
+                                        <property name="label" translatable="yes">分辨率比例:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -1990,14 +1990,14 @@
                                       <object class="GtkComboBoxText" id="_resScaleCombo">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Resolution Scale applied to applicable render targets.</property>
+                                        <property name="tooltip-text" translatable="yes">应用于适用渲染目标的分辨率比例.</property>
                                         <property name="active-id">1</property>
                                         <items>
-                                          <item id="1" translatable="yes">Native (720p/1080p)</item>
+                                          <item id="1" translatable="yes">原始 (720p/1080p)</item>
                                           <item id="2" translatable="yes">2x (1440p/2160p)</item>
                                           <item id="3" translatable="yes">3x (2160p/3240p)</item>
                                           <item id="4" translatable="yes">4x (2880p/4320p)</item>
-                                          <item id="-1" translatable="yes">Custom (not recommended)</item>
+                                          <item id="-1" translatable="yes">自定义（不推荐）</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -2010,7 +2010,7 @@
                                       <object class="GtkEntry" id="_resScaleText">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Floating point resolution scale, such as 1.5. Non-integral scales are more likely to cause issues or crash.</property>
+                                        <property name="tooltip-text" translatable="yes">浮点分辨率刻度，如1.5。非整数刻度更有可能导致问题或崩溃.</property>
                                         <property name="valign">center</property>
                                         <property name="caps-lock-warning">False</property>
                                         <property name="placeholder-text">1.0</property>
@@ -2040,7 +2040,7 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Level of Anisotropic Filtering (set to Auto to use the value requested by the game)</property>
+                                        <property name="tooltip-text" translatable="yes">各向异性过滤级别（设置为自动以使用游戏请求的值）</property>
                                         <property name="label" translatable="yes">Anisotropic Filtering:</property>
                                       </object>
                                       <packing>
@@ -2054,7 +2054,7 @@
                                       <object class="GtkComboBoxText" id="_anisotropy">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Level of Anisotropic Filtering (set to Auto to use the value requested by the game)</property>
+                                        <property name="tooltip-text" translatable="yes">各向异性过滤级别（设置为自动以使用游戏请求的值）</property>
                                         <property name="active-id">-1</property>
                                         <items>
                                           <item id="-1" translatable="yes">Auto</item>
@@ -2088,8 +2088,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Aspect Ratio applied to the renderer window.</property>
-                                        <property name="label" translatable="yes">Aspect Ratio:</property>
+                                        <property name="tooltip-text" translatable="yes">应用于渲染器窗口的纵横比.</property>
+                                        <property name="label" translatable="yes">纵横比:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2102,7 +2102,7 @@
                                       <object class="GtkComboBoxText" id="_aspectRatio">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Aspect Ratio applied to the renderer window.</property>
+                                        <property name="tooltip-text" translatable="yes">应用于渲染器窗口的纵横比.</property>
                                         <property name="active-id">1</property>
                                         <items>
                                           <item id="0" translatable="yes">4:3</item>
@@ -2110,7 +2110,7 @@
                                           <item id="2" translatable="yes">16:10</item>
                                           <item id="3" translatable="yes">21:9</item>
                                           <item id="4" translatable="yes">32:9</item>
-                                          <item id="5" translatable="yes">Stretch to Fit Window</item>
+                                          <item id="5" translatable="yes">拉伸以适应窗口</item>
                                         </items>
                                       </object>
                                       <packing>
@@ -2169,7 +2169,7 @@
                                 <property name="margin-left">5</property>
                                 <property name="margin-right">5</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Developer Options</property>
+                                <property name="label" translatable="yes">开发人员选项</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -2197,8 +2197,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Graphics Shaders Dump Path</property>
-                                        <property name="label" translatable="yes">Graphics Shaders Dump Path:</property>
+                                        <property name="tooltip-text" translatable="yes">图形着色器转储路径</property>
+                                        <property name="label" translatable="yes">图形着色器转储路径:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2211,7 +2211,7 @@
                                       <object class="GtkEntry" id="_graphicsShadersDumpPath">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Graphics Shaders Dump Path</property>
+                                        <property name="tooltip-text" translatable="yes">图形着色器转储路径</property>
                                         <property name="valign">center</property>
                                         <property name="caps-lock-warning">False</property>
                                       </object>
@@ -2253,7 +2253,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Graphics</property>
+                        <property name="label" translatable="yes">图形</property>
                       </object>
                       <packing>
                         <property name="position">3</property>
@@ -2281,7 +2281,7 @@
                                 <property name="can-focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Logging</property>
+                                <property name="label" translatable="yes">日志</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -2302,11 +2302,11 @@
                                 <property name="orientation">vertical</property>
                                 <child>
                                   <object class="GtkCheckButton" id="_fileLogToggle">
-                                    <property name="label" translatable="yes">Enable Logging to File</property>
+                                    <property name="label" translatable="yes">启用文件日志记录</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables or disables logging to a file on disk</property>
+                                    <property name="tooltip-text" translatable="yes">启用或禁用对磁盘上文件的日志记录</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2320,11 +2320,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_stubLogToggle">
-                                    <property name="label" translatable="yes">Enable Stub Logs</property>
+                                    <property name="label" translatable="yes">启用存根日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing stub log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用输入存根日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2338,11 +2338,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_infoLogToggle">
-                                    <property name="label" translatable="yes">Enable Info Logs</property>
+                                    <property name="label" translatable="yes">启用信息日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing info log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印信息日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2356,11 +2356,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_warningLogToggle">
-                                    <property name="label" translatable="yes">Enable Warning Logs</property>
+                                    <property name="label" translatable="yes">启用警告日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing warning log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印警告日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2374,11 +2374,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_errorLogToggle">
-                                    <property name="label" translatable="yes">Enable Error Logs</property>
+                                    <property name="label" translatable="yes">启用错误日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing error log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印错误日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2392,11 +2392,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_guestLogToggle">
-                                    <property name="label" translatable="yes">Enable Guest Logs</property>
+                                    <property name="label" translatable="yes">启用来宾日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing guest log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印来宾日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2410,11 +2410,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_fsAccessLogToggle">
-                                    <property name="label" translatable="yes">Enable Fs Access Logs</property>
+                                    <property name="label" translatable="yes">启用Fs访问日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing fs access log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印fs访问日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2434,8 +2434,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Enables FS access log output to the console. Possible modes are 0-3</property>
-                                        <property name="label" translatable="yes">Fs Global Access Log Mode:</property>
+                                        <property name="tooltip-text" translatable="yes">启用到控制台的FS访问日志输出。可能的模式为0-3</property>
+                                        <property name="label" translatable="yes">Fs全局访问日志模式:</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2448,7 +2448,7 @@
                                       <object class="GtkSpinButton">
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
-                                        <property name="tooltip-text" translatable="yes">Enables FS access log output to the console. Possible modes are 0-3</property>
+                                        <property name="tooltip-text" translatable="yes">启用到控制台的FS访问日志输出。可能的模式为0-3</property>
                                         <property name="text" translatable="yes">0</property>
                                         <property name="adjustment">_fsLogSpinAdjustment</property>
                                       </object>
@@ -2493,10 +2493,10 @@
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="tooltip-text" translatable="yes">Use with care</property>
+                                <property name="tooltip-text" translatable="yes">小心使用</property>
                                 <property name="halign">start</property>
                                 <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Developer Options (WARNING: Will reduce performance)</property>
+                                <property name="label" translatable="yes">开发人员选项（警告：将降低性能）</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -2524,8 +2524,8 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Requires appropriate log levels enabled.</property>
-                                        <property name="label" translatable="yes">OpenGL Log Level</property>
+                                        <property name="tooltip-text" translatable="yes">需要启用适当的日志级别.</property>
+                                        <property name="label" translatable="yes">OpenGL日志级别</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -2538,7 +2538,7 @@
                                       <object class="GtkComboBoxText" id="_graphicsDebugLevel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="tooltip-text" translatable="yes">Requires appropriate log levels enabled.</property>
+                                        <property name="tooltip-text" translatable="yes">需要启用适当的日志级别.</property>
                                         <property name="margin-left">5</property>
                                       </object>
                                       <packing>
@@ -2556,11 +2556,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_debugLogToggle">
-                                    <property name="label" translatable="yes">Enable Debug Logs</property>
+                                    <property name="label" translatable="yes">启用调试日志</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing debug log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印调试日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2574,11 +2574,11 @@
                                 </child>
                                 <child>
                                   <object class="GtkCheckButton" id="_traceLogToggle">
-                                    <property name="label" translatable="yes">Enable Trace Logs</property>
+                                    <property name="label" translatable="yes">启用打印调试日志消息</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">False</property>
-                                    <property name="tooltip-text" translatable="yes">Enables printing trace log messages</property>
+                                    <property name="tooltip-text" translatable="yes">启用打印跟踪日志消息</property>
                                     <property name="halign">start</property>
                                     <property name="margin-top">5</property>
                                     <property name="margin-bottom">5</property>
@@ -2614,7 +2614,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Logging</property>
+                        <property name="label" translatable="yes">日志</property>
                       </object>
                       <packing>
                         <property name="position">4</property>
@@ -2643,7 +2643,7 @@
             <property name="layout-style">end</property>
             <child>
               <object class="GtkToggleButton" id="SaveToggle">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label" translatable="yes">保存</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -2657,7 +2657,7 @@
             </child>
             <child>
               <object class="GtkToggleButton" id="CloseToggle">
-                <property name="label" translatable="yes">Close</property>
+                <property name="label" translatable="yes">关闭</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -2671,7 +2671,7 @@
             </child>
             <child>
               <object class="GtkButton">
-                <property name="label" translatable="yes">Apply</property>
+                <property name="label" translatable="yes">应用</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>

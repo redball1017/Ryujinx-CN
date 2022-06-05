@@ -33,8 +33,8 @@ namespace Ryujinx.Ui.Applet
             InputEntry.Activated += OnInputActivated;
             InputEntry.Changed   += OnInputChanged;
 
-            OkButton     = (Button)AddButton("OK",     ResponseType.Ok);
-            CancelButton = (Button)AddButton("Cancel", ResponseType.Cancel);
+            OkButton     = (Button)AddButton("好的",     ResponseType.Ok);
+            CancelButton = (Button)AddButton("返回", ResponseType.Cancel);
 
             ((Box)MessageArea).PackEnd(_validationInfo, true, true, 0);
             ((Box)MessageArea).PackEnd(InputEntry,      true, true, 4);

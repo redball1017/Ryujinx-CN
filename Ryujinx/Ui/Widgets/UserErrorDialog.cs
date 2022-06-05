@@ -30,7 +30,7 @@ namespace Ryujinx.Ui.Widgets
 
             if (isInSetupGuide)
             {
-                AddButton("Open the Setup Guide", SetupGuideResponseId);
+                AddButton("打开安装指南", SetupGuideResponseId);
             }
 
             string errorCode = GetErrorCode(error);
@@ -43,7 +43,7 @@ namespace Ryujinx.Ui.Widgets
 
             if (isInSetupGuide)
             {
-                SecondaryText += "\n<b>For more information on how to fix this error, follow our Setup Guide.</b>";
+                SecondaryText += "\n<b>有关如何修复此错误的更多信息，请阅读我们的安装指南.</b>";
             }
         }
 
@@ -56,12 +56,12 @@ namespace Ryujinx.Ui.Widgets
         {
             return error switch
             {
-                UserError.NoKeys                => "Keys not found",
-                UserError.NoFirmware            => "Firmware not found",
-                UserError.FirmwareParsingFailed => "Firmware parsing error",
-                UserError.ApplicationNotFound   => "Application not found",
-                UserError.Unknown               => "Unknown error",
-                _                               => "Undefined error",
+                UserError.NoKeys                => "找不到密钥",
+                UserError.NoFirmware            => "未找到固件",
+                UserError.FirmwareParsingFailed => "固件分析错误",
+                UserError.ApplicationNotFound   => "找不到应用程序",
+                UserError.Unknown               => "未知错误",
+                _                               => "未定义的错误",
             };
         }
 
@@ -69,12 +69,12 @@ namespace Ryujinx.Ui.Widgets
         {
             return error switch
             {
-                UserError.NoKeys                => "Ryujinx was unable to find your 'prod.keys' file",
-                UserError.NoFirmware            => "Ryujinx was unable to find any firmwares installed",
-                UserError.FirmwareParsingFailed => "Ryujinx was unable to parse the provided firmware. This is usually caused by outdated keys.",
-                UserError.ApplicationNotFound   => "Ryujinx couldn't find a valid application at the given path.",
-                UserError.Unknown               => "An unknown error occured!",
-                _                               => "An undefined error occured! This shouldn't happen, please contact a dev!",
+                UserError.NoKeys                => "Ryujinx无法找到您的“prod.keys”文件",
+                UserError.NoFirmware            => "Ryujinx找不到安装的任何固件",
+                UserError.FirmwareParsingFailed => "Ryujinx无法分析提供的固件。这通常是由过期的密钥引起的.",
+                UserError.ApplicationNotFound   => "Ryujinx在给定路径中找不到有效的应用程序.",
+                UserError.Unknown               => "发生未知错误!",
+                _                               => "发生未定义的错误！这不应该发生，请联系开发人员!",
             };
         }
 

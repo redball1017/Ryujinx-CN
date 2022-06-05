@@ -132,7 +132,7 @@ namespace Ryujinx.Ui.Windows
             //
             _ryujinxLinkLabel = new Label("www.ryujinx.org")
             {
-                TooltipText = "Click to open the Ryujinx website in your default browser.",
+                TooltipText = "单击以在默认浏览器中打开Ryujinx网站.",
                 Justify     = Justification.Center,
                 Attributes  = new AttrList()
             };
@@ -151,7 +151,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _disclaimerLabel
             //
-            _disclaimerLabel = new Label("Ryujinx is not affiliated with Nintendo™,\nor any of its partners, in any way.")
+            _disclaimerLabel = new Label("Ryujinx不是任天堂™的附属公司,\也没有任何合作伙伴.")
             {
                 Expand     = true,
                 Justify    = Justification.Center,
@@ -172,9 +172,9 @@ namespace Ryujinx.Ui.Windows
             //
             // _amiiboApiLinkLabel
             //
-            _amiiboApiLinkLabel = new Label("AmiiboAPI (www.amiiboapi.com) is used\nin our Amiibo emulation.")
+            _amiiboApiLinkLabel = new Label("AmiiboAPI（www.AmiiboAPI.com）在我们的Amiibo仿真中使用.")
             {
-                TooltipText = "Click to open the AmiiboAPI website in your default browser.",
+                TooltipText = "单击以在默认浏览器中打开AmiiboAPI网站.",
                 Justify     = Justification.Center,
                 Attributes  = new AttrList()
             };
@@ -194,7 +194,7 @@ namespace Ryujinx.Ui.Windows
             //
             _patreonEventBox = new EventBox()
             {
-                TooltipText = "Click to open the Ryujinx Patreon page in your default browser."
+                TooltipText = "单击以在默认浏览器中打开Ryujinx Patreon页面."
             };
             _patreonEventBox.ButtonPressEvent += PatreonButton_Pressed;
 
@@ -224,7 +224,7 @@ namespace Ryujinx.Ui.Windows
             //
             _githubEventBox = new EventBox()
             {
-                TooltipText = "Click to open the Ryujinx GitHub page in your default browser."
+                TooltipText = "单击以在默认浏览器中打开Ryujinx GitHub页面."
             };
             _githubEventBox.ButtonPressEvent += GitHubButton_Pressed;
 
@@ -259,7 +259,7 @@ namespace Ryujinx.Ui.Windows
             //
             _discordEventBox = new EventBox()
             {
-                TooltipText = "Click to open an invite to the Ryujinx Discord server in your default browser."
+                TooltipText = "单击以在默认浏览器中打开对Ryujinx Discord服务器的邀请."
             };
             _discordEventBox.ButtonPressEvent += DiscordButton_Pressed;
 
@@ -284,7 +284,7 @@ namespace Ryujinx.Ui.Windows
             //
             _twitterEventBox = new EventBox()
             {
-                TooltipText = "Click to open the Ryujinx Twitter page in your default browser."
+                TooltipText = "单击以在默认浏览器中打开Ryujinx Twitter页面."
             };
             _twitterEventBox.ButtonPressEvent += TwitterButton_Pressed;
 
@@ -329,7 +329,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _aboutLabel
             //
-            _aboutLabel = new Label("About :")
+            _aboutLabel = new Label("关于 :")
             {
                 Halign     = Align.Start,
                 Attributes = new AttrList()
@@ -340,10 +340,10 @@ namespace Ryujinx.Ui.Windows
             //
             // _aboutDescriptionLabel
             //
-            _aboutDescriptionLabel = new Label("Ryujinx is an emulator for the Nintendo Switch™.\n" +
-                                               "Please support us on Patreon.\n" +
-                                               "Get all the latest news on our Twitter or Discord.\n" +
-                                               "Developers interested in contributing can find out more on our GitHub or Discord.")
+            _aboutDescriptionLabel = new Label("Ryujinx是Nintendo™ Switch的模拟器.\n" +
+                                               "请在Patreon上支持我们.\n" +
+                                               "在我们的推特或Discord上获取所有最新消息.\n" +
+                                               "有兴趣参与的开发人员可以在我们的GitHub或Discord上找到更多信息.")
             {
                 Margin = 15,
                 Halign = Align.Start
@@ -352,7 +352,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _createdByLabel
             //
-            _createdByLabel = new Label("Maintained by :")
+            _createdByLabel = new Label("维护人 :")
             {
                 Halign     = Align.Start,
                 Attributes = new AttrList()
@@ -371,7 +371,7 @@ namespace Ryujinx.Ui.Windows
                 Margin        = 15,
                 MarginRight   = 30
             };
-            _createdByText.Buffer.Text = "gdkchan, Ac_K, Thog, rip in peri peri, LDj3SNuD, emmaus, Thealexbarney, Xpl0itR, GoffyDude, »jD« and more...";
+            _createdByText.Buffer.Text = "gdkchan、Ac\K、Thog、rip in peri peri、LDj3SNuD、emmaus、Thealexbarney、Xpl0itR、GoffyDude、»jD«等。。。";
 
             //
             // _contributorsEventBox
@@ -382,9 +382,9 @@ namespace Ryujinx.Ui.Windows
             //
             // _contributorsLinkLabel
             //
-            _contributorsLinkLabel = new Label("See All Contributors...")
+            _contributorsLinkLabel = new Label("查看所有贡献者...")
             {
-                TooltipText = "Click to open the Contributors page in your default browser.",
+                TooltipText = "单击以在默认浏览器中打开“参与者”页面.",
                 MarginRight = 30,
                 Halign      = Align.End,
                 Attributes  = new AttrList()
@@ -394,7 +394,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _patreonNamesLabel
             //
-            _patreonNamesLabel = new Label("Supported on Patreon by :")
+            _patreonNamesLabel = new Label("Patreon支持 :")
             {
                 Halign     = Align.Start,
                 Attributes = new AttrList()
@@ -421,7 +421,7 @@ namespace Ryujinx.Ui.Windows
             {
                 WrapMode = Gtk.WrapMode.Word
             };
-            _patreonNamesText.Buffer.Text = "Loading...";
+            _patreonNamesText.Buffer.Text = "加载中...";
             _patreonNamesText.SetProperty("editable", new GLib.Value(false));
 
 #pragma warning restore CS0612

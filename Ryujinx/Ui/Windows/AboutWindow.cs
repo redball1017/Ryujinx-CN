@@ -10,7 +10,7 @@ namespace Ryujinx.Ui.Windows
 {
     public partial class AboutWindow : Window
     {
-        public AboutWindow() : base($"Ryujinx {Program.Version} - About")
+        public AboutWindow() : base($"Ryujinx {Program.Version} - 关于")
         {
             Icon = new Gdk.Pixbuf(Assembly.GetAssembly(typeof(OpenHelper)), "Ryujinx.Ui.Common.Resources.Logo_Ryujinx.png");
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Ryujinx.Ui.Windows
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
-                _patreonNamesText.Buffer.Text = "Connection Error.";
+                _patreonNamesText.Buffer.Text = "连接错误.";
             }
 
             HttpClient httpClient = new HttpClient();
@@ -35,7 +35,7 @@ namespace Ryujinx.Ui.Windows
             }
             catch
             {
-                _patreonNamesText.Buffer.Text = "API Error.";
+                _patreonNamesText.Buffer.Text = "API 错误.";
             }
         }
 

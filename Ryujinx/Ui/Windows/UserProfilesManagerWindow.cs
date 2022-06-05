@@ -143,7 +143,7 @@ namespace Ryujinx.Ui.Windows
 
         private void AddButton_Pressed(object sender, EventArgs e)
         {
-            _tempNewProfileName = GtkDialog.CreateInputDialog(this, "Choose the Profile Name", "Please Enter a Profile Name", MaxProfileNameLength);
+            _tempNewProfileName = GtkDialog.CreateInputDialog(this, "选择配置文件名称", "请输入配置文件名称", MaxProfileNameLength);
 
             if (_tempNewProfileName != "")
             {
@@ -158,7 +158,7 @@ namespace Ryujinx.Ui.Windows
 
         private void DeleteButton_Pressed(object sender, EventArgs e)
         {
-            if (GtkDialog.CreateChoiceDialog("Delete User Profile", "Are you sure you want to delete the profile ?", "Deleting this profile will also delete all associated save data."))
+            if (GtkDialog.CreateChoiceDialog("删除用户配置文件", "是否确实要删除配置文件？", "删除此配置文件还将删除所有关联的保存数据."))
             {
                 _accountManager.DeleteUser(GetSelectedUserId());
 
@@ -192,14 +192,14 @@ namespace Ryujinx.Ui.Windows
 
         private void ProfileImageFileChooser()
         {
-            FileChooserNative fileChooser = new FileChooserNative("Import Custom Profile Image", this, FileChooserAction.Open, "Import", "Cancel")
+            FileChooserNative fileChooser = new FileChooserNative("导入自定义配置文件图像", this, FileChooserAction.Open, "导入", "返回")
             {
                 SelectMultiple = false
             };
 
             FileFilter filter = new FileFilter()
             {
-                Name = "Custom Profile Images"
+                Name = "自定义配置文件图像"
             };
             filter.AddPattern("*.jpg");
             filter.AddPattern("*.jpeg");
@@ -230,9 +230,9 @@ namespace Ryujinx.Ui.Windows
                     { 1, "Select Firmware Avatar" }
                 };
 
-                ResponseType responseDialog = GtkDialog.CreateCustomDialog("Profile Image Selection",
-                                                                           "Choose a Profile Image",
-                                                                           "You may import a custom profile image, or select an avatar from the system firmware.", 
+                ResponseType responseDialog = GtkDialog.CreateCustomDialog("配置文件图像选择",
+                                                                           "选择配置文件图像",
+                                                                           "您可以导入自定义配置文件图像，或从系统固件中选择头像.", 
                                                                            buttons, MessageType.Question);
 
                 if (responseDialog == 0)

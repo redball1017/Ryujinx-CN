@@ -67,8 +67,8 @@ namespace Ryujinx.Ui.Windows
             //
             _randomUuidCheckBox = new CheckButton()
             {
-                Label       = "Hack: Use Random Tag Uuid",
-                TooltipText = "This allows multiple scans of a single Amiibo.\n(used in The Legend of Zelda: Breath of the Wild)"
+                Label       = "高级：使用随机标记Uuid",
+                TooltipText = "这允许对单个Amiibo进行多个扫描。\n（用于Legend of Zelda: Breath of the Wild）."
             };
 
             //
@@ -76,7 +76,7 @@ namespace Ryujinx.Ui.Windows
             //
             _cancelButton = new Button()
             {
-                Label           = "Cancel",
+                Label           = "返回",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 MarginLeft      = 10
@@ -108,7 +108,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _amiiboSeriesLabel
             //
-            _amiiboSeriesLabel = new Label("Amiibo Series:");
+            _amiiboSeriesLabel = new Label("Amiibo系列:");
 
             //
             // _amiiboSeriesComboBox
@@ -126,7 +126,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _amiiboCharsLabel
             //
-            _amiiboCharsLabel = new Label("Character:");
+            _amiiboCharsLabel = new Label("角色:");
 
             //
             // _amiiboCharsComboBox
@@ -138,7 +138,7 @@ namespace Ryujinx.Ui.Windows
             //
             _showAllCheckBox = new CheckButton()
             {
-                Label = "Show All Amiibo"
+                Label = "显示所有Amiibo"
             };
 
             //

@@ -317,7 +317,7 @@ namespace Ryujinx.Ui
 
         private void WindowStateEvent_Changed(object o, WindowStateEventArgs args)
         {
-            _fullScreen.Label = args.Event.NewWindowState.HasFlag(Gdk.WindowState.Fullscreen) ? "Exit Fullscreen" : "Enter Fullscreen";
+            _fullScreen.Label = args.Event.NewWindowState.HasFlag(Gdk.WindowState.Fullscreen) ? "退出全屏" : "进入全屏";
         }
 
         private void MainWindow_FocusOutEvent(object o, FocusOutEventArgs args)
@@ -340,54 +340,54 @@ namespace Ryujinx.Ui
             CellRendererToggle favToggle = new CellRendererToggle();
             favToggle.Toggled += FavToggle_Toggled;
 
-            if (ConfigurationState.Instance.Ui.GuiColumns.FavColumn)        _gameTable.AppendColumn("Fav",         favToggle,                "active", 0);
-            if (ConfigurationState.Instance.Ui.GuiColumns.IconColumn)       _gameTable.AppendColumn("Icon",        new CellRendererPixbuf(), "pixbuf", 1);
-            if (ConfigurationState.Instance.Ui.GuiColumns.AppColumn)        _gameTable.AppendColumn("Application", new CellRendererText(),   "text",   2);
-            if (ConfigurationState.Instance.Ui.GuiColumns.DevColumn)        _gameTable.AppendColumn("Developer",   new CellRendererText(),   "text",   3);
-            if (ConfigurationState.Instance.Ui.GuiColumns.VersionColumn)    _gameTable.AppendColumn("Version",     new CellRendererText(),   "text",   4);
-            if (ConfigurationState.Instance.Ui.GuiColumns.TimePlayedColumn) _gameTable.AppendColumn("Time Played", new CellRendererText(),   "text",   5);
-            if (ConfigurationState.Instance.Ui.GuiColumns.LastPlayedColumn) _gameTable.AppendColumn("Last Played", new CellRendererText(),   "text",   6);
-            if (ConfigurationState.Instance.Ui.GuiColumns.FileExtColumn)    _gameTable.AppendColumn("File Ext",    new CellRendererText(),   "text",   7);
-            if (ConfigurationState.Instance.Ui.GuiColumns.FileSizeColumn)   _gameTable.AppendColumn("File Size",   new CellRendererText(),   "text",   8);
-            if (ConfigurationState.Instance.Ui.GuiColumns.PathColumn)       _gameTable.AppendColumn("Path",        new CellRendererText(),   "text",   9);
+            if (ConfigurationState.Instance.Ui.GuiColumns.FavColumn)        _gameTable.AppendColumn("置顶",         favToggle,                "active", 0);
+            if (ConfigurationState.Instance.Ui.GuiColumns.IconColumn)       _gameTable.AppendColumn("图标",        new CellRendererPixbuf(), "pixbuf", 1);
+            if (ConfigurationState.Instance.Ui.GuiColumns.AppColumn)        _gameTable.AppendColumn("应用程序", new CellRendererText(),   "text",   2);
+            if (ConfigurationState.Instance.Ui.GuiColumns.DevColumn)        _gameTable.AppendColumn("开发商",   new CellRendererText(),   "text",   3);
+            if (ConfigurationState.Instance.Ui.GuiColumns.VersionColumn)    _gameTable.AppendColumn("版本",     new CellRendererText(),   "text",   4);
+            if (ConfigurationState.Instance.Ui.GuiColumns.TimePlayedColumn) _gameTable.AppendColumn("已游玩时间", new CellRendererText(),   "text",   5);
+            if (ConfigurationState.Instance.Ui.GuiColumns.LastPlayedColumn) _gameTable.AppendColumn("上一次游玩时间", new CellRendererText(),   "text",   6);
+            if (ConfigurationState.Instance.Ui.GuiColumns.FileExtColumn)    _gameTable.AppendColumn("文件格式",    new CellRendererText(),   "text",   7);
+            if (ConfigurationState.Instance.Ui.GuiColumns.FileSizeColumn)   _gameTable.AppendColumn("文件大小",   new CellRendererText(),   "text",   8);
+            if (ConfigurationState.Instance.Ui.GuiColumns.PathColumn)       _gameTable.AppendColumn("路径",        new CellRendererText(),   "text",   9);
 
             foreach (TreeViewColumn column in _gameTable.Columns)
             {
                 switch (column.Title)
                 {
-                    case "Fav":
+                    case "置顶":
                         column.SortColumnId = 0;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Application":
+                    case "应用程序":
                         column.SortColumnId = 2;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Developer":
+                    case "开发商":
                         column.SortColumnId = 3;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Version":
+                    case "版本":
                         column.SortColumnId = 4;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Time Played":
+                    case "已游玩时间":
                         column.SortColumnId = 5;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Last Played":
+                    case "上一次游玩时间":
                         column.SortColumnId = 6;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "File Ext":
+                    case "文件格式":
                         column.SortColumnId = 7;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "File Size":
+                    case "文件大小":
                         column.SortColumnId = 8;
                         column.Clicked += Column_Clicked;
                         break;
-                    case "Path":
+                    case "路径":
                         column.SortColumnId = 9;
                         column.Clicked += Column_Clicked;
                         break;
@@ -424,7 +424,7 @@ namespace Ryujinx.Ui
                 renderer = new ThreadedRenderer(renderer);
             }
 
-            Logger.Info?.PrintMsg(LogClass.Gpu, $"Backend Threading ({threadingMode}): {threadedGAL}");
+            Logger.Info?.PrintMsg(LogClass.Gpu, $"后端线程 ({threadingMode}): {threadedGAL}");
 
             IHardwareDeviceDriver deviceDriver = new DummyHardwareDeviceDriver();
 
@@ -604,7 +604,7 @@ namespace Ryujinx.Ui
                     label = $"Shaders : {current}/{total}";
                     break;
                 default:
-                    throw new ArgumentException($"Unknown Progress Handler type {typeof(T)}");
+                    throw new ArgumentException($"未知的进度处理程序类型 {typeof(T)}");
             }
 
             Application.Invoke(delegate
@@ -645,9 +645,9 @@ namespace Ryujinx.Ui
             {
                 MessageDialog debugWarningDialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, null)
                 {
-                    Title         = "Ryujinx - Warning",
-                    Text          = "You have trace logging enabled, which is designed to be used by developers only.",
-                    SecondaryText = "For optimal performance, it's recommended to disable trace logging. Would you like to disable trace logging now?"
+                    Title         = "Ryujinx - 警告",
+                    Text          = "您启用了跟踪日志记录，该日志记录设计为仅供开发人员使用.",
+                    SecondaryText = "为了获得最佳性能，建议禁用跟踪日志记录。是否要立即禁用跟踪日志记录?"
                 };
 
                 if (debugWarningDialog.Run() == (int)ResponseType.Yes)
@@ -663,9 +663,9 @@ namespace Ryujinx.Ui
             {
                 MessageDialog shadersDumpWarningDialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Warning, ButtonsType.YesNo, null)
                 {
-                    Title         = "Ryujinx - Warning",
-                    Text          = "You have shader dumping enabled, which is designed to be used by developers only.",
-                    SecondaryText = "For optimal performance, it's recommended to disable shader dumping. Would you like to disable shader dumping now?"
+                    Title         = "Ryujinx - 警告",
+                    Text          = "您已启用着色器转储，该转储设计为仅供开发人员使用.",
+                    SecondaryText = "为了获得最佳性能，建议禁用着色器转储。是否立即禁用着色器转储?"
                 };
 
                 if (shadersDumpWarningDialog.Run() == (int)ResponseType.Yes)
@@ -682,7 +682,7 @@ namespace Ryujinx.Ui
         {
             if (_gameLoaded)
             {
-                GtkDialog.CreateInfoDialog("A game has already been loaded", "Please stop emulation or close the emulator before launching another game.");
+                GtkDialog.CreateInfoDialog("你加载了一个游戏", "在启动另一个游戏之前，请停止模拟或关闭模拟器.");
             }
             else
             {
@@ -718,9 +718,9 @@ namespace Ryujinx.Ui
                     {
                         if (userError == UserError.NoFirmware)
                         {
-                            string message = $"Would you like to install the firmware embedded in this game? (Firmware {firmwareVersion.VersionString})";
+                            string message = $"是否要安装此游戏中嵌入的固件? (固件 {firmwareVersion.VersionString})";
 
-                            ResponseType responseDialog = (ResponseType)GtkDialog.CreateConfirmationDialog("No Firmware Installed", message).Run();
+                            ResponseType responseDialog = (ResponseType)GtkDialog.CreateConfirmationDialog("未能安装固件", message).Run();
 
                             if (responseDialog != ResponseType.Yes)
                             {
@@ -752,7 +752,7 @@ namespace Ryujinx.Ui
 
                             RefreshFirmwareLabel();
 
-                            string message = $"No installed firmware was found but Ryujinx was able to install firmware {firmwareVersion.VersionString} from the provided game.\nThe emulator will now start.";
+                            string message = $"未找到已安装的固件，  Ryujinx能够从提供的游戏安装固件 {firmwareVersion.VersionString} .\n模拟器现在将启动.";
 
                             GtkDialog.CreateInfoDialog($"Firmware {firmwareVersion.VersionString} was installed", message);
                         }
@@ -769,11 +769,11 @@ namespace Ryujinx.Ui
                     }
                 }
 
-                Logger.Notice.Print(LogClass.Application, $"Using Firmware Version: {firmwareVersion?.VersionString}");
+                Logger.Notice.Print(LogClass.Application, $"使用固件版本: {firmwareVersion?.VersionString}");
 
                 if (isFirmwareTitle)
                 {
-                    Logger.Info?.Print(LogClass.Application, "Loading as Firmware Title (NCA).");
+                    Logger.Info?.Print(LogClass.Application, "加载为固件Title (NCA).");
 
                     _emulationContext.LoadNca(path);
                 }
@@ -822,14 +822,14 @@ namespace Ryujinx.Ui
                             }
                             catch (ArgumentOutOfRangeException)
                             {
-                                Logger.Error?.Print(LogClass.Application, "The specified file is not supported by Ryujinx.");
+                                Logger.Error?.Print(LogClass.Application, "Ryujinx不支持指定的文件.");
                             }
                             break;
                     }
                 }
                 else
                 {
-                    Logger.Warning?.Print(LogClass.Application, "Please specify a valid XCI/NCA/NSP/PFS0/NRO file.");
+                    Logger.Warning?.Print(LogClass.Application, "请指定有效的XCI/NCA/NSP/PFS0/NRO文件.");
 
                     _emulationContext.Dispose();
                     RendererWidget.Dispose();
@@ -1098,7 +1098,7 @@ namespace Ryujinx.Ui
         {
             Application.Invoke(delegate
             {
-                _progressLabel.Text = $"{args.NumAppsLoaded}/{args.NumAppsFound} Games Loaded";
+                _progressLabel.Text = $"已加载 {args.NumAppsLoaded}/{args.NumAppsFound} 个游戏";
                 float barValue      = 0;
 
                 if (args.NumAppsFound != 0)
@@ -1178,7 +1178,7 @@ namespace Ryujinx.Ui
         {
             _emulationContext.EnableDeviceVsync = !_emulationContext.EnableDeviceVsync;
 
-            Logger.Info?.Print(LogClass.Application, $"VSync toggled to: {_emulationContext.EnableDeviceVsync}");
+            Logger.Info?.Print(LogClass.Application, $"VSync切换为: {_emulationContext.EnableDeviceVsync}");
         }
 
         private void DockedMode_Clicked(object sender, ButtonReleaseEventArgs args)
@@ -1240,11 +1240,11 @@ namespace Ryujinx.Ui
 
         private void Load_Application_File(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("Choose the file to open", this, FileChooserAction.Open, "Open", "Cancel"))
+            using (FileChooserNative fileChooser = new FileChooserNative("选择要打开的文件", this, FileChooserAction.Open, "打开", "返回"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Switch Executables"
+                    Name = "Switch可执行文件"
                 };
                 filter.AddPattern("*.xci");
                 filter.AddPattern("*.nsp");

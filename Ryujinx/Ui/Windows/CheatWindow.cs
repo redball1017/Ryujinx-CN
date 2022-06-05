@@ -27,7 +27,7 @@ namespace Ryujinx.Ui.Windows
         private CheatWindow(Builder builder, VirtualFileSystem virtualFileSystem, ulong titleId, string titleName) : base(builder.GetObject("_cheatWindow").Handle)
         {
             builder.Autoconnect(this);
-            _baseTitleInfoLabel.Text = $"Cheats Available for {titleName} [{titleId:X16}]";
+            _baseTitleInfoLabel.Text = $"可用于 {titleName} [{titleId:X16}]的作弊码";
 
             string modsBasePath  = virtualFileSystem.ModLoader.GetModsBasePath();
             string titleModsPath = virtualFileSystem.ModLoader.GetTitleDir(modsBasePath, titleId.ToString("X16"));
@@ -53,9 +53,9 @@ namespace Ryujinx.Ui.Windows
                 }
             };
 
-            _cheatTreeView.AppendColumn("Enabled", enableToggle, "active", 0);
-            _cheatTreeView.AppendColumn("Name", new CellRendererText(), "text", 1);
-            _cheatTreeView.AppendColumn("Path", new CellRendererText(), "text", 2);
+            _cheatTreeView.AppendColumn("开启", enableToggle, "active", 0);
+            _cheatTreeView.AppendColumn("名称", new CellRendererText(), "text", 1);
+            _cheatTreeView.AppendColumn("路径", new CellRendererText(), "text", 2);
 
             var buildIdColumn = _cheatTreeView.AppendColumn("Build Id", new CellRendererText(), "text", 3);
             buildIdColumn.Visible = false;
@@ -96,7 +96,7 @@ namespace Ryujinx.Ui.Windows
 
             if (cheatAdded == 0)
             {
-                ((TreeStore)_cheatTreeView.Model).AppendValues(false, "No Cheats Found", "", "");
+                ((TreeStore)_cheatTreeView.Model).AppendValues(false, "未找到作弊码", "", "");
                 _cheatTreeView.GetColumn(0).Visible = false;
 
                 _noCheatsFound = true;

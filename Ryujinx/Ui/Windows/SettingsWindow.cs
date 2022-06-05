@@ -137,7 +137,7 @@ namespace Ryujinx.Ui.Windows
             {
                 if (_galThreading.ActiveId != ConfigurationState.Instance.Graphics.BackendThreading.Value.ToString())
                 {
-                    GtkDialog.CreateInfoDialog("Warning - Backend Threading", "Ryujinx must be restarted after changing this option for it to apply fully. Depending on your platform, you may need to manually disable your driver's own multithreading when using Ryujinx's.");
+                    GtkDialog.CreateInfoDialog("Warning - 后端多线程", "更改此选项后，Ryujinx必须重新启动才能完全应用。根据您的平台，在使用Ryujinx时，您可能需要手动禁用驱动程序自己的多线程.");
                 }
             };
 
@@ -381,7 +381,7 @@ namespace Ryujinx.Ui.Windows
             _audioBackendSelect.Show();
 
             _previousVolumeLevel            = ConfigurationState.Instance.System.AudioVolume;
-            _audioVolumeLabel               = new Label("Volume: ");
+            _audioVolumeLabel               = new Label("音量: ");
             _audioVolumeSlider              = new Scale(Orientation.Horizontal, 0, 100, 1);
             _audioVolumeLabel.MarginStart   = 10;
             _audioVolumeSlider.ValuePos     = PositionType.Right;
@@ -598,7 +598,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                FileChooserNative fileChooser = new FileChooserNative("Choose the game directory to add to the list", this, FileChooserAction.SelectFolder, "Add", "Cancel")
+                FileChooserNative fileChooser = new FileChooserNative("选择要添加到列表中的游戏目录", this, FileChooserAction.SelectFolder, "添加", "返回")
                 {
                     SelectMultiple = true
                 };
@@ -657,11 +657,11 @@ namespace Ryujinx.Ui.Windows
 
         private void BrowseThemeDir_Pressed(object sender, EventArgs args)
         {
-            using (FileChooserNative fileChooser = new FileChooserNative("Choose the theme to load", this, FileChooserAction.Open, "Select", "Cancel"))
+            using (FileChooserNative fileChooser = new FileChooserNative("选择要加载的主题", this, FileChooserAction.Open, "选择", "返回"))
             {
                 FileFilter filter = new FileFilter()
                 {
-                    Name = "Theme Files"
+                    Name = "主题文件"
                 };
                 filter.AddPattern("*.css");
 

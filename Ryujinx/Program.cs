@@ -44,7 +44,7 @@ namespace Ryujinx
 
             if (OperatingSystem.IsWindows() && !OperatingSystem.IsWindowsVersionAtLeast(10, 0, 17134))
             {
-                MessageBoxA(IntPtr.Zero, "You are running an outdated version of Windows.\n\nStarting on June 1st 2022, Ryujinx will only support Windows 10 1803 and newer.\n", $"Ryujinx {Version}", MB_ICONWARNING);
+                MessageBoxA(IntPtr.Zero, "你正在运行一个过时的Windows版本.\n\n从2022年1月1日起，Ryujinx将只支持Windows 10 1803及更新版本。\n", $"Ryujinx {Version}", MB_ICONWARNING);
             }
 
             // Parse Arguments.
@@ -60,7 +60,7 @@ namespace Ryujinx
                 {
                     if (i + 1 >= args.Length)
                     {
-                        Logger.Error?.Print(LogClass.Application, $"Invalid option '{arg}'");
+                        Logger.Error?.Print(LogClass.Application, $"无效的选项 '{arg}'");
 
                         continue;
                     }
@@ -71,7 +71,7 @@ namespace Ryujinx
                 {
                     if (i + 1 >= args.Length)
                     {
-                        Logger.Error?.Print(LogClass.Application, $"Invalid option '{arg}'");
+                        Logger.Error?.Print(LogClass.Application, $"无效的选项 '{arg}'");
 
                         continue;
                     }
@@ -95,7 +95,7 @@ namespace Ryujinx
             // Delete backup files after updating.
             Task.Run(Updater.CleanupUpdate);
 
-            Console.Title = $"Ryujinx Console {Version}";
+            Console.Title = $"Ryujinx控制台 {Version}";
 
             // NOTE: GTK3 doesn't init X11 in a multi threaded way.
             // This ends up causing race condition and abort of XCB when a context is created by SPB (even if SPB do call XInitThreads).
@@ -157,7 +157,7 @@ namespace Ryujinx
                 else
                 {
                     ConfigurationState.Instance.LoadDefault();
-                    Logger.Warning?.PrintMsg(LogClass.Application, $"Failed to load config! Loading the default config instead.\nFailed config location {ConfigurationPath}");
+                    Logger.Warning?.PrintMsg(LogClass.Application, $"加载配置时出错! 正在加载默认配置来代替当前配置。\n错误配置路径 {ConfigurationPath}");
                 }
             }
 
@@ -192,7 +192,7 @@ namespace Ryujinx
             {
                 Updater.BeginParse(mainWindow, false).ContinueWith(task =>
                 {
-                    Logger.Error?.Print(LogClass.Application, $"Updater Error: {task.Exception}");
+                    Logger.Error?.Print(LogClass.Application, $"更新器错误: {task.Exception}");
                 }, TaskContinuationOptions.OnlyOnFaulted);
             }
 
@@ -201,19 +201,19 @@ namespace Ryujinx
 
         private static void PrintSystemInfo()
         {
-            Logger.Notice.Print(LogClass.Application, $"Ryujinx Version: {Version}");
+            Logger.Notice.Print(LogClass.Application, $"Ryujinx版本: {Version}");
             SystemInfo.Gather().Print();
 
             var enabledLogs = Logger.GetEnabledLevels();
-            Logger.Notice.Print(LogClass.Application, $"Logs Enabled: {(enabledLogs.Count == 0 ? "<None>" : string.Join(", ", enabledLogs))}");
+            Logger.Notice.Print(LogClass.Application, $"已开启的日志: {(enabledLogs.Count == 0 ? "<无>" : string.Join(", ", enabledLogs))}");
 
             if (AppDataManager.Mode == AppDataManager.LaunchMode.Custom)
             {
-                Logger.Notice.Print(LogClass.Application, $"Launch Mode: Custom Path {AppDataManager.BaseDirPath}");
+                Logger.Notice.Print(LogClass.Application, $"启动模式: 自定义路径 {AppDataManager.BaseDirPath}");
             }
             else
             {
-                Logger.Notice.Print(LogClass.Application, $"Launch Mode: {AppDataManager.Mode}");
+                Logger.Notice.Print(LogClass.Application, $"启动模式: {AppDataManager.Mode}");
             }
         }
 
@@ -222,7 +222,7 @@ namespace Ryujinx
             Ptc.Close();
             PtcProfiler.Stop();
 
-            string message = $"Unhandled exception caught: {ex}";
+            string message = $"未处理的异常捕获: {ex}";
 
             Logger.Error?.PrintMsg(LogClass.Application, message);
 

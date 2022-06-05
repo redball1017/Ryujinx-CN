@@ -49,7 +49,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _selectedLabel
             //
-            _selectedLabel = new Label("Selected User Profile:")
+            _selectedLabel = new Label("所选用户配置文件:")
             {
                 Margin     = 15,
                 Attributes = new AttrList()
@@ -111,7 +111,7 @@ namespace Ryujinx.Ui.Windows
             //
             _saveProfileNameButton = new Button()
             {
-                Label           = "Save Profile Name",
+                Label           = "保存配置文件名称",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 Sensitive       = false
@@ -123,7 +123,7 @@ namespace Ryujinx.Ui.Windows
             //
             _changeProfileImageButton = new Button()
             {
-                Label           = "Change Profile Image",
+                Label           = "保存配置文件名称",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 MarginTop       = 10
@@ -133,7 +133,7 @@ namespace Ryujinx.Ui.Windows
             //
             // _availableUsersLabel
             //
-            _availableUsersLabel = new Label("Available User Profiles:")
+            _availableUsersLabel = new Label("可用的用户配置文件:")
             {
                 Margin     = 15,
                 Attributes = new AttrList()
@@ -183,7 +183,7 @@ namespace Ryujinx.Ui.Windows
             //
             _addButton = new Button()
             {
-                Label           = "Add New Profile",
+                Label           = "添加新配置文件",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 HeightRequest   = 35
@@ -195,7 +195,7 @@ namespace Ryujinx.Ui.Windows
             //
             _deleteButton = new Button()
             {
-                Label           = "Delete Selected Profile",
+                Label           = "删除所选配置文件",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 HeightRequest   = 35,
@@ -208,7 +208,7 @@ namespace Ryujinx.Ui.Windows
             //
             _closeButton = new Button()
             {
-                Label           = "Close",
+                Label           = "关闭",
                 CanFocus        = true,
                 ReceivesDefault = true,
                 HeightRequest   = 35,

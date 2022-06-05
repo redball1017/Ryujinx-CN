@@ -42,24 +42,24 @@ namespace Ryujinx.Ui.Widgets
 
         internal static MessageDialog CreateWaitingDialog(string mainText, string secondaryText)
         {
-            return new GtkDialog("Ryujinx - Waiting", mainText, secondaryText, MessageType.Info, ButtonsType.None);
+            return new GtkDialog("Ryujinx - 等待", mainText, secondaryText, MessageType.Info, ButtonsType.None);
         }
 
         internal static void CreateWarningDialog(string mainText, string secondaryText)
         {
-            new GtkDialog("Ryujinx - Warning", mainText, secondaryText, MessageType.Warning).Run();
+            new GtkDialog("Ryujinx - 警告", mainText, secondaryText, MessageType.Warning).Run();
         }
 
         internal static void CreateErrorDialog(string errorMessage)
         {
             Logger.Error?.Print(LogClass.Application, errorMessage);
 
-            new GtkDialog("Ryujinx - Error", "Ryujinx has encountered an error", errorMessage, MessageType.Error).Run();
+            new GtkDialog("Ryujinx - 错误", "Ryujinx遇到错误", errorMessage, MessageType.Error).Run();
         }
 
         internal static MessageDialog CreateConfirmationDialog(string mainText, string secondaryText = "")
         {
-            return new GtkDialog("Ryujinx - Confirmation", mainText, secondaryText, MessageType.Question, ButtonsType.YesNo);
+            return new GtkDialog("Ryujinx - 确认", mainText, secondaryText, MessageType.Question, ButtonsType.YesNo);
         }
 
         internal static bool CreateChoiceDialog(string title, string mainText, string secondaryText)
@@ -108,7 +108,7 @@ namespace Ryujinx.Ui.Widgets
 
         internal static bool CreateExitDialog()
         {
-            return CreateChoiceDialog("Ryujinx - Exit", "Are you sure you want to close Ryujinx?", "All unsaved data will be lost!");
+            return CreateChoiceDialog("Ryujinx - 退出", "你确定要关闭Ryujinx吗？", "所有未保存的数据将丢失！");
         }
     }
 }

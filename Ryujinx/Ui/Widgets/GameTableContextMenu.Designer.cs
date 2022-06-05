@@ -29,72 +29,72 @@ namespace Ryujinx.Ui.Widgets
             //
             // _openSaveUserDirMenuItem
             //
-            _openSaveUserDirMenuItem = new MenuItem("Open User Save Directory")
+            _openSaveUserDirMenuItem = new MenuItem("打开用户保存目录")
             {
-                TooltipText = "Open the directory which contains Application's User Saves."
+                TooltipText = "打开包含应用程序用户保存的目录."
             };
             _openSaveUserDirMenuItem.Activated += OpenSaveUserDir_Clicked;
 
             //
             // _openSaveDeviceDirMenuItem
             //
-            _openSaveDeviceDirMenuItem = new MenuItem("Open Device Save Directory")
+            _openSaveDeviceDirMenuItem = new MenuItem("打开设备保存目录")
             {
-                TooltipText = "Open the directory which contains Application's Device Saves."
+                TooltipText = "打开包含应用程序设备保存的目录."
             };
             _openSaveDeviceDirMenuItem.Activated += OpenSaveDeviceDir_Clicked;
 
             //
             // _openSaveBcatDirMenuItem
             //
-            _openSaveBcatDirMenuItem = new MenuItem("Open BCAT Save Directory")
+            _openSaveBcatDirMenuItem = new MenuItem("打开BCAT保存目录")
             {
-                TooltipText = "Open the directory which contains Application's BCAT Saves."
+                TooltipText = "打开包含应用程序BCAT保存的目录."
             };
             _openSaveBcatDirMenuItem.Activated += OpenSaveBcatDir_Clicked;
 
             //
             // _manageTitleUpdatesMenuItem
             //
-            _manageTitleUpdatesMenuItem = new MenuItem("Manage Title Updates")
+            _manageTitleUpdatesMenuItem = new MenuItem("管理更新")
             {
-                TooltipText = "Open the Title Update management window"
+                TooltipText = "打开“更新管理”窗口"
             };
             _manageTitleUpdatesMenuItem.Activated += ManageTitleUpdates_Clicked;
 
             //
             // _manageDlcMenuItem
             //
-            _manageDlcMenuItem = new MenuItem("Manage DLC")
+            _manageDlcMenuItem = new MenuItem("管理DLC")
             {
-                TooltipText = "Open the DLC management window"
+                TooltipText = "打开DLC管理窗口"
             };
             _manageDlcMenuItem.Activated += ManageDlc_Clicked;
 
             //
             // _manageCheatMenuItem
             //
-            _manageCheatMenuItem = new MenuItem("Manage Cheats")
+            _manageCheatMenuItem = new MenuItem("管理作弊码")
             {
-                TooltipText = "Open the Cheat management window"
+                TooltipText = "打开作弊码管理窗口"
             };
             _manageCheatMenuItem.Activated += ManageCheats_Clicked;
 
             //
             // _openTitleModDirMenuItem
             //
-            _openTitleModDirMenuItem = new MenuItem("Open Mods Directory")
+            _openTitleModDirMenuItem = new MenuItem("打开模组目录")
             {
-                TooltipText = "Open the directory which contains Application's Mods."
+                TooltipText = "打开包含应用程序模组的目录."
             };
             _openTitleModDirMenuItem.Activated += OpenTitleModDir_Clicked;
 
             //
             // _openTitleSdModDirMenuItem
             //
-            _openTitleSdModDirMenuItem = new MenuItem("Open Atmosphere Mods Directory")
+            _openTitleSdModDirMenuItem = new MenuItem("打开大气层模组目录")
             {
-                TooltipText = "Open the alternative SD card atmosphere directory which contains the Application's Mods."
+                TooltipText = "打开包含应用程序Mods的备用SD卡大气层目录."
             };
             _openTitleSdModDirMenuItem.Activated += OpenTitleSdModDir_Clicked;
 
@@ -106,7 +106,7 @@ namespace Ryujinx.Ui.Widgets
             //
             // _extractMenuItem
             //
-            _extractMenuItem = new MenuItem("Extract Data")
+            _extractMenuItem = new MenuItem("提取数据")
             {
                 Submenu = _extractSubMenu
             };
@@ -116,7 +116,7 @@ namespace Ryujinx.Ui.Widgets
             //
             _extractRomFsMenuItem = new MenuItem("RomFS")
             {
-                TooltipText = "Extract the RomFS section from Application's current config (including updates)."
+                TooltipText = "从应用程序的当前配置（包括更新）中提取RomFS部分."
             };
             _extractRomFsMenuItem.Activated += ExtractRomFs_Clicked;
 
@@ -125,7 +125,7 @@ namespace Ryujinx.Ui.Widgets
             //
             _extractExeFsMenuItem = new MenuItem("ExeFS")
             {
-                TooltipText = "Extract the ExeFS section from Application's current config (including updates)."
+                TooltipText = "从应用程序的当前配置（包括更新）中提取ExeFS部分."
             };
             _extractExeFsMenuItem.Activated += ExtractExeFs_Clicked;
 
@@ -134,7 +134,7 @@ namespace Ryujinx.Ui.Widgets
             //
             _extractLogoMenuItem = new MenuItem("Logo")
             {
-                TooltipText = "Extract the Logo section from Application's current config (including updates)."
+                TooltipText = "从应用程序的当前配置（包括更新）中提取徽标部分."
             };
             _extractLogoMenuItem.Activated += ExtractLogo_Clicked;
 
@@ -146,7 +146,7 @@ namespace Ryujinx.Ui.Widgets
             //
             // _manageCacheMenuItem
             //
-            _manageCacheMenuItem = new MenuItem("Cache Management")
+            _manageCacheMenuItem = new MenuItem("缓存管理")
             {
                 Submenu = _manageSubMenu
             };
@@ -154,36 +154,36 @@ namespace Ryujinx.Ui.Widgets
             //
             // _purgePtcCacheMenuItem
             //
-            _purgePtcCacheMenuItem = new MenuItem("Purge PPTC Cache")
+            _purgePtcCacheMenuItem = new MenuItem("清除PPTC缓存")
             {
-                TooltipText = "Delete the Application's PPTC cache."
+                TooltipText = "删除应用程序的PPTC缓存."
             };
             _purgePtcCacheMenuItem.Activated += PurgePtcCache_Clicked;
 
             //
             // _purgeShaderCacheMenuItem
             //
-            _purgeShaderCacheMenuItem = new MenuItem("Purge Shader Cache")
+            _purgeShaderCacheMenuItem = new MenuItem("清除着色器缓存")
             {
-                TooltipText = "Delete the Application's shader cache."
+                TooltipText = "删除应用程序的着色器缓存."
             };
             _purgeShaderCacheMenuItem.Activated += PurgeShaderCache_Clicked;
 
             //
             // _openPtcDirMenuItem
             //
-            _openPtcDirMenuItem = new MenuItem("Open PPTC Directory")
+            _openPtcDirMenuItem = new MenuItem("打开PPTC目录")
             {
-                TooltipText = "Open the directory which contains the Application's PPTC cache."
+                TooltipText = "打开包含应用程序PPTC缓存的目录."
             };
             _openPtcDirMenuItem.Activated += OpenPtcDir_Clicked;
 
             //
             // _openShaderCacheDirMenuItem
             //
-            _openShaderCacheDirMenuItem = new MenuItem("Open Shader Cache Directory")
+            _openShaderCacheDirMenuItem = new MenuItem("打开着色器缓存目录")
             {
-                TooltipText = "Open the directory which contains the Application's shader cache."
+                TooltipText = "打开包含应用程序着色器缓存的目录."
             };
             _openShaderCacheDirMenuItem.Activated += OpenShaderCacheDir_Clicked;
 

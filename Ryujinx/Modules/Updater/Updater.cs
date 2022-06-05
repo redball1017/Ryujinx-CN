@@ -78,7 +78,7 @@ namespace Ryujinx.Modules
 
             if (artifactIndex == -1)
             {
-                GtkDialog.CreateErrorDialog("Your platform is not supported!");
+                GtkDialog.CreateErrorDialog("不支持你所使用的系统/平台!");
 
                 return;
             }
@@ -92,8 +92,8 @@ namespace Ryujinx.Modules
             }
             catch
             {
-                GtkDialog.CreateWarningDialog("Failed to convert the current Ryujinx version.", "Cancelling Update!");
-                Logger.Error?.Print(LogClass.Application, "Failed to convert the current Ryujinx version!");
+                GtkDialog.CreateWarningDialog("无法更换当前Ryujinx版本。", "正在取消更新!");
+                Logger.Error?.Print(LogClass.Application, "无法更换当前Ryujinx版本!");
 
                 return;
             }
@@ -126,7 +126,7 @@ namespace Ryujinx.Modules
                             {
                                 if (showVersionUpToDate)
                                 {
-                                    GtkDialog.CreateUpdaterInfoDialog("You are already using the latest version of Ryujinx!", "");
+                                    GtkDialog.CreateUpdaterInfoDialog("你已经在使用最新版本的Ryujinx!", "");
                                 }
 
                                 return;
@@ -140,7 +140,7 @@ namespace Ryujinx.Modules
                     {
                         if (showVersionUpToDate)
                         {
-                            GtkDialog.CreateUpdaterInfoDialog("You are already using the latest version of Ryujinx!", "");
+                            GtkDialog.CreateUpdaterInfoDialog("你已经在使用最新版本的Ryujinx!", "");
                         }
 
                         return;
@@ -150,7 +150,7 @@ namespace Ryujinx.Modules
             catch (Exception exception)
             {
                 Logger.Error?.Print(LogClass.Application, exception.Message);
-                GtkDialog.CreateErrorDialog("An error occurred when trying to get release information from GitHub Release. This can be caused if a new release is being compiled by GitHub Actions. Try again in a few minutes.");
+                GtkDialog.CreateErrorDialog("从Github Release中获取包信息时出错。这可能是因为Github Actions正在打包一个新的更新。 请过几分钟后再重试。");
 
                 return;
             }
@@ -161,8 +161,8 @@ namespace Ryujinx.Modules
             }
             catch
             {
-                GtkDialog.CreateWarningDialog("Failed to convert the received Ryujinx version from GitHub Release.", "Cancelling Update!");
-                Logger.Error?.Print(LogClass.Application, "Failed to convert the received Ryujinx version from GitHub Release!");
+                GtkDialog.CreateWarningDialog("无法更改从Github Release中接收到的Ryujjinx版本。", "正在取消更新!");
+                Logger.Error?.Print(LogClass.Application, "无法更改从Github Release中接收到的Ryujjinx版本!");
 
                 return;
             }
@@ -171,7 +171,7 @@ namespace Ryujinx.Modules
             {
                 if (showVersionUpToDate)
                 {
-                    GtkDialog.CreateUpdaterInfoDialog("You are already using the latest version of Ryujinx!", "");
+                    GtkDialog.CreateUpdaterInfoDialog("你已经在使用最新版的Ryujinx!", "");
                 }
 
                 Running = false;
@@ -194,7 +194,7 @@ namespace Ryujinx.Modules
                 catch (Exception ex)
                 {
                     Logger.Warning?.Print(LogClass.Application, ex.Message);
-                    Logger.Warning?.Print(LogClass.Application, "Couldn't determine build size for update, using single-threaded updater");
+                    Logger.Warning?.Print(LogClass.Application, "无法判断更新大小， 使用单线程的更新器。");
 
                     _buildSize = -1;
                 }
@@ -218,7 +218,7 @@ namespace Ryujinx.Modules
             string updateFile = Path.Combine(UpdateDir, "update.bin");
 
             // Download the update .zip
-            updateDialog.MainText.Text        = "Downloading Update...";
+            updateDialog.MainText.Text        = "正在下载更新...";
             updateDialog.ProgressBar.Value    = 0;
             updateDialog.ProgressBar.MaxValue = 100;
 
@@ -311,7 +311,7 @@ namespace Ryujinx.Modules
                             catch (Exception e)
                             {
                                 Logger.Warning?.Print(LogClass.Application, e.Message);
-                                Logger.Warning?.Print(LogClass.Application, "Multi-Threaded update failed, falling back to single-threaded updater.");
+                                Logger.Warning?.Print(LogClass.Application, "多线程更新失败， 回退到单线程更新器.");
 
                                 DoUpdateWithSingleThread(updateDialog, downloadUrl, updateFile);
 
@@ -327,7 +327,7 @@ namespace Ryujinx.Modules
                     catch (WebException ex)
                     {
                         Logger.Warning?.Print(LogClass.Application, ex.Message);
-                        Logger.Warning?.Print(LogClass.Application, "Multi-Threaded update failed, falling back to single-threaded updater.");
+                        Logger.Warning?.Print(LogClass.Application, "多线程更新失败， 回退到单线程更新器。");
 
                         for (int j = 0; j < webClients.Count; j++)
                         {
@@ -403,7 +403,7 @@ namespace Ryujinx.Modules
         private static async void InstallUpdate(UpdateDialog updateDialog, string updateFile)
         {
             // Extract Update
-            updateDialog.MainText.Text     = "Extracting Update...";
+            updateDialog.MainText.Text     = "正在提取更新...";
             updateDialog.ProgressBar.Value = 0;
 
             if (OperatingSystem.IsLinux())
@@ -483,7 +483,7 @@ namespace Ryujinx.Modules
 
             List<string> allFiles = EnumerateFilesToDelete().ToList();
 
-            updateDialog.MainText.Text        = "Renaming Old Files...";
+            updateDialog.MainText.Text        = "正在重命名旧文件...";
             updateDialog.ProgressBar.Value    = 0;
             updateDialog.ProgressBar.MaxValue = allFiles.Count;
 
@@ -503,13 +503,13 @@ namespace Ryujinx.Modules
                     }
                     catch
                     {
-                        Logger.Warning?.Print(LogClass.Application, "Updater was unable to rename file: " + file);
+                        Logger.Warning?.Print(LogClass.Application, "更新器无法重命名文件： " + file);
                     }
                 }
 
                 Application.Invoke(delegate
                 {
-                    updateDialog.MainText.Text        = "Adding New Files...";
+                    updateDialog.MainText.Text        = "正在添加新文件...";
                     updateDialog.ProgressBar.Value    = 0;
                     updateDialog.ProgressBar.MaxValue = Directory.GetFiles(UpdatePublishDir, "*", SearchOption.AllDirectories).Length;
                 });
@@ -521,8 +521,8 @@ namespace Ryujinx.Modules
 
             SetUnixPermissions();
 
-            updateDialog.MainText.Text      = "Update Complete!";
-            updateDialog.SecondaryText.Text = "Do you want to restart Ryujinx now?";
+            updateDialog.MainText.Text      = "更新完成!";
+            updateDialog.SecondaryText.Text = "你想要现在就重启Ryujinx吗?";
             updateDialog.Modal              = true;
 
             updateDialog.ProgressBar.Hide();
@@ -537,7 +537,7 @@ namespace Ryujinx.Modules
             {
                 if (showWarnings)
                 {
-                    GtkDialog.CreateWarningDialog("You are not running a supported system architecture!", "(Only x64 systems are supported!)");
+                    GtkDialog.CreateWarningDialog("您没有运行受支持的系统架构!", "(仅支持x64的系统!)");
                 }
 
                 return false;
@@ -547,7 +547,7 @@ namespace Ryujinx.Modules
             {
                 if (showWarnings)
                 {
-                    GtkDialog.CreateWarningDialog("You are not connected to the Internet!", "Please verify that you have a working Internet connection!");
+                    GtkDialog.CreateWarningDialog("你没有连接到互联网!", "请确保你有开启互联网连接!");
                 }
 
                 return false;

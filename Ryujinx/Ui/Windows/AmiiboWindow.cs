@@ -255,7 +255,7 @@ namespace Ryujinx.Ui.Windows
             }
             else
             {
-                GtkDialog.CreateInfoDialog($"Amiibo API", "An error occured while fetching information from the API.");
+                GtkDialog.CreateInfoDialog($"Amiibo API", "从API获取信息时出错.");
 
                 Close();
             }
@@ -284,7 +284,7 @@ namespace Ryujinx.Ui.Windows
 
         private void ShowInfoDialog()
         {
-            GtkDialog.CreateInfoDialog($"Amiibo API", "Unable to connect to Amiibo API server. The service may be down or you may need to verify your internet connection is online.");
+            GtkDialog.CreateInfoDialog($"Amiibo API", "无法连接到Amiibo API服务器。服务可能已关闭，或者您可能需要验证internet连接是否联机.");
         }
 
         //

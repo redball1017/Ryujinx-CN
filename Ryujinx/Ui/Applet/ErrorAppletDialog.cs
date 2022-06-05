@@ -22,7 +22,7 @@ namespace Ryujinx.Ui.Applet
             }
             else
             {
-                AddButton("OK", 0);
+                AddButton("好的", 0);
             }
             
             ShowAll();
