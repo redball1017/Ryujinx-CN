@@ -3,13 +3,6 @@ name: Release job
 on:
   workflow_dispatch:
     inputs: {}
-  push:
-    branches: [ main ]
-    paths-ignore:
-      - '.github/*'
-      - '.github/ISSUE_TEMPLATE/**'
-      - '*.yml'
-      - 'README.md'
 
 
 jobs:
