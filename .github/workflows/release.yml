@@ -79,7 +79,7 @@ jobs:
           name: ${{ steps.version_info.outputs.build_version }}
           artifacts: "release_output/*.tar.gz,release_output/*.zip"
           tag: ${{ steps.version_info.outputs.build_version }}
-          body: "有关此版本的更多信息，请查看 [更新日志](https://redball1017.gitee.io/2022/04/09/ryujinx-cn-changelog)."
+          body: "有关此版本的更多信息，请查看 [更新日志](https://redball1017.gitee.io/2022/04/09/ryujinx-cn-changelog).备用下载链接:[Redball Mirror](https://mirror.redball101713781397.tk/zh-CN/Ryujinx-CN/%E5%8F%91%E8%A1%8C%E7%89%88(Releases)/) ; [Gitee](https://gitee.com/redball1017/Ryujinx-CN/releases)"
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
