@@ -1,9 +1,11 @@
  @echo off
- echo "æ­£åœ¨æ·»åŠ æ‰€æœ‰æ–‡ä»¶åˆ°gitæš‚å­˜åŒº"
+ echo "ÕıÔÚÌí¼ÓËùÓĞÎÄ¼şµ½gitÔİ´æÇø"
  git add .
- echo "æ­£åœ¨æäº¤åˆ°æœ¬åœ°ä»“åº“"
- git commit -m "æ›´æ–°"
- echo "æ­£åœ¨ä»è¿œç¨‹è·å–æœ€æ–°ç‰ˆæœ¬å¹¶mergeåˆ°æœ¬åœ°"
+ echo "ÕıÔÚÌá½»µ½±¾µØ²Ö¿â"
+ git commit -m "¸üĞÂ"
+ echo "ÕıÔÚ´ÓÔ¶³Ì»ñÈ¡×îĞÂ°æ±¾²¢mergeµ½±¾µØ"
  git pull Ryujinx-CN main
- echo "æ­£åœ¨pushåˆ°è¿œç¨‹æœåŠ¡å™¨github"
+ echo "ÕıÔÚpushµ½Ô¶³Ì·şÎñÆ÷github"
  git push -u Ryujinx-CN main
+ pause 
+ exit
