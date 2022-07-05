@@ -7,8 +7,6 @@
 *.sln.docstates
 .vs
 .vscode
-.bat
-*.bat
 
 # Build results
 
