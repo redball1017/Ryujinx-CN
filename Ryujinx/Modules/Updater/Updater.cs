@@ -557,7 +557,7 @@ namespace Ryujinx.Modules
             {
                 if (showWarnings)
                 {
-                    GtkDialog.CreateWarningDialog("You cannot update a Dirty build of Ryujinx!", "Please download Ryujinx at https://ryujinx.org/ if you are looking for a supported version.");
+                    GtkDialog.CreateWarningDialog("您无法更新 Ryujinx 的Dirty版本!", "如果您正在寻找支持的版本，请在 https://ryujinx.org/ 下载 Ryujinx.");
                 }
 
                 return false;
@@ -569,11 +569,11 @@ namespace Ryujinx.Modules
             {
                 if (ReleaseInformations.IsFlatHubBuild())
                 {
-                    GtkDialog.CreateWarningDialog("Updater Disabled!", "Please update Ryujinx via FlatHub.");
+                    GtkDialog.CreateWarningDialog("更新器不可用!", "请从FlatHub下载Ryujinx.");
                 }
                 else
                 {
-                    GtkDialog.CreateWarningDialog("Updater Disabled!", "Please download Ryujinx at https://ryujinx.org/ if you are looking for a supported version.");
+                    GtkDialog.CreateWarningDialog("更新器不可用!", "如果您正在寻找支持的版本，请在 https://ryujinx.org/ 下载 Ryujinx.");
                 }
             }
 

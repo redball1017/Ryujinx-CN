@@ -71,7 +71,7 @@
   </object>
   <object class="GtkWindow" id="_controllerWin">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Ryujinx - Controller Settings</property>
+    <property name="title" translatable="yes">Ryujinx - 控制器设置</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="default_width">1200</property>
@@ -716,7 +716,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_invertLStickX">
-                                            <property name="label" translatable="yes">Invert Stick X</property>
+                                            <property name="label" translatable="yes">反转摇杆左右方向</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -729,7 +729,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_invertLStickY">
-                                            <property name="label" translatable="yes">Invert Stick Y</property>
+                                            <property name="label" translatable="yes">反转摇杆上下方向</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -811,7 +811,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="halign">start</property>
-                                            <property name="label" translatable="yes">Range Left</property>
+                                            <property name="label" translatable="yes">左侧范围</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -872,7 +872,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Triggers</property>
+                                        <property name="label" translatable="yes">触发器</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -1009,7 +1009,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Left SL</property>
+                                            <property name="label" translatable="yes">左 SL</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -1021,7 +1021,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Left SR</property>
+                                            <property name="label" translatable="yes">左 SR</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -1074,7 +1074,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Right SL</property>
+                                            <property name="label" translatable="yes">右 SL</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -1086,7 +1086,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Right SR</property>
+                                            <property name="label" translatable="yes">右 SR</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">0</property>
@@ -1138,7 +1138,7 @@
                                             <property name="can_focus">False</property>
                                             <property name="halign">start</property>
                                             <property name="margin_left">10</property>
-                                            <property name="label" translatable="yes">Trigger Threshold</property>
+                                            <property name="label" translatable="yes">触发阈值</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1222,7 +1222,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Dpad Up</property>
+                                            <property name="label" translatable="yes">上</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1235,7 +1235,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Dpad Down</property>
+                                            <property name="label" translatable="yes">下</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1248,7 +1248,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Dpad Left</property>
+                                            <property name="label" translatable="yes">左</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1261,7 +1261,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Dpad Right</property>
+                                            <property name="label" translatable="yes">右</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1484,7 +1484,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="margin_bottom">5</property>
-                                        <property name="label" translatable="yes">Right Stick</property>
+                                        <property name="label" translatable="yes">右摇杆</property>
                                         <attributes>
                                           <attribute name="weight" value="bold"/>
                                         </attributes>
@@ -1507,7 +1507,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick Button</property>
+                                            <property name="label" translatable="yes">右摇杆按钮</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1546,7 +1546,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick Up</property>
+                                            <property name="label" translatable="yes">右摇杆上</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1559,7 +1559,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick Down</property>
+                                            <property name="label" translatable="yes">右摇杆下</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1572,7 +1572,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick Left</property>
+                                            <property name="label" translatable="yes">右摇杆左</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1585,7 +1585,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick Right</property>
+                                            <property name="label" translatable="yes">右摇杆右</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1663,7 +1663,7 @@
                                             <property name="width_request">80</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">RStick</property>
+                                            <property name="label" translatable="yes">右摇杆</property>
                                             <property name="xalign">0</property>
                                           </object>
                                           <packing>
@@ -1686,7 +1686,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_invertRStickX">
-                                            <property name="label" translatable="yes">Invert Stick X</property>
+                                            <property name="label" translatable="yes">反转摇杆左右方向</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -1699,7 +1699,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_invertRStickY">
-                                            <property name="label" translatable="yes">Invert Stick Y</property>
+                                            <property name="label" translatable="yes">反转摇杆上下方向</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -1712,7 +1712,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkCheckButton" id="_rotateR90CW">
-                                            <property name="label" translatable="yes">Rotate 90° Clockwise</property>
+                                            <property name="label" translatable="yes">顺时针旋转 90°</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="receives_default">False</property>
@@ -1741,7 +1741,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="halign">start</property>
-                                            <property name="label" translatable="yes">Deadzone Right</property>
+                                            <property name="label" translatable="yes">死区右</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -1781,7 +1781,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="halign">start</property>
-                                            <property name="label" translatable="yes">Range Right</property>
+                                            <property name="label" translatable="yes">范围右</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
