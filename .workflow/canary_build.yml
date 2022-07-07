@@ -7,10 +7,6 @@ triggers:
     branches:
       prefix:
         - ''
-  pr:
-    branches:
-      prefix:
-        - ''
 stages:
   - name: build
     displayName: 构建
