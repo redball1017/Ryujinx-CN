@@ -1,0 +1,33 @@
+version: '1.0'
+name: canary_build
+displayName: 构建Ryujinx-CN
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: build
+    displayName: 构建
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: execute@docker
+        name: building
+        displayName: 构建
+        certificate: 184b4b40-6ed4-013a-5484-32d12ef751fd
+        image: mcr.microsoft.com/dotnet/sdk:6.0
+        command:
+          - dotnet Build --arch win-x64 --configuration Debug
+          - dotnet Build --arch win-x64 --configuration Release
+          - dotnet Build --arch linux-x64 --configuration Debug
+          - dotnet Build --arch linux-x64 --configuration Release
+          - dotnet Build --arch osx-x64 --configuration Release
+          - dotnet Build --arch osx-x64 --configuration Debug
+        strategy:
+          retry: '0'
+permissions:
+  - role: admin
+    members: []
