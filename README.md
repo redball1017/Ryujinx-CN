@@ -55,4 +55,10 @@ Gitee下载地址:[点我前往](https://gitee.com/redball1017/Ryujinx-CN/releas
   `dotnet build -c Release -o build`
 
   等它运行之后，Ryujinx-CN文件夹中就有一个名为Build的文件夹，里面就是已经构建好的Ryujinx二进制文件。
+  
+  ## 待办事项
+  
+  - [ ] 完成[Vulkan版](https://github.com/gdkchan/Ryujinx/tree/vulkan-rel)的汉化(将会添加到新分支vulkan-ver)
+  - [ ] 完成[LDN版](https://www.patreon.com/posts/introducing-ldn2-45268370)的汉化(将会添加到新分支LDN-ver)
+  - [ ] 
 
