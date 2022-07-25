@@ -1,3 +1,5 @@
+# 官方支持中文，停止维护
+
 # Ryujinx-CN
 
 这里是Nintendo Switch模拟器[Ryujinx](https://github.com/Ryujinx/Ryujinx)的汉化版，目前只有[我](https://github.com/redball1017)一个人在维护，也欢迎各位会C#的人来帮忙维护!
